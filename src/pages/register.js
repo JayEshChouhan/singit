@@ -41,6 +41,7 @@ const Register = (props) => {
       .catch(err => {
         console.log(err);
         setError("Corrupted sign up link, please go back to our website or ask for a new invitation.");
+        window.scroll(0,0)
       });
   }, [searchParams]);
 
@@ -53,18 +54,21 @@ const Register = (props) => {
 
     if (!validator.isEmail(formValue.email)) {
       setError("Please enter a valid email address");
+      window.scroll(0,0)
       setLoading(false);
       return;
     }
 
     if (!validatePassword(formValue.password)) {
       setError("Please enter a strong password (capital letter, lowercase letter, a number and a special character)");
+      window.scroll(0,0)
       setLoading(false);
       return;
     }
 
     if (formValue.repeatPassword !== formValue.password) {
       setError("Please make sure passwords are matching");
+      window.scroll(0,0)
       setLoading(false);
       return;
     }
@@ -89,6 +93,7 @@ const Register = (props) => {
         cardToken.current = await payMeInstance.current.tokenize(data);
       } catch (err) {
         setError("Please make sure all fields are entered correctly and try again.");
+        window.scroll(0,0)
         setLoading(false);
         return;
       }
@@ -101,6 +106,7 @@ const Register = (props) => {
     } catch (err) {
       console.log(err);
       setError(err.response.data?.message || "Email address is already in use");
+      window.scroll(0,0)
       setLoading(false);
       return;
     };
