@@ -1,22 +1,28 @@
 import styled from "styled-components";
 
 const ExistingBillingAccount = (props) => {
-  return <div className="row" style={{ justifyContent: 'flex-start',   gridColumn: "1 / 3"}}>
+  return <RowWrapper className="row">
     <CreditCard>
-      <img src="https://s3.us-east-2.amazonaws.com/assets.singit.io/credit+cards/amex.png" alt="credit card type" />
+      <img src={`https://s3.us-east-2.amazonaws.com/assets.singit.io/credit+cards/${props.account?.type}.png`} alt="credit card type" />
     </CreditCard>
     <Details>
-      <p>Benny Rosner</p>
-      <span>Card number 11********12334</span>
+      <p>{props.account?.cardholderName}</p>
+      <span>Card ending in {props.account?.cardMask}</span>
     </Details>
-  </div>
+  </RowWrapper>
 };
 
 export default ExistingBillingAccount;
 
+const RowWrapper = styled.div`
+  justify-content: flex-start !important;   
+  grid-column: 1 / 3;
+  padding: 10px 0;
+`;
+
 const CreditCard = styled.div`
   max-width: 70px;
-  margin-inline-end: 15px;
+  margin-inline-end: 20px;
   img { width: 100%; }
 `;
 

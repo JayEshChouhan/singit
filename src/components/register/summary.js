@@ -16,7 +16,11 @@ export const Summary = (props) => {
         <hr />
         <div className="row">
           <span>Total:</span>
-          <h2>$16<small>/{cycleEnum[props.plan?.billingCycle]}</small></h2>
+          <h2>
+            {currencies[props.plan?.currency] || props.plan?.currency}
+            {props.plan?.price / 100}
+            <small>/{cycleEnum[props.plan?.billingCycle]}</small>
+          </h2>
         </div>
 
         {!props.loading && <ConfirmButton onClick={props.submit}>Confirm and Pay</ConfirmButton>}
@@ -32,6 +36,7 @@ export const Summary = (props) => {
 export default Summary;
 
 const cycleEnum = ['', 'Daily', 'Weekly', 'Monthly', 'Yearly'];
+const currencies = { USD: '$', EUR: '£', ILS: '₪' }
 
 const Wrapper = styled.div`
   grid-column: 1 / 3;

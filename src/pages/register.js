@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Summary from "../components/register/summary";
 import ExistingBillingAccount from "../components/register/existingBillingAccount";
 import Navbar from "../components/ui/navbar";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import validator from 'validator';
@@ -28,10 +28,6 @@ const Register = (props) => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    initializePayMe();
-  }, []);
-
-  useEffect(() => {
     let planId = searchParams.get('planId');
     axios.get(`/billing/${planId}/details`)
       .then(plan => {
@@ -41,7 +37,7 @@ const Register = (props) => {
       .catch(err => {
         console.log(err);
         setError("Corrupted sign up link, please go back to our website or ask for a new invitation.");
-        window.scroll(0,0)
+        window.scroll(0, 0)
       });
   }, [searchParams]);
 
@@ -54,66 +50,76 @@ const Register = (props) => {
 
     if (!validator.isEmail(formValue.email)) {
       setError("Please enter a valid email address");
-      window.scroll(0,0)
+      window.scroll(0, 0)
       setLoading(false);
       return;
     }
 
     if (!validatePassword(formValue.password)) {
       setError("Please enter a strong password (capital letter, lowercase letter, a number and a special character)");
-      window.scroll(0,0)
+      window.scroll(0, 0)
       setLoading(false);
       return;
     }
 
     if (formValue.repeatPassword !== formValue.password) {
       setError("Please make sure passwords are matching");
-      window.scroll(0,0)
+      window.scroll(0, 0)
       setLoading(false);
       return;
     }
 
-    const data = {
-      payerFirstName: formValue.payerFirstName,
-      payerLastName: formValue.payerLastName,
-      payerEmail: formValue.email,
-      payerPhone: formValue.phone,
-      payerSocialId: formValue.identifier,
-      total: {
-        label: 'Student Light',
-        amount: {
-          currency: 'USD',
-          value: '13.00',
+    if (!billingAccount) {
+      const data = {
+        payerFirstName: formValue.payerFirstName,
+        payerLastName: formValue.payerLastName,
+        payerEmail: formValue.email,
+        payerPhone: formValue.phone,
+        payerSocialId: formValue.identifier,
+        total: {
+          label: 'Student Light',
+          amount: {
+            currency: 'USD',
+            value: '13.00',
+          }
         }
-      }
-    };
+      };
 
-    if (!cardToken.current) {
-      try {
-        cardToken.current = await payMeInstance.current.tokenize(data);
-      } catch (err) {
-        setError("Please make sure all fields are entered correctly and try again.");
-        window.scroll(0,0)
-        setLoading(false);
-        return;
+      if (!cardToken.current) {
+        try {
+          cardToken.current = await payMeInstance.current.tokenize(data);
+          console.log(cardToken.current);
+        } catch (err) {
+          setError("Please make sure all fields are entered correctly and try again.");
+          window.scroll(0, 0)
+          setLoading(false);
+          return;
+        }
       }
     }
 
-
     try {
       const token = await executeRecaptcha('signUp');
-      let user = await axios.post("/users/create", { ...formValue, planId: searchParams.get('planId'), token: token, cardToken: cardToken.current });
+      let jwt = localStorage.getItem('token');
+      let config = { headers: { 'Authorization': `Bearer ${jwt}` } }
+      let user = await axios.post("/users/create", {
+        ...formValue,
+        planId: searchParams.get('planId'),
+        token: token,
+        cardToken: cardToken.current,
+        useExistingAccount: jwt?.length > 0
+      }, config);
     } catch (err) {
       console.log(err);
       setError(err.response.data?.message || "Email address is already in use");
-      window.scroll(0,0)
+      window.scroll(0, 0)
       setLoading(false);
       return;
     };
 
     // Payment successful: send to login
     setLoading(false);
-    navigate('/welcome', { state: { referrer: searchParams.get('referrer') } });
+    navigate('/welcome', { state: { referrer: searchParams.get('referrer'), name: formValue.firstname } });
   }
 
   const initializePayMe = () => {
@@ -152,6 +158,25 @@ const Register = (props) => {
     return false;
   };
 
+  const getBillingAccount = useCallback((token) => {
+    axios.get(`/users/billingCardInfo`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+      .then(res => {
+        setBillingAccount(res.data);
+      })
+      .catch(err => {
+        setBillingAccount(null);
+        initializePayMe();
+      })
+  }, []);
+
+  useEffect(() => {
+    let token = localStorage.getItem('token');
+    if (token && token.length) getBillingAccount(token);
+    else initializePayMe();
+  }, [getBillingAccount]);
+
   return <>
     <Navbar />
     <Wrapper>
@@ -164,7 +189,7 @@ const Register = (props) => {
           {error && <ErrorCard>{error}</ErrorCard>}
           <Card cardTitle="General Information"><CreateUserForm form={form} /></Card>
           {!billingAccount && <Card cardTitle="Billing Information"><CreateBillingAccount form={form} /></Card>}
-          {billingAccount && <Card cardTitle="Billing Information"><ExistingBillingAccount /></Card>}
+          {billingAccount && <Card cardTitle="Billing Information"><ExistingBillingAccount account={billingAccount} /></Card>}
         </div>
         <Summary loading={loading} plan={paymentPlan} submit={submit} />
       </form>
