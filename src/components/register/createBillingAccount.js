@@ -21,7 +21,7 @@ const CreateBillingAccount = (props) => {
       <input type="text" autoComplete="cc-family-name" {...props.form.register('payerLastName')} />
     </Input>
     <Input label="Social id number">
-      <input type="text" {...props.form.register('socialId')} />
+      <input type="text" {...props.form.register('identifier')} />
     </Input>
 
   </>

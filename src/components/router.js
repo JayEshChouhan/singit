@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "../pages/login";
 import Register from "../pages/register";
+import Success from "../pages/success";
 import NotFound from "./errorPages/notFound";
 
 const Router = (props) => {
   return <Routes>
     <Route exact path="/login" element={<Login />} />
     <Route exact path="/register" element={<Register />} />
+    <Route exact path="/welcome" element={<Success />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 };

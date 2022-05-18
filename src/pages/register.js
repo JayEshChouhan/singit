@@ -7,29 +7,74 @@ import ExistingBillingAccount from "../components/register/existingBillingAccoun
 import Navbar from "../components/ui/navbar";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import validator from 'validator';
+import axios from "axios";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 const Register = (props) => {
   const rendered = useRef(false);
   const payMeInstance = useRef();
+  const cardToken = useRef();
   const form = useForm();
 
-  const [showError, setShowError] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [paymentPlan, setPaymentPlan] = useState(null);
+  const [billingAccount, setBillingAccount] = useState(null);
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  let [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate()
 
   useEffect(() => {
     initializePayMe();
   }, []);
 
-  const submit = () => {
-    setShowError(false);
+  useEffect(() => {
+    let planId = searchParams.get('planId');
+    axios.get(`/billing/${planId}/details`)
+      .then(plan => {
+        if (plan.data) setPaymentPlan(plan.data);
+        else throw new Error();
+      })
+      .catch(err => {
+        console.log(err);
+        setError("Corrupted sign up link, please go back to our website or ask for a new invitation.");
+      });
+  }, [searchParams]);
+
+
+  const submit = async () => {
+    setError("");
+    setLoading(true);
     let formValue = form.getValues();
     console.log(formValue);
+
+    if (!validator.isEmail(formValue.email)) {
+      setError("Please enter a valid email address");
+      setLoading(false);
+      return;
+    }
+
+    if (!validatePassword(formValue.password)) {
+      setError("Please enter a strong password (capital letter, lowercase letter, a number and a special character)");
+      setLoading(false);
+      return;
+    }
+
+    if (formValue.repeatPassword !== formValue.password) {
+      setError("Please make sure passwords are matching");
+      setLoading(false);
+      return;
+    }
 
     const data = {
       payerFirstName: formValue.payerFirstName,
       payerLastName: formValue.payerLastName,
       payerEmail: formValue.email,
       payerPhone: formValue.phone,
-      payerSocialId: formValue.socialId,
+      payerSocialId: formValue.identifier,
       total: {
         label: 'Student Light',
         amount: {
@@ -38,14 +83,32 @@ const Register = (props) => {
         }
       }
     };
-    payMeInstance.current.tokenize(data)
-      .then(result => {
-        console.log(result);
-      }).catch(err => {
-        setShowError(true);
-        console.log(err)
-      });
-  };
+
+    if (!cardToken.current) {
+      try {
+        cardToken.current = await payMeInstance.current.tokenize(data);
+      } catch (err) {
+        setError("Please make sure all fields are entered correctly and try again.");
+        setLoading(false);
+        return;
+      }
+    }
+
+
+    try {
+      const token = await executeRecaptcha('signUp');
+      let user = await axios.post("/users/create", { ...formValue, planId: searchParams.get('planId'), token: token, cardToken: cardToken.current });
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data?.message || "Email address is already in use");
+      setLoading(false);
+      return;
+    };
+
+    // Payment successful: send to login
+    setLoading(false);
+    navigate('/welcome', { state: { referrer: searchParams.get('referrer') } });
+  }
 
   const initializePayMe = () => {
     if (!rendered.current) {
@@ -66,8 +129,21 @@ const Register = (props) => {
         cvc.mount('#card-cvv-container');
       }).catch((error) => {
         console.log(error);
+        setError("Please make sure all the fields are entered correctly and try again.");
       })
     }
+  };
+
+  const validatePassword = (password) => {
+    if (
+      password.length > 8 &&
+      password.match(/[A-Z]/) &&
+      password.match(/[a-z]/) &&
+      password.match(/[0-9]/) &&
+      password.match(/[!@#$%^&*_-]/)
+    )
+      return true;
+    return false;
   };
 
   return <>
@@ -79,12 +155,12 @@ const Register = (props) => {
       </div>
       <form className="row">
         <div className="contentColumn">
-          {showError && <ErrorCard>Please make sure all the fields are entered correctly and try again.</ErrorCard>}
+          {error && <ErrorCard>{error}</ErrorCard>}
           <Card cardTitle="General Information"><CreateUserForm form={form} /></Card>
-          <Card cardTitle="Billing Information"><CreateBillingAccount form={form} /></Card>
-          <Card cardTitle="Billing Information"><ExistingBillingAccount /></Card>
+          {!billingAccount && <Card cardTitle="Billing Information"><CreateBillingAccount form={form} /></Card>}
+          {billingAccount && <Card cardTitle="Billing Information"><ExistingBillingAccount /></Card>}
         </div>
-        <Summary submit={submit} />
+        <Summary loading={loading} plan={paymentPlan} submit={submit} />
       </form>
     </Wrapper>
   </>
@@ -93,6 +169,8 @@ const Register = (props) => {
 export default Register;
 
 const Wrapper = styled.div`
+  position: relative;
+  top: 90px; 
   .pageTitle {
     padding: 5px 20px;
     h1 { margin: 20px 0 0; }
@@ -108,6 +186,7 @@ const Wrapper = styled.div`
     @media only screen and (max-width: 800px) {
       flex: 1;
       margin-inline-end: 0;
+      min-width: 100%;
     }
   }
 

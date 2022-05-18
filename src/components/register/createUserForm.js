@@ -6,7 +6,7 @@ const CreateUserForm = (props) => {
       <input type="text" autoComplete="given-name" {...props.form.register('firstname')} />
     </Input>
     <Input label="Last name">
-      <input type="text" autoComplete="family-name" {...props.form.register('firstname')} />
+      <input type="text" autoComplete="family-name" {...props.form.register('lastname')} />
     </Input>
 
     <Input label="Email">
