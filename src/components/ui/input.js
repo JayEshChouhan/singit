@@ -27,8 +27,7 @@ const Wrapper = styled.div`
     padding: 8px 5px;
     display: block;
     box-sizing: border-box;
-    border: var(--border);
-    border-color: #dacfe8;
+    border: var(--dark-border);
     border-radius: 5px;
   }
 

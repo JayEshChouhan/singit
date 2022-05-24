@@ -10,7 +10,8 @@ import { useForm } from "react-hook-form";
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import validator from 'validator';
 import axios from "axios";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
+import ErrorCard from "../components/ui/errorCard";
 
 const Register = (props) => {
   const rendered = useRef(false);
@@ -25,7 +26,9 @@ const Register = (props) => {
 
   const { executeRecaptcha } = useGoogleReCaptcha();
   let [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     let planId = searchParams.get('planId');
@@ -41,6 +44,14 @@ const Register = (props) => {
       });
   }, [searchParams]);
 
+  useEffect(() => {
+    console.log(location.state);
+    if(location.state) {
+      for(let key of Object.keys(location.state)) {
+        form.setValue(key, location.state[key]);
+      }
+    }
+  }, [form, location]);
 
   const submit = async () => {
     setError("");
@@ -242,10 +253,3 @@ const Wrapper = styled.div`
   }
 `;
 
-const ErrorCard = styled.div`
-  background-color: #ffe3e3;
-  color: #d55e5e;
-  margin: 0 0 20px;
-  padding: 15px;
-  border-radius: 10px;
-`;

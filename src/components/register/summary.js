@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Card from "../ui/card";
 import PuffLoader from "react-spinners/PuffLoader";
+import BigButton from "../ui/bigButton";
 
 export const Summary = (props) => {
   return <div className="summary">
@@ -23,10 +24,10 @@ export const Summary = (props) => {
           </h2>
         </div>
 
-        {!props.loading && <ConfirmButton onClick={props.submit}>Confirm and Pay</ConfirmButton>}
-        {props.loading && <ConfirmButton>
+        {!props.loading && <BigButton onClick={props.submit}>Confirm and Pay</BigButton>}
+        {props.loading && <BigButton>
           <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />
-        </ConfirmButton>}
+        </BigButton>}
       </Wrapper>
     </Card>
     <TermsText>By pressing "Confirm and Pay" You agree to the <a href="https://singit.io/privacy" alt="Terms of service">Terms of service</a></TermsText>
@@ -61,26 +62,6 @@ const PlanCover = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50%;
-`;
-
-const ConfirmButton = styled.span`
-  width: 100%;
-  display: block;
-  margin: 20px 0 10px;
-  background-color: var(--highlight);
-  color: white !important;
-  padding: 15px;
-  box-sizing: border-box;
-  font-weight: 600;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover { opacity: 0.9; }
 `;
 
 const TermsText = styled.span`
