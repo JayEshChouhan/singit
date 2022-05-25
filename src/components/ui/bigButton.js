@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import PuffLoader from "react-spinners/PuffLoader";
 
 const BigButton = (props) => {
-  return <ConfirmButton {...props}>{props.children}</ConfirmButton>
+  return <ConfirmButton {...props} loading={props.loading ? 1 : 0} onClick={props.loading ? null : props.onClick} onKeyDown={props.loading ? null : props.onClick}>
+    {!props.loading && props.children}
+    {props.loading && <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />}
+  </ConfirmButton>
 };
 
 export default BigButton;
 
-const ConfirmButton = styled.span`
+const ConfirmButton = styled.button`
   width: 100%;
   display: block;
   margin: 20px 0 10px;
@@ -18,10 +22,11 @@ const ConfirmButton = styled.span`
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
+  border: none;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  &:hover { opacity: 0.9; }
+  &:hover, &::active { opacity: 0.9; }
 `;

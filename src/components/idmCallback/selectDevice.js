@@ -8,7 +8,7 @@ const SelectDevice = (props) => {
       <img src="https://s3.us-east-2.amazonaws.com/assets.singit.io/success.gif" alt="success" />
       <h3>Successfully logged in!</h3>
       <p>How would you like to use Singit?</p>
-      <a href={"singit://auth/idmCallback?token=" + props.token}><BigButton>Use the app</BigButton></a>
+      <a href={`singit://auth/idmCallback?token=${props.token}`}><BigButton>Use the app</BigButton></a>
       <span className="transparent-button" onClick={props.continue}>Mobile website</span>
     </ContentWrapper>
   </FullPageWrapper>

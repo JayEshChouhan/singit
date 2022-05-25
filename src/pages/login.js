@@ -9,21 +9,14 @@ import axios from "axios";
 import ErrorCard from "../components/ui/errorCard";
 import { useForm } from "react-hook-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import PuffLoader from "react-spinners/PuffLoader";
 
 const Login = (props) => {
-  const [googleButtonWidth, setGoogleButtonWidth] = useState(200);
   const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const formRef = useRef();
-  const { register, getValues } = useForm();
+  const { register, getValues, handleSubmit } = useForm();
   const { executeRecaptcha } = useGoogleReCaptcha();
-
-  useEffect(() => {
-    setGoogleButtonWidth(formRef.current.offsetWidth - 60);
-  }, []);
 
   const handleGoogleCredentialResponse = (response) => {
     setShowError(false);
@@ -66,7 +59,7 @@ const Login = (props) => {
         }
 
         localStorage.setItem('token', result.data.token);
-        window.location = window.location.host + "/explore";
+        window.location.href = "/explore";
       })
       .catch(err => {
         setShowError(true);
@@ -75,18 +68,15 @@ const Login = (props) => {
   }
 
   return <Wrapper>
-    <form ref={formRef}>
+    <form onSubmit={handleSubmit(login)}>
       <Card>
         <h1>Welcome back!</h1>
 
         <LargeInput placeholder="Email" {...register('email')} type="text" autoComplete="email" />
         <LargeInput placeholder="Password" {...register('password')} type="password" autoComplete="current-password" />
-        <ResetPass>Forgot password?</ResetPass>
+        <ResetPass><Link to="/reset">Forgot password?</Link></ResetPass>
 
-        {!loading && <BigButton onClick={login}>Login</BigButton>}
-        {loading && <BigButton>
-          <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />
-        </BigButton>}
+        <BigButton type="submit" onClick={login} loading={loading} tabIndex={0}>Login</BigButton>
         <p>Not a member yet? <Link to="/register">Register</Link></p>
 
         {showError && <ErrorCard>Please enter the correct email and password</ErrorCard>}
@@ -134,6 +124,7 @@ const Wrapper = styled.div`
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
+    user-select: none;
     
     .card { padding: 30px; }
 
@@ -165,6 +156,7 @@ const ResetPass = styled.p`
   cursor: pointer;
   font-size: 14px;
   text-align: left;
+  user-select: none;
 
   &:hover { color: var(--dark-text); text-decoration: underline; }
 `;

@@ -24,10 +24,7 @@ export const Summary = (props) => {
           </h2>
         </div>
 
-        {!props.loading && <BigButton onClick={props.submit}>Confirm and Pay</BigButton>}
-        {props.loading && <BigButton>
-          <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />
-        </BigButton>}
+        <BigButton onClick={props.submit} loading={props.loading}>Confirm and Pay</BigButton>
       </Wrapper>
     </Card>
     <TermsText>By pressing "Confirm and Pay" You agree to the <a href="https://singit.io/privacy" alt="Terms of service">Terms of service</a></TermsText>
