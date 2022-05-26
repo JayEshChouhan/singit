@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Card from "../ui/card";
-import PuffLoader from "react-spinners/PuffLoader";
 import BigButton from "../ui/bigButton";
 
 export const Summary = (props) => {
@@ -24,7 +23,7 @@ export const Summary = (props) => {
           </h2>
         </div>
 
-        <BigButton onClick={props.submit} loading={props.loading}>Confirm and Pay</BigButton>
+        <BigButton type="button" onClick={props.submit} loading={props.loading}>Confirm and Pay</BigButton>
       </Wrapper>
     </Card>
     <TermsText>By pressing "Confirm and Pay" You agree to the <a href="https://singit.io/privacy" alt="Terms of service">Terms of service</a></TermsText>

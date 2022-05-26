@@ -119,7 +119,7 @@ const Register = (props) => {
       let config = { headers: { 'Authorization': `Bearer ${jwt}` } }
       let user = await axios.post("/users/create", {
         ...formValue,
-        planId: searchParams.get('planId'),
+        planId: paymentPlan?._id,
         token: token,
         cardToken: cardToken.current,
         useExistingAccount: jwt?.length > 0

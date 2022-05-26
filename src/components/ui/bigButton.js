@@ -2,7 +2,12 @@ import styled from "styled-components";
 import PuffLoader from "react-spinners/PuffLoader";
 
 const BigButton = (props) => {
-  return <ConfirmButton {...props} loading={props.loading ? 1 : 0} onClick={props.loading ? null : props.onClick} onKeyDown={props.loading ? null : props.onClick}>
+
+  const onPress = (e) => {
+    if (!props.loading && e.key === "Enter") props.onClick();
+  };
+
+  return <ConfirmButton {...props} loading={props.loading ? 1 : 0} onClick={props.loading ? null : props.onClick} onKeyDown={onPress}>
     {!props.loading && props.children}
     {props.loading && <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />}
   </ConfirmButton>

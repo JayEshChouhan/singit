@@ -27,17 +27,17 @@ const Login = (props) => {
     setLoading(true);
     axios.post('/users/googleLogin', response)
       .then(result => {
-        setShowError(true);
         setLoading(false);
 
         if (result.data?.token) {
           localStorage.setItem('token', result.data.token);
-          window.location = window.location.host + "/explore";
+          window.location.href = "/explore";
         } else if (result.data.profile) {
           navigate('/register', { state: result.data.profile })
         }
       })
       .catch(err => {
+        console.log(err);
         setShowError(true);
         setLoading(false);
       });
