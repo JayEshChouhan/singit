@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -17,6 +17,10 @@ const ResetPassword = (props) => {
   const [error, setError] = useState("");
 
   const { register, getValues, handleSubmit } = useForm();
+
+  useEffect(() => {
+    document.title = "Singit - Forgot Password";
+  }, []);
 
   const submit = () => {
     setLoading(true);

@@ -19,6 +19,10 @@ const UpdatePassword = () => {
   const { register, getValues, handleSubmit } = useForm();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  useEffect(() => {
+    document.title = "Singit - Update Password";
+  }, []);
+
   const checkPassword = function (password) {
     if (
       password.length > 8 &&

@@ -31,6 +31,10 @@ const Register = (props) => {
   const location = useLocation();
 
   useEffect(() => {
+    document.title = "Singit - Register";
+  }, []);
+
+  useEffect(() => {
     let planId = searchParams.get('planId');
     axios.get(`/billing/${planId}/details`)
       .then(plan => {

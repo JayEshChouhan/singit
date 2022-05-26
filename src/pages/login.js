@@ -18,6 +18,10 @@ const Login = (props) => {
   const { register, getValues, handleSubmit } = useForm();
   const { executeRecaptcha } = useGoogleReCaptcha();
 
+  useEffect(() => {
+    document.title = "Singit - Login";
+  }, []);
+
   const handleGoogleCredentialResponse = (response) => {
     setShowError(false);
     setLoading(true);
