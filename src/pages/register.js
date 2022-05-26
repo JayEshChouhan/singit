@@ -49,7 +49,6 @@ const Register = (props) => {
   }, [searchParams]);
 
   useEffect(() => {
-    console.log(location.state);
     if(location.state) {
       for(let key of Object.keys(location.state)) {
         form.setValue(key, location.state[key]);

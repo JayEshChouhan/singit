@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Input from "../ui/input";
 
 const CreateUserForm = (props) => {
@@ -22,7 +23,15 @@ const CreateUserForm = (props) => {
     <Input label="Repeat Password">
       <input type="password" autoComplete="new-password" {...props.form.register('repeatPassword')} />
     </Input>
+    <PasswordInstructions>Password must be at least 8 characters long, containing a mix of uppercase letters, lowercase letters, numbers and special characters (!@#$%^&*_-)</PasswordInstructions>
   </>
 };
 
 export default CreateUserForm;
+
+const PasswordInstructions = styled.p`
+  grid-column: 1/3;
+  font-size: 12px;
+  color: var(--medium-text);
+  margin: 10px 0;
+`;
