@@ -1,0 +1,3 @@
+npm run build 
+aws s3 sync build/ s3://singit-auth/
+aws s3 sync build/ s3://singit-auth/auth/

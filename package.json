@@ -30,8 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "test-deploy": "npm run build && aws s3 sync build/ s3://singit-auth/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
