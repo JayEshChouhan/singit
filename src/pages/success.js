@@ -13,7 +13,7 @@ const Success = (props) => {
 
   return <Wrapper>
     <Gif src="https://s3.us-east-2.amazonaws.com/assets.singit.io/success.gif" alt="success" />
-    <h3>Thank you, {location.state?.firstname}!</h3>
+    <h3>Thank you {location.state?.firstname}!</h3>
     <p>Congratulations for joining the Singit Family, we can't wait to help you learn english like never before.</p>
     <button onClick={continueToApp}>Start learning now <FontAwesomeIcon icon="fa-solid fa-arrow-right" /></button>
   </Wrapper>

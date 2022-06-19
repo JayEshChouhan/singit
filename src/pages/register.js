@@ -121,7 +121,7 @@ const Register = (props) => {
         planId: paymentPlan?._id,
         token: token,
         cardToken: cardToken.current,
-        useExistingAccount: jwt?.length > 0
+        useExistingAccount: billingAccount !== null
       }, config);
     } catch (err) {
       console.log(err);
@@ -216,6 +216,7 @@ export default Register;
 const Wrapper = styled.div`
   position: relative;
   top: 90px; 
+  
   .pageTitle {
     padding: 5px 20px;
     h1 { margin: 20px 0 0; }

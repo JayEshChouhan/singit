@@ -30,8 +30,8 @@ const CreateUserForm = (props) => {
 export default CreateUserForm;
 
 const PasswordInstructions = styled.p`
-  grid-column: 1/3;
   font-size: 12px;
   color: var(--medium-text);
   margin: 10px 0;
+  grid-column: 1 / -1;
 `;
