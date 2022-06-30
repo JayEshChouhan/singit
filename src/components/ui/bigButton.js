@@ -33,5 +33,5 @@ const ConfirmButton = styled.button`
   align-items: center;
   justify-content: center;
 
-  &:hover, &::active { opacity: 0.9; }
+  &:hover, &:active { opacity: 0.8; }
 `;

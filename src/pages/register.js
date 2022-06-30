@@ -138,9 +138,9 @@ const Register = (props) => {
 
   const initializePayMe = () => {
     if (!rendered.current) {
-      var apiKey = 'MPL16522-733434V7-SLBZYAKQ-ZVZGOEJQ';
+      var apiKey = 'MPL16565-98944IIO-3PCU2B49-PGVGDNQQ';
       rendered.current = true;
-      window.PayMe.create(apiKey, { testMode: true }).then((instance) => {
+      window.PayMe.create(apiKey, { testMode: false }).then((instance) => {
         payMeInstance.current = instance;
         var fields = instance.hostedFields();
         var cardNumber = fields.create('cardNumber', {

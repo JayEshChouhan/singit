@@ -5,8 +5,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   // axios.defaults.baseURL = 'http://localhost:1234';
-  axios.defaults.baseURL = 'https://test-api.singit.io';
-  // axios.defaults.baseURL = 'https://api.singit.io';
+  // axios.defaults.baseURL = 'https://test-api.singit.io';
+  axios.defaults.baseURL = 'https://api.singit.io';
 
   return (
     <GoogleReCaptchaProvider reCaptchaKey="6LeVO_UaAAAAAF59gCGGmFJtqKvDIqSGRlak0O_l" >
