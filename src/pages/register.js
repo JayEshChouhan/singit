@@ -49,8 +49,8 @@ const Register = (props) => {
   }, [searchParams]);
 
   useEffect(() => {
-    if(location.state) {
-      for(let key of Object.keys(location.state)) {
+    if (location.state) {
+      for (let key of Object.keys(location.state)) {
         form.setValue(key, location.state[key]);
       }
     }
@@ -138,7 +138,7 @@ const Register = (props) => {
 
   const initializePayMe = () => {
     if (!rendered.current) {
-      var apiKey = 'MPL16565-98944IIO-3PCU2B49-PGVGDNQQ';
+      var apiKey = paymentPlan?.resellerToken || 'MPL16565-98944IIO-3PCU2B49-PGVGDNQQ';
       rendered.current = true;
       window.PayMe.create(apiKey, { testMode: false }).then((instance) => {
         payMeInstance.current = instance;
