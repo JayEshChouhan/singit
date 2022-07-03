@@ -1,0 +1,4 @@
+npm run build 
+aws s3 sync build/ s3://auth.singit.io/
+aws s3 sync build/ s3://auth.singit.io/auth/
+aws cloudfront create-invalidation --distribution-id E3EK3JVLPGEE5Y	 --paths "/auth*"
