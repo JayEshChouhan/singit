@@ -1,39 +1,17 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const CheckBox = ({ id, label, value, onChange }) => {
+const CheckBox = (props) => {
     return (
         <div>
-      <input 
-        id={id} 
-        type="checkbox" 
-        checked={value} 
-        onChange={onChange} 
-      />
-      <label htmlFor={id}>{label}</label>
-    </div>
+            <input
+                id={props.id && props.id}
+                type="checkbox"
+                checked={props.value && props.value}
+                onChange={props.onChange && props.onChange}
+            />
+            {props.label && <label htmlFor={props.id && props.id}>{props.label}</label>}
+        </div>
     )
 }
 export default CheckBox;
-
-
-
-// const Lable = styled.label`
-
-// `
-
-// const Input = styled.input`
-// position: absolute;
-// opacity: 0;
-// cursor: pointer;
-// height: 0;
-// width: 0;`
-
-// const Checkbox = styled.div`
-// position: absolute;
-// top: 0;
-// left: 0;
-// height: 25px;
-// width: 25px;
-// background-color: #eee;
-// `
