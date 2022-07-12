@@ -6,6 +6,7 @@ import Success from "../pages/success";
 import NotFound from "./errorPages/notFound";
 import ResetPassword from "../pages/resetPassword";
 import UpdatePassword from "../pages/updatePassword";
+import Lesson from "../pages/lesson";
 
 const Router = (props) => {
   return <Routes>
@@ -16,6 +17,7 @@ const Router = (props) => {
     <Route exact path="/reset" element={<ResetPassword />} />
     <Route exact path="/update" element={<UpdatePassword />} />
     <Route exact path="/welcome" element={<Success />} />
+    <Route exact path="/lesson" element={<Lesson />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
 };

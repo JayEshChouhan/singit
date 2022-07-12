@@ -39,10 +39,10 @@ ul {
 }
 
 .full-width {
-  width: 95%;
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 0;
 }
 
 .grecaptcha-badge { visibility: hidden; }
