@@ -1,15 +1,17 @@
 import React from 'react'
 import styled from 'styled-components';
 import Banner from '../components/banners/banner';
+import NavBar from '../components/navBar';
 import Stepform from '../components/stepform/stepForm';
 
 const Lesson = () => {
   return (
     <div>
-    <Banner heading="Create a lesson" />
-    <MainDiv>
-      <Stepform />
-    </MainDiv>
+      <NavBar />
+      <Banner heading="Create a lesson" />
+      <MainDiv>
+        <Stepform />
+      </MainDiv>
     </div>
   )
 }

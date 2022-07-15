@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Input = (props) => {
-  return <Wrapper width={props.width} marginBottom={props.marginBottom} style={props.style} className={props.className} >
+  return <Wrapper width={props.width} marginbottom={props.marginbottom} style={props.style} className={props.className} >
     <label>{props.label}</label>
     {props.children}
   </Wrapper>
@@ -10,7 +10,7 @@ const Input = (props) => {
 export default Input;
 
 const Wrapper = styled.div`
-  margin: 0 0 ${props => props.marginBottom || "10px"} 0;
+  margin: 0 0 ${props => props.marginbottom || "10px"} 0;
   min-width: ${props => props.width};
   
   label {

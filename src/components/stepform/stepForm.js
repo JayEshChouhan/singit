@@ -5,29 +5,37 @@ import BtnSecondary from '../ui/btnSecondary';
 import Generalinfo from './generalInfo';
 import LevelAndSong from './level&Song';
 import Assignments from './assignments';
-const stapComponent = [<Generalinfo/>,<LevelAndSong/>,<Assignments/>];
 
 const Stepform = () => {
     const stepPages = ['General Information', 'level and Song', 'Assignments'];
     const [step, setStep] = useState(0);
     const [btnText, setBtnText] = useState('Next');
+    const [btnDisabled, setBtnDisabled] = useState(true);
+
+    const EnabledDisable = (props) => {
+        setBtnDisabled(props);
+    }
+
+    const stapComponent = [<Generalinfo setDisabled={EnabledDisable} />, <LevelAndSong setDisabled={EnabledDisable} />, <Assignments setDisabled={EnabledDisable} />];
+
     const nextFunction = () => {
         if (step < 2) {
             setStep(step + 1)
         }
-    }
+    };
 
     useEffect(() => {
         if (step == 2) {
             setBtnText('Save')
-        }else{
+        } else {
             setBtnText('Next')
         }
-    }, [step])
+    }, [step]);
 
     const preFunction = () => {
         setStep(step - 1)
-    }
+    };
+
     return (
         <div>
             <div className='stepperMain'>
@@ -46,26 +54,25 @@ const Stepform = () => {
                 {stapComponent[step]}
                 <BtnMain>
                     <Div>
-                        {step === 0 ?'' : <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>}
+                        {step === 0 ? '' : <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>}
                     </Div>
                     <Div>
                         <BtnPrimary onClick={nextFunction}>{btnText}</BtnPrimary>
                     </Div>
                 </BtnMain>
-                
+
             </div>
         </div>
     )
 }
 export default Stepform;
 const H1 = styled.h1`
-margin: 0;
-// font-weight: 500;
-font-size: 16px;
-line-height: 24px;
-font-feature-settings: 'liga' off;
-color: #1F1A48;
-margin-bottom:8px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 24px;
+    font-feature-settings: 'liga' off;
+    color: #1F1A48;
+    margin-bottom:8px;
 `
 const Staps = styled.div`
     display: flex;
@@ -80,7 +87,6 @@ const Stap = styled.div`
     order: 1;
     flex-grow: 1;`
 
-
 const ActiveStap = styled.div`
 height: 4px;
 background: #FFB84F;
@@ -89,11 +95,10 @@ flex: none;
 order: 1;
 flex-grow: 1;`
 
-const BtnMain= styled.div`
+const BtnMain = styled.div`
 display:flex;
 column-gap: 18px ;
 `
-
 const Div = styled.div`
 width:100%;
 `

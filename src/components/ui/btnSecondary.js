@@ -7,10 +7,12 @@ const BtnSecondary = (props) => {
     if (!props.loading && e.key === "Enter") props.onClick();
   };
 
-  return <ConfirmButton {...props} loading={props.loading ? 1 : 0} onClick={props.loading ? null : props.onClick} onKeyDown={onPress}>
-    {!props.loading && props.children}
-    {props.loading && <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />}
-  </ConfirmButton>
+  return <>
+    <ConfirmButton {...props} loading={props.loading ? 1 : 0} onClick={props.loading ? null : props.onClick} onKeyDown={onPress}>
+      {!props.loading && props.children}
+      {props.loading && <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />}
+    </ConfirmButton>
+  </>
 };
 
 export default BtnSecondary;
@@ -28,7 +30,6 @@ const ConfirmButton = styled.button`
   text-align: center;
   cursor: pointer;
   border: none;
-
   display: flex;
   align-items: center;
   justify-content: center;

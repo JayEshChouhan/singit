@@ -2,8 +2,8 @@ import styled from "styled-components";
 import duration from "../../assets/images/duration.png"
 
 const Maininput = (props) => {
-  return <Wrapper width={props.width} marginBottom={props.marginBottom} style={props.style} className={props.className} align={props.align}>
-    {props.label&&<label>{props.label}</label>}
+  return <Wrapper width={props.width} marginbottom={props.marginbottom} style={props.style} className={props.className} align={props.align}>
+    {props.label && <label>{props.label}</label>}
     {props.children}
   </Wrapper>
 };
@@ -11,7 +11,7 @@ const Maininput = (props) => {
 export default Maininput;
 
 const Wrapper = styled.div`
-  margin: 0 0 ${props => props.marginBottom || "10px"} 0;
+  margin: 0 0 ${props => props.marginbottom || "10px"} 0;
   min-width: ${props => props.width};
   text-align: ${props => props.align || "left"};
   position:relative;
@@ -21,6 +21,8 @@ const Wrapper = styled.div`
     font-size: 14px;
     line-height: 24px;
     color: #7C7896;
+    margin-bottom:8px;
+    display:inline-block;
   }
 
   input,textarea,select {
@@ -75,7 +77,6 @@ const Wrapper = styled.div`
     align-items: center;
     padding: 12px 0px;
     gap: 12px;
-    // width: 335px;
     height: 20px;
     background: #FFFFFF;
     border-radius: 0px;

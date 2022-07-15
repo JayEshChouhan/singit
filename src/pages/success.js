@@ -28,7 +28,6 @@ const Gif = styled.img`
   display: block;
 `;
 
-
 const Wrapper = styled.div`
   display: flex;
   align-items: center;

@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import PuffLoader from "react-spinners/PuffLoader";
 import FullPageWrapper from "./ui/fullPageWrapper";
 

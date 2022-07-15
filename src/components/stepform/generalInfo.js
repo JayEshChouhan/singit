@@ -1,31 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Maininput from '../ui/mainInput';
 
-const Generalinfo = () => {
-    const [textAreaCount,setTextAreaCount] = useState(300);
+const Generalinfo = (props) => {
+
+    const [LessonTitle, setLessonTitle] = useState("");
+    const [lessonDescription, setLessonDescription] = useState('')
+    const [textAreaCount, setTextAreaCount] = useState(300);
+    const [MainTopic, setMainTopic] = useState("");
+
     const recalculate = e => {
+        setLessonDescription(e.target.value)
         setTextAreaCount(300 - e.target.value.length);
-      };
+    };
     return (
         <div>
             <Maininput marginbottom="20px" label="Lesson’s Title">
-                <input type="text" name='title'/>
+                <input type="text" name={"lesson-title"} onChange={(e) => setLessonTitle(e.target.value)} value={LessonTitle} />
             </Maininput>
 
             <Maininput marginbottom="20px" label="Description">
                 <CharLeft>{textAreaCount} char left</CharLeft>
-                <textarea type="text" onChange={recalculate} maxLength={300}/>
+                <textarea type="text" onChange={recalculate} maxLength={300} />
             </Maininput>
 
             <Maininput marginbottom="20px" label="Main Topic">
-                <input type="text" />
+                <input type="text" name={"lesson-main-topic"} onChange={(e) => setMainTopic(e.target.value)} value={MainTopic} />
             </Maininput>
         </div>
     )
 }
 export default Generalinfo;
-
 
 const CharLeft = styled.div`
 position: absolute;

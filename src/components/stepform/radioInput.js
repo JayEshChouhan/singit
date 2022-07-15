@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-
 function RadioInput(props) {
     return (
         <>
             <div>
                 <MainLabel>{props.label} {props.required && <sup>*</sup>}</MainLabel>
-                <MainDiv>
+                <MainDiv marginbottom={props.marginbottom}>
                     {props.radios &&
                         props.radios.map((radio, index) => {
                             if (props.selected) {
@@ -34,8 +33,6 @@ function RadioInput(props) {
                                 )
                             }
                         })}
-
-
                 </MainDiv>
             </div>
         </>
@@ -50,6 +47,7 @@ const MainDiv = styled.div`
     column-gap: 8px;
     flex-wrap: wrap;
     row-gap: 8px;
+    margin-bottom: ${props => props.marginbottom};
 
 input{
     position: absolute;
@@ -79,8 +77,6 @@ input[type="radio"]:disabled + .radioBtn {
     opacity: .2;
 }
 `
-
-
 const MainLabel = styled.label`
 font-size: 14px;
 line-height: 24px;

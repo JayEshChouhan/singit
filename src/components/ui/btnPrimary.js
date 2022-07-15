@@ -20,7 +20,7 @@ const ConfirmButton = styled.button`
   display: block;
   margin: 20px 0 10px;
   background-color: var(--highlight);
-  color: white !important;
+  color: white ;
   padding: 15px;
   box-sizing: border-box;
   font-weight: 600;
@@ -32,6 +32,9 @@ const ConfirmButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
   &:hover, &:active { opacity: 0.8; }
+  &:disabled{
+    background: #F5F5F7;
+    color: #CCCBDF;
+  }
 `;

@@ -8,8 +8,6 @@ import vocabularyquiz from '../../assets/images/VocabularyQuiz.png';
 import speakingquiz from '../../assets/images/SpeakingQuiz.png';
 import contexttext from '../../assets/images/ContextText.png';
 
-
-
 const Assignments = () => {
     return (
         <>
@@ -62,7 +60,6 @@ const Assignments = () => {
                 </Div>
                 <AssignmentsCount>0</AssignmentsCount>
             </AssignmentsDiv>
-
         </>
     )
 }
@@ -72,7 +69,6 @@ gap: 12px;
 flex-direction: row;
 align-items: center;
 `
-
 const AssignmentsDiv = styled.div`
     display: flex;
     flex-direction: row;
@@ -105,6 +101,5 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #CCCBDF;
 `
-
 export default Assignments;
 
