@@ -10,9 +10,12 @@ const Generalinfo = (props) => {
     const [MainTopic, setMainTopic] = useState("");
 
     const recalculate = e => {
+
         setLessonDescription(e.target.value)
         setTextAreaCount(300 - e.target.value.length);
+
     };
+
     return (
         <div>
             <Maininput marginbottom="20px" label="Lesson’s Title">
@@ -30,7 +33,6 @@ const Generalinfo = (props) => {
         </div>
     )
 }
-export default Generalinfo;
 
 const CharLeft = styled.div`
 position: absolute;
@@ -44,4 +46,7 @@ color: #A3A1B3;
 flex: none;
 order: 1;
 flex-grow: 0;
-`
+`;
+
+
+export default Generalinfo;

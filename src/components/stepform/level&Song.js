@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import ReactSelect from 'react-select';
 import styled from 'styled-components';
 import CheckBox from '../ui/checkBox';
 import InputRange from '../ui/inputRange';
@@ -8,18 +7,22 @@ import Tags from '../ui/tags';
 import RadioInput from './radioInput';
 
 const LevelAndSong = (props) => {
+
     const [lessonList, setLessonlist] = useState([])
     const [songTag, setSongTag] = useState(["Emotions: 😍", "⚠️ Coarse Language", "📝 Politic"])
     const addWord = (e) => {
+
         if (e.key === 'Enter') {
             if (e.target.value === "") {
                 e.preventDefault()
+
             } else {
                 setLessonlist([...lessonList, e.target.value]);
                 e.target.value = "";
             }
         }
     }
+
     return (
         <div>
             <InputRange min={0} max={9} steps={1} label="Age Grade">
@@ -44,11 +47,7 @@ const LevelAndSong = (props) => {
                             <path d="M1 1L7 7L13 1" stroke="#7C7896" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </InputIcon>
-                    {/* <ReactSelect placeholder="Select Duration" options={[
-                        { value: '5 minutes', label: '5 minutes' },
-                        { value: '10 minutes', label: '10 minutes' },
-                        { value: '15 minutes', label: '15 minutes' },
-                    ]} /> */}
+                    
                     <select name='SelectDuration' >
                         <option selected={true} value={"0"} disabled>Select Duration</option>
                         <option value={"5"} >5 minutes</option>
@@ -70,13 +69,12 @@ const LevelAndSong = (props) => {
         </div>
     )
 }
-export default LevelAndSong;
 
 const InputIcon = styled.span`
-    position: absolute;
-    bottom: 50%;
-    right: 22px;
-    transform: translateY(50%);
+position: absolute;
+bottom: 50%;
+right: 22px;
+transform: translateY(50%);
 `;
 
 const FindWords = styled.div`
@@ -88,7 +86,10 @@ margin: 0px 0px 22px 0px;
 
 const PositionRelative = styled.div`
 position: relative;
-`
+`;
+
 const Checkboxcolor = styled.div`
 background: #41C977;
-`
+`;
+
+export default LevelAndSong;

@@ -4,8 +4,7 @@ import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
-  // axios.defaults.baseURL = 'http://localhost:1234';
-  // axios.defaults.baseURL = 'https://test-api.singit.io';
+
   axios.defaults.baseURL = 'https://api.singit.io';
 
   return (

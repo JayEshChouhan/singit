@@ -4,7 +4,9 @@ import PuffLoader from "react-spinners/PuffLoader";
 const BtnSecondary = (props) => {
 
   const onPress = (e) => {
+
     if (!props.loading && e.key === "Enter") props.onClick();
+
   };
 
   return <>
@@ -15,24 +17,25 @@ const BtnSecondary = (props) => {
   </>
 };
 
-export default BtnSecondary;
 
 const ConfirmButton = styled.button`
-  width: 100%;
-  display: block;
-  margin: 20px 0 10px;
-  background-color: #EDEDF0;
-  color: #735FFF;
-  padding: 15px;
-  box-sizing: border-box;
-  font-weight: 600;
-  border-radius: 35px;
-  text-align: center;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  &:hover, &:active { opacity: 0.8; }
+width: 100%;
+display: block;
+margin: 20px 0 10px;
+background-color: #EDEDF0;
+color: #735FFF;
+padding: 15px;
+box-sizing: border-box;
+font-weight: 600;
+border-radius: 35px;
+text-align: center;
+cursor: pointer;
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 16px;
+&:hover, &:active { opacity: 0.8; }
 `;
+
+export default BtnSecondary;

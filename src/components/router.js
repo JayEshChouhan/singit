@@ -3,6 +3,7 @@ import NotFound from "./errorPages/notFound";
 import Lesson from "../pages/lesson";
 
 const Router = (props) => {
+  
   return <Routes>
     <Route exact path="/" element={<h1>Wel-Come </h1>} />
     <Route exact path="/lesson" element={<Lesson />} />

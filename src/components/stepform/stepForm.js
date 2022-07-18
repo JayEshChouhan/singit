@@ -7,21 +7,19 @@ import LevelAndSong from './level&Song';
 import Assignments from './assignments';
 
 const Stepform = () => {
+
     const stepPages = ['General Information', 'level and Song', 'Assignments'];
     const [step, setStep] = useState(0);
     const [btnText, setBtnText] = useState('Next');
-    const [btnDisabled, setBtnDisabled] = useState(true);
-
-    const EnabledDisable = (props) => {
-        setBtnDisabled(props);
-    }
-
-    const stapComponent = [<Generalinfo setDisabled={EnabledDisable} />, <LevelAndSong setDisabled={EnabledDisable} />, <Assignments setDisabled={EnabledDisable} />];
+    
+    const stapComponent = [<Generalinfo />, <LevelAndSong />, <Assignments />];
 
     const nextFunction = () => {
+
         if (step < 2) {
             setStep(step + 1)
         }
+
     };
 
     useEffect(() => {
@@ -57,7 +55,7 @@ const Stepform = () => {
                         {step === 0 ? '' : <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>}
                     </Div>
                     <Div>
-                        <BtnPrimary onClick={nextFunction}>{btnText}</BtnPrimary>
+                    <BtnPrimary onClick={nextFunction}>{btnText}</BtnPrimary>
                     </Div>
                 </BtnMain>
 
@@ -65,27 +63,29 @@ const Stepform = () => {
         </div>
     )
 }
-export default Stepform;
 const H1 = styled.h1`
-    margin: 0;
-    font-size: 16px;
-    line-height: 24px;
-    font-feature-settings: 'liga' off;
-    color: #1F1A48;
-    margin-bottom:8px;
-`
+margin: 0;
+font-size: 16px;
+line-height: 24px;
+font-feature-settings: 'liga' off;
+color: #1F1A48;
+margin-bottom:8px;
+`;
+
 const Staps = styled.div`
-    display: flex;
-    column-gap: 8px;
-    margin-bottom: 32px`
+display: flex;
+column-gap: 8px;
+margin-bottom: 32px
+`;
 
 const Stap = styled.div`
-    height: 4px;
-    background: #EDEDF0;
-    border-radius: 8px;
-    flex: none;
-    order: 1;
-    flex-grow: 1;`
+height: 4px;
+background: #EDEDF0;
+border-radius: 8px;
+flex: none;
+order: 1;
+flex-grow: 1;
+`;
 
 const ActiveStap = styled.div`
 height: 4px;
@@ -93,12 +93,16 @@ background: #FFB84F;
 border-radius: 8px;
 flex: none;
 order: 1;
-flex-grow: 1;`
+flex-grow: 1;
+`;
 
 const BtnMain = styled.div`
 display:flex;
 column-gap: 18px ;
-`
+`;
+
 const Div = styled.div`
 width:100%;
-`
+`;
+
+export default Stepform;

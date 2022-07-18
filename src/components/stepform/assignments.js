@@ -9,6 +9,7 @@ import speakingquiz from '../../assets/images/SpeakingQuiz.png';
 import contexttext from '../../assets/images/ContextText.png';
 
 const Assignments = () => {
+
     return (
         <>
             <AssignmentsDiv>
@@ -63,28 +64,31 @@ const Assignments = () => {
         </>
     )
 }
+
+
 const Div = styled.div`
 display: flex;
 gap: 12px;
 flex-direction: row;
 align-items: center;
-`
+`;
+
 const AssignmentsDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-    gap: 12px;
-    background: #FFFFFF;
-    box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.04);
-    border-radius: 12px;
-    margin-bottom: 16px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 12px 20px;
+gap: 12px;
+background: #FFFFFF;
+box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.04);
+border-radius: 12px;
+margin-bottom: 16px;
 `;
 
 const AssignmentsImg = styled.img`
 width: 32px;
-`
+`;
 
 const AssignmentsText = styled.h6`
 font-weight: 400;
@@ -93,13 +97,16 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 margin: 0;
-`
+`;
+
 const AssignmentsCount = styled.div`
 font-weight: 400;
 font-size: 16px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #CCCBDF;
-`
+`;
+
+
 export default Assignments;
 

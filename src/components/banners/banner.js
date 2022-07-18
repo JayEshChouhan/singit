@@ -3,6 +3,19 @@ import styled from "styled-components";
 import closeIcon from "../../assets/icon/close.png"
 import bannerImg from "../../assets/images/bannerUnion.png"
 
+const Banner = (props) => {
+
+  return (
+    <BannerDiv className='banner' >
+      {props.heading && <BannerText>{props.heading} </BannerText>}
+      <CancelButton>
+        <CancelButtonImg src={closeIcon} ></CancelButtonImg>
+      </CancelButton>
+      {props.para && <p>{props.para}</p>}
+    </BannerDiv>
+  )
+}
+
 const BannerDiv = styled.div`
 display:flex;
 align-items: center;
@@ -42,21 +55,5 @@ height: 24px;
 left: 331px;
 top: 20px;
 `;
-
-
-
-const Banner = (props) => {
-  return (
-    <BannerDiv className='banner' >
-      {props.heading && <BannerText>{props.heading} </BannerText>}
-      <CancelButton>
-        <CancelButtonImg  src={closeIcon} ></CancelButtonImg>
-        </CancelButton>
-      {props.para && <p>{props.para}</p>}
-    </BannerDiv>
-  )
-}
-
-
 
 export default Banner;

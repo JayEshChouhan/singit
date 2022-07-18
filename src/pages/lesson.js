@@ -5,6 +5,7 @@ import NavBar from '../components/navBar';
 import Stepform from '../components/stepform/stepForm';
 
 const Lesson = () => {
+
   return (
     <div>
       <NavBar />
@@ -15,11 +16,12 @@ const Lesson = () => {
     </div>
   )
 }
-export default Lesson;
 
 const MainDiv = styled.div`
 margin-top:  -20px;
 background-color: #ffffff;
 border-radius: 12px 12px 0 0 ;
 padding: 20px;
-`
+`;
+
+export default Lesson;

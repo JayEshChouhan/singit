@@ -5,6 +5,7 @@ import Image from '../assets/images/img.png';
 import icon from '../assets/images/icon2.png';
 
 const NavBar = () => {
+
   return (
     <Navstyle>
       <div><img src={icon} /></div>
@@ -13,7 +14,6 @@ const NavBar = () => {
     </Navstyle>
   )
 }
-export default NavBar;
 
 const Navstyle = styled.div`
 background: #FFFFFF;
@@ -22,5 +22,8 @@ padding: 12px 20px 12px 20px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-`
+`;
+
+export default NavBar;
+
 
