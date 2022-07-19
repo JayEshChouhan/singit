@@ -25,8 +25,7 @@ const LevelAndSong = (props) => {
 
     return (
         <div>
-            <InputRange min={0} max={9} steps={1} label="Age Grade">
-            </InputRange>
+            <InputRange min={0} max={9} steps={1} label="Age Grade" />
             <Maininput marginbottom="20px" label="Song">
                 <PositionRelative>
                     <InputIcon style={{ height: '20px' }}>
@@ -47,7 +46,7 @@ const LevelAndSong = (props) => {
                             <path d="M1 1L7 7L13 1" stroke="#7C7896" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </InputIcon>
-                    
+
                     <select name='SelectDuration' >
                         <option selected={true} value={"0"} disabled>Select Duration</option>
                         <option value={"5"} >5 minutes</option>

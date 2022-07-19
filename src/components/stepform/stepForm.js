@@ -11,8 +11,17 @@ const Stepform = () => {
     const stepPages = ['General Information', 'level and Song', 'Assignments'];
     const [step, setStep] = useState(0);
     const [btnText, setBtnText] = useState('Next');
-    
-    const stapComponent = [<Generalinfo />, <LevelAndSong />, <Assignments />];
+    const [disable, setDisable] = useState(true);
+
+    const setBtnDisabled = () => {
+        setDisable(true);
+    }
+
+    const setBtnEnabled = () => {
+        setDisable(false);
+    }
+
+    const stapComponent = [<Generalinfo setEnable={setBtnEnabled} setDisabled={setBtnDisabled} />, <LevelAndSong />, <Assignments />];
 
     const nextFunction = () => {
 
@@ -55,7 +64,7 @@ const Stepform = () => {
                         {step === 0 ? '' : <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>}
                     </Div>
                     <Div>
-                    <BtnPrimary onClick={nextFunction}>{btnText}</BtnPrimary>
+                        <BtnPrimary onClick={nextFunction} disabled={false} >{btnText}</BtnPrimary>
                     </Div>
                 </BtnMain>
 
@@ -70,6 +79,7 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 margin-bottom:8px;
+font-weight: 600;
 `;
 
 const Staps = styled.div`
@@ -98,6 +108,7 @@ flex-grow: 1;
 
 const BtnMain = styled.div`
 display:flex;
+border-top: 1px solid #CCCBDF;
 column-gap: 18px ;
 `;
 

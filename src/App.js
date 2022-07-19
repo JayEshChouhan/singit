@@ -1,7 +1,7 @@
 import Router from "./components/router";
 import axios from "axios";
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 function App() {
 

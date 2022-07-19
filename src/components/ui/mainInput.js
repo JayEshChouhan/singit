@@ -27,7 +27,7 @@ display:inline-block;
 
 input,textarea,select {
 gap: 8px;
-width: calc(100% - 32px);
+width: 100%;
 height: 48px;
 background: #F5F5F7;
 border: none !important;
@@ -80,7 +80,6 @@ gap: 12px;
 height: 20px;
 background: #FFFFFF;
 border-radius: 0px;
-border-bottom: 1px solid #CCCBDF !important;
 }
 &:first-of-type { margin-inline-start: 0 }
 &:first-of-type { margin-inline-end: 0 }

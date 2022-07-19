@@ -9,6 +9,15 @@ const Generalinfo = (props) => {
     const [textAreaCount, setTextAreaCount] = useState(300);
     const [MainTopic, setMainTopic] = useState("");
 
+    useEffect(() => { 
+        if(LessonTitle && lessonDescription && MainTopic){
+            props.setEnable();
+        }else{
+            props.setDisabled();
+        }
+    }, [LessonTitle, lessonDescription, MainTopic]);
+
+
     const recalculate = e => {
 
         setLessonDescription(e.target.value)
@@ -38,7 +47,7 @@ const CharLeft = styled.div`
 position: absolute;
 top: 0;
 right: 0;
-font-weight: 400;
+font-weight: 400;                
 font-size: 14px;
 line-height: 24px;
 font-feature-settings: 'liga' off;

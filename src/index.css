@@ -44,3 +44,15 @@ ul {
 
 .grecaptcha-badge { visibility: hidden; }
 
+
+.modal{
+  background-color: white;
+}
+
+.modal-dialog{
+  margin: 0 auto;
+}
+.modal-content{
+  border: none;
+  border-radius: 0;
+}

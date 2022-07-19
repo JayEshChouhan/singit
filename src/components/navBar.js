@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import Logo from '../assets/images/Logo.png';
-import Image from '../assets/images/img.png';
+import Image from '../assets/images/Profile.png';
 import icon from '../assets/images/icon2.png';
 
 const NavBar = () => {
@@ -17,7 +17,7 @@ const NavBar = () => {
 
 const Navstyle = styled.div`
 background: #FFFFFF;
-height: 40px;
+height: 64px;
 padding: 12px 20px 12px 20px;
 display: flex;
 justify-content: space-between;
