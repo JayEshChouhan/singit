@@ -37,22 +37,40 @@ ul {
 
 .full-width {
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  margin: 0 ;
   padding: 0;
 }
 
 .grecaptcha-badge { visibility: hidden; }
 
 
-.modal{
-  background-color: white;
-}
+
 
 .modal-dialog{
+  max-width: 580px;
   margin: 0 auto;
+  margin-top: 56px;
+}
+.modal-header{
+  border-bottom: 0;
+  padding: 20px 24px;
+}
+.modal-body{
+  padding: 12px 24px 20px;
 }
 .modal-content{
   border: none;
-  border-radius: 0;
+  border-radius: 12px;
+}
+
+@media (max-width: 580px) {
+  .modal{
+    background-color: white;
+  }
+  .modal-dialog{
+    margin-top: 0;
+  }
+  .modal-content{
+    border-radius: 0;
+  }
 }

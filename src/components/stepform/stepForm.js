@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components';
 import BtnPrimary from '../ui/btnPrimary';
 import BtnSecondary from '../ui/btnSecondary';
-import Generalinfo from './generalInfo';
-import LevelAndSong from './level&Song';
-import Assignments from './assignments';
+// import { MultiStepContext } from '../../pages/lesson/lessonstep/generalInfo';
 
-const Stepform = () => {
 
-    const stepPages = ['General Information', 'level and Song', 'Assignments'];
+const Stepform = (props) => {
+
+    // const {LessonTitle,MainTopic} = useContext (MultiStepContext);
+
+    const stepPages = props.stepPages;
     const [step, setStep] = useState(0);
     const [btnText, setBtnText] = useState('Next');
     const [disable, setDisable] = useState(true);
@@ -21,11 +22,10 @@ const Stepform = () => {
         setDisable(false);
     }
 
-    const stapComponent = [<Generalinfo setEnable={setBtnEnabled} setDisabled={setBtnDisabled} />, <LevelAndSong />, <Assignments />];
+    const stapComponent = props.tabs;
 
     const nextFunction = () => {
-
-        if (step < 2) {
+         if (step < 2) {
             setStep(step + 1)
         }
 
