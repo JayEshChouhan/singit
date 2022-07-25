@@ -30,7 +30,7 @@ gap: 8px;
 width: 100%;
 height: 48px;
 background: #F5F5F7;
-border: none !important;
+border: none;
 outline: none !important;
 border-radius: 12px;
 padding: 0 16px;
@@ -76,10 +76,12 @@ flex: 1;
 .only-bottom-border{
 align-items: center;
 padding: 12px 0px;
-gap: 12px;
-height: 20px;
+border-bottom: 1px solid #CCCBDF;
 background: #FFFFFF;
 border-radius: 0px;
+&.search{
+  padding: 12px 32px;
+}
 }
 &:first-of-type { margin-inline-start: 0 }
 &:first-of-type { margin-inline-end: 0 }

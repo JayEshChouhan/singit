@@ -37,10 +37,10 @@ border:  1px solid #A3A1B3;
 border-radius:15%;
 }
 .checkbox .label::after {
-left: 7.6%;
-top: 19%;
-width: 3px;
-height: 5px;
+left: 6.6%;
+top: 18%;
+width: 7px;
+height: 12px;
 border:0.5px solid white;
 border-width: 0 3px 3.5px 0;
 transform: rotate(50deg);
