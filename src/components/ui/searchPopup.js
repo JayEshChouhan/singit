@@ -8,15 +8,13 @@ import SongView from './songView';
 import Tags from './tags'
 
 const SearchPopup = (props) => {
-  const [searchPopup, setSearchPopup] = useState(true);
+  const [searchPopup, setSearchPopup] = useState(false);
   const [filterPopUp,setFilterPopUp] = useState(false);
   const [songTag, setSongTag] = useState(["Emotions: 😍", "⚠️ Coarse Language", "📝 Politic"])
 
   useEffect(()=>{
-      if(searchPopup){
+      if(searchPopup === filterPopUp){
         setSearchPopup(false)
-      }else{
-        setSearchPopup(true)
       }
   },[filterPopUp])
   return (
@@ -56,7 +54,7 @@ const SearchPopup = (props) => {
         <SongList marginbottom="22px" heading="Recommended Song for" label="2nd Grade" load={true}/>
         <SongList heading="All Song"/>
       </PopUp>
-      <PopUp heading={"Filter"} show={filterPopUp} setShow={setFilterPopUp}>
+      <PopUp heading={"Filter"} show={filterPopUp} onHide={setSearchPopup} setShow={setFilterPopUp}>
         <div>
           <h1>Genres</h1>
           <div>

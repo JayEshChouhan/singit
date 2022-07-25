@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
 import closeIcon from "../../assets/icon/close.png"
 import bannerImg from "../../assets/images/bannerUnion.png"
-import Arrow from "../../assets/images/Arrow.png"
+import arrow from "../../assets/images/Arrow.png"
 
 
 const Banner = (props) => {
@@ -14,7 +14,7 @@ const Banner = (props) => {
   return (
     <BannerDiv className={'banner '} mobile={mobileVersion}>
       <BannerInnerDiv>
-        {!mobileVersion && <HomeButton><img src={Arrow} />Go home</HomeButton>}
+        {!mobileVersion && <HomeButton><img src={arrow} />Go home</HomeButton>}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: "space-between" }}>
           {props.heading && <BannerText>{props.heading} </BannerText>}
           {mobileVersion &&

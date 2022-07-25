@@ -5,7 +5,10 @@ import styled from 'styled-components';
 const PopUp = (props) => {
 
     const handleClose = () => {
-        props.setShow(false)
+        props.setShow(false);
+        if(props.onHide){
+            props.onHide(true);
+        }
     }
 
     return (
