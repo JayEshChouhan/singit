@@ -5,7 +5,8 @@ function RadioInput(props) {
     return (
         <>
             <div>
-                <MainLabel>{props.label} {props.required && <sup>*</sup>}</MainLabel>
+                {props.heading&&<H3>{props.heading}</H3>}
+                {props.label&&<MainLabel>{props.label}</MainLabel>}
                 <MainDiv marginbottom={props.marginbottom}>
                     {props.radios &&
                         props.radios.map((radio, index) => {
@@ -17,14 +18,14 @@ function RadioInput(props) {
                                     return (
                                         <div key={props.name + index}>
                                             <input type="radio" id={radio} name={props.name} defaultChecked={true} />
-                                            <label className="radioBtn" htmlFor={radio}>{radio}</label>
+                                            <label className={"radioBtn " + props.className} htmlFor={radio}>{radio}</label>
                                         </div>
                                     )
                                 } else {
                                     return (
                                         <div key={props.name + index}>
                                             <input type="radio" id={radio} name={props.name} disabled />
-                                            <label className="radioBtn" htmlFor={radio}>{radio}</label>
+                                            <label className={"radioBtn " + props.className} htmlFor={radio}>{radio}</label>
                                         </div>
                                     );
                                 }
@@ -32,7 +33,7 @@ function RadioInput(props) {
                                 return (
                                     <div key={props.name + index}>
                                         <input type="radio" id={radio} name={props.name} />
-                                        <label className="radioBtn" htmlFor={radio}> {radio}</label>
+                                        <label className={"radioBtn " + props.className} htmlFor={radio}> {radio}</label>
                                     </div>
                                 )
                             }
@@ -55,6 +56,8 @@ margin-bottom: ${props => props.marginbottom};
 input{
 position: absolute;
 left: -100%;
+opacity: 0;
+visibility: hidden;
 }
 .radioBtn{
 min-width: 50px;
@@ -73,14 +76,29 @@ input[type="radio"]:checked + .radioBtn {
 background: #41C977;
 border-color: #41C977;
 color: #FFFFFF;
-box-shadow: 0px 16px 24px -8px rgba(115, 95, 255, 0.16);
 }
 input[type="radio"]:disabled + .radioBtn {
 background-color: #ccc;
 opacity: .2;
 }
+.radioBtn.round{
+    border-radius: 27px;
+    padding: 6px 12px;
+}
+input[type="radio"]:checked + .radioBtn.round {
+    background: #ECFAF1;
+    border-color: #41C977;
+    color: #1F1A48;
+}
 `;
-
+const H3 = styled.h3`
+font-weight: bold;
+font-size: 16px;
+line-height: 24px;
+font-feature-settings: 'liga' off;
+color: #1F1A48;
+margin:0 0 12px 0;
+`
 const MainLabel = styled.label`
 font-size: 14px;
 line-height: 24px;

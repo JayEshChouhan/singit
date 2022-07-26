@@ -25,8 +25,8 @@ const InputRange = (props) => {
       />
       <Inputdiv>
         {
-          [...Array(MAX)].map(() => {
-            return <span></span>
+          [...Array(MAX)].map((e,i) => {
+            return <span key={i}></span>
           })
         }
       </Inputdiv>
@@ -82,7 +82,7 @@ width: 100%;
 
 const MainDiv = styled.div`
 position: relative;
-height: 24px;
+height: 30px;
 z-index: 1;
 `;
 

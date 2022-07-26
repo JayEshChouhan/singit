@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components';
 
 const CheckBox = (props) => {
-    
+
     return (
-        <Container >
+        <Container color={props.color}>
             <div className='input-box checkbox'>
-                <input type={"checkbox"} name={props.name && props.name} id={props.id && props.id}></input>
-                {props.children}
+                <input type={"checkbox"} name={props.name && props.name} onChange={(e) => props.handleClick(e)} id={props.id && props.id} checked={props.isChecked}></input>
+                {/* {props.children} */}
                 <label htmlFor={props.id} className="label">
+                    <div className='box'></div>
                     {props.label ? props.label : props.label}
                 </label>
             </div>
@@ -17,7 +18,7 @@ const CheckBox = (props) => {
 }
 
 const Container = styled.div`
-
+padding: 6px 0;
 .checkbox input {
 height: 0;
 width: 0;
@@ -26,8 +27,7 @@ width: 0;
 padding-left: 28px;
 position: relative;
 }
-.checkbox .label::before {
-content: '';
+.checkbox .label .box { 
 position: absolute;
 left: 0;
 top: 0;
@@ -36,23 +36,23 @@ height: 19.5px;
 border:  1px solid #A3A1B3;
 border-radius:15%;
 }
-.checkbox .label::after {
-left: 6.6%;
-top: 18%;
-width: 7px;
-height: 12px;
-border:0.5px solid white;
-border-width: 0 3px 3.5px 0;
-transform: rotate(50deg);
+.checkbox .label .box::after {
+    left: 53%;
+    top: 45%;
+    width: 7.25px;
+    height: 11.5px;
+    border: 0.5px solid white;
+    border-width: 0 3px 3px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
 }
-.checkbox input:checked ~ .label::before {
+.checkbox input:checked ~ .label .box {
 width: 21px;
 height: 21px;
 position: absolute;
 border:none;
 background-color: #41C977;
 }
-.label:after {
+.label .box:after {
 content: "";
 position: absolute;
 }
@@ -60,7 +60,7 @@ label{
 font-size: 16px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
-color: #7C7896;
+color: ${props => props.color || '#7C7896'};
 flex: none;
 order: 1;
 flex-grow: 0;

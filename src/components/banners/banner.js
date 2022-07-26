@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import styled from "styled-components";
 import closeIcon from "../../assets/icon/close.png"
 import bannerImg from "../../assets/images/bannerUnion.png"
-import arrow from "../../assets/images/Arrow.png"
+import arrow from "../../assets/images/arrow.png"
 
 
 const Banner = (props) => {
