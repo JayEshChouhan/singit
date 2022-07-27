@@ -28,8 +28,6 @@ const SongView = (props) => {
     )
 }
 
-export default SongView;
-
 const MainDiv = styled.div`
 display: flex;
 column-gap: 16px;
@@ -41,23 +39,24 @@ margin-top: 18px;
 padding-bottom: 16px;
 border-bottom: 1px solid #EDEDF0;
 & *{
-    margin-bottom:0;
+margin-bottom:0;
 }
-`
+`;
 
 const H4 = styled.h4`
 font-weight: 500;
 font-size: 14px;
 line-height: 20px;
 color: #1F1A48;
-`
+`;
+
 const P = styled.p`
 font-weight: 400;
 font-size: 14px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #777580;
-`
+`;
 
 const Span = styled.span`
 font-weight: 400;
@@ -71,4 +70,6 @@ i {
 & ~ span{
     margin-right: 4px;
 }
-`
+`;
+
+export default SongView;

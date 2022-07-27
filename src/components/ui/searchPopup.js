@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import CheckBox from './checkBox';
@@ -10,11 +10,17 @@ import songImg from '../../assets/images/songImg.png'
 import onecallaway from '../../assets/images/onecallaway.png'
 import easyonme from '../../assets/images/easyonme.png'
 import laterbitches from '../../assets/images/laterbitches.png'
-
+import Tags from './tags';
+import { click } from '@testing-library/user-event/dist/click';
 
 const SearchPopup = (props) => {
+
   const [searchText, setSearchText] = useState('');
-  const [songList, setSongList] = useState(true)
+  const [songList, setSongList] = useState(true);
+  const [generes, setGeneres] = useState([]);
+  const [emotions, setEmotions] = useState([]);
+  const [hidecontent, setHidecontent] = useState([]);
+
 
   const [searchPopup, setSearchPopup] = useState(false);
   const [filterPopUp, setFilterPopUp] = useState(false);
@@ -34,6 +40,24 @@ const SearchPopup = (props) => {
       setSongList(true)
     }
   }, [searchText])
+
+  const handleFilterApply = () => {
+    if (generes.length !== 0 && emotions.length !== 0 && hidecontent.length !== 0) {
+      setFilterPopUp(false)
+      setSearchPopup(true)
+    }else{
+      alert("add filters")
+    }
+  }
+
+  useEffect(() => {
+    console.log(generes, emotions, hidecontent)
+    if (!(generes.length === 0 || emotions.length === 0 || hidecontent.length === 0)) {
+      const searchedList = songlist.filter(ele => ele.title.includes(emotions[0][0]))
+      console.log(searchedList)
+      setSongList(searchedList)
+    }
+  }, [generes, emotions, hidecontent])
   return (
     <>
       <InputBtn marginbottom={props.marginbottom} onClick={() => setSearchPopup(true)}>
@@ -66,30 +90,30 @@ const SearchPopup = (props) => {
               </svg>
             </FilterIcon>
           </PositionRelative>
+          {!(emotions.length === 0) && <Tags tagsList={emotions} setTagList={setEmotions} removeBtn />}
+
         </Maininput>
-        {songList === true?
+        {songList === true ?
           <>
             <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={4} />
             <SongList heading="All Song" songlist={songlist} listNumber={4} />
           </> :
-            songList.length === 0? 
+          songList.length === 0 ?
             <>
-            <NotFound>No result found</NotFound>
-            <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={2} />
+              <NotFound>No result found</NotFound>
+              <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={2} />
             </>
-          :<SongList heading={"Found " + songList.length + " songs"} songlist={songList} />
+            : <SongList heading={"Found " + songList.length + " songs"} songlist={songList} />
         }
       </PopUp>
-      <PopUp heading={"Filter"} show={filterPopUp} onHide={setSearchPopup} setShow={setFilterPopUp} footer={['Clear', 'Apply']}>
-        <Checkboxlist marginbottom="22px" heading="Genres" CheckboxList={genres} forAll={genresForall} />
-        <RadioInput marginbottom="20px" className="round" name="emotions" heading="Emotions (1)" radios={['😄 Joy', '😭 Sadness', '😡 Anger', '🤢 Disgust', '😱 Fear']} />
-        <Checkboxlist heading="Hide Contents" CheckboxList={contents} forAll={contentsForall} />
+      <PopUp heading={"Filter"} show={filterPopUp} onHide={setSearchPopup} setShow={setFilterPopUp} footer={['Clear', 'Apply']} handleClick={handleFilterApply} >
+        <Checkboxlist setValue={setGeneres} marginbottom="22px" heading="Genres" CheckboxList={genres} forAll={genresForall} />
+        <RadioInput setValue={setEmotions} marginbottom="20px" className="round" name="emotions" heading="Emotions (1)" radios={['😄 Joy', '😭 Sadness', '😡 Anger', '🤢 Disgust', '😱 Fear']} />
+        <Checkboxlist setValue={setHidecontent} heading="Hide Contents" CheckboxList={contents} forAll={contentsForall} />
       </PopUp>
     </>
   )
 }
-
-export default SearchPopup;
 
 const PositionRelative = styled.div`
 position: relative;
@@ -105,13 +129,15 @@ align-items: center;
 padding: 12px 48px;
 background: #F5F5F7;
 border-radius: 12px;
-`
+`;
+
 const InputIcon = styled.span`
 position: absolute;
 bottom: 50%;
 left: ${props => props.left || "16px"};
 transform: translateY(50%);
 `;
+
 const FilterIcon = styled.div`
 position: absolute;
 bottom: 50%;
@@ -119,14 +145,15 @@ right: 16px;
 right: ${props => props.right || "16px"};
 transform: translateY(50%);
 cursor: pointer;
-`
+`;
+
 const NotFound = styled.p`
 font-weight: 400;
 font-size: 16px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
-`
+`;
 
 const SongList = (props) => {
   const [next, setNext] = useState(props.listNumber || props.songlist?.length);
@@ -165,13 +192,13 @@ const SongList = (props) => {
 
 const MainListDiv = styled.div`
 margin-bottom: ${props => props.marginbottom || '0px;'}
-`
+`;
 
 const HeadingDiv = styled.div`
 display: flex;
 align-items: center;
 column-gap: 8px;
-`
+`;
 
 const H3 = styled.h3`
 font-weight: bold;
@@ -180,7 +207,8 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 margin:0;
-`
+`;
+
 const Label = styled.label`
 width: fit-content;
 background: #ECFAF1;
@@ -195,8 +223,8 @@ font-size: 12px;
 line-height: 12px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
+`;
 
-`
 const LoadBtn = styled.button`
 background: #EDEDF0;
 border-radius: 100px;
@@ -212,14 +240,12 @@ color: #735FFF;
 display:flex;
 column-gap: 8px;
 justify-content: center;
-`
-
-
+`;
 
 const Checkboxlist = (props) => {
   const [allChecked, setAllChecked] = useState(false)
   const [isCheck, setIsCheck] = useState([])
-  const selectAll = () => {
+  const selectAll = (e) => {
     setAllChecked(!allChecked);
     setIsCheck(props.CheckboxList.map(li => li.id));
     if (allChecked) {
@@ -240,7 +266,11 @@ const Checkboxlist = (props) => {
     } else {
       setAllChecked(false)
     }
-  },[isCheck])
+  }, [isCheck])
+
+  useEffect(() => {
+    props.setValue(isCheck)
+  }, [isCheck])
   return (
     <MainDiv marginbottom={props.marginbottom}>
       <H3>{props.heading}</H3>
@@ -255,6 +285,7 @@ const Checkboxlist = (props) => {
     </MainDiv>
   )
 }
+
 const MainDiv = styled.div`
 margin-bottom: ${props => props.marginbottom}
 `
@@ -457,3 +488,5 @@ const songlist = [
     image: laterbitches
   }
 ]
+
+export default SearchPopup;

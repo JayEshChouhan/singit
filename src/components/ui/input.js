@@ -11,15 +11,14 @@ const Input = (props) => {
 
 const Wrapper = styled.div`
 margin: 0 0 ${props => props.marginbottom || "10px"} 0;
-min-width: ${props => props.width};
-  
+min-width: ${props => props.width};  
 label {
 color: var(--dark-text);
 font-size: 14px;
 margin: 0 0 10px;
 display: block;
 font-weight: 600;
-  }
+}
 
 input {
 width: 100%;
@@ -29,10 +28,9 @@ display: block;
 box-sizing: border-box;
 border: var(--dark-border);
 border-radius: 5px;
-  }
+}
 
 iframe {     
-/* width: 48% !important; */
 height: 36px !important;
 border: 0px !important;
 border: var(--border) !important;

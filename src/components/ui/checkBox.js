@@ -6,7 +6,50 @@ const CheckBox = (props) => {
     return (
         <Container color={props.color}>
             <div className='input-box checkbox'>
-                <input type={"checkbox"} name={props.name && props.name} onChange={(e) => props.handleClick(e)} id={props.id && props.id} checked={props.isChecked}></input>
+            {props.methods ?
+                    <input
+                        type={"checkbox"}
+                        name={props.name && props.name}
+                        id={props.id && props.id}
+                        required
+                        {...props.methods.register(props.name, {
+                            onChange: (e) => { 
+                                if(props.setCheckBox){
+                                    props.setCheckBox(e.target.checked);
+                                } 
+                                if(props.handleClick){
+                                    props.handleClick(e) 
+                                }
+                            },
+                            required: {
+                                value: true,
+                                message: "checked value is reqired",
+                            },
+                        })}
+                        checked={props.isChecked}
+                    /> :
+                    <input
+                        type={"checkbox"}
+                        name={props.name && props.name}
+                        id={props.id && props.id}
+                        required
+                        onChange={(e) => { 
+                            if(props.setCheckBox){
+                                props.setCheckBox(e.target.checked);
+                            } 
+                            if(props.handleClick){
+                                props.handleClick(e) 
+                            }
+                        }}
+                        checked={props.isChecked}
+                    />
+                }
+                {/* <input 
+                    type={"checkbox"} 
+                    name={props.name && props.name} 
+                    onChange={(e) => props.handleClick(e)} 
+                    id={props.id && props.id} 
+                    checked={props.isChecked}/> */}
                 {/* {props.children} */}
                 <label htmlFor={props.id} className="label">
                     <div className='box'></div>
@@ -37,13 +80,13 @@ border:  1px solid #A3A1B3;
 border-radius:15%;
 }
 .checkbox .label .box::after {
-    left: 53%;
-    top: 45%;
-    width: 7.25px;
-    height: 11.5px;
-    border: 0.5px solid white;
-    border-width: 0 3px 3px 0;
-    transform: translate(-50%, -50%) rotate(45deg);
+left: 53%;
+top: 45%;
+width: 7.25px;
+height: 11.5px;
+border: 0.5px solid white;
+border-width: 0 3px 3px 0;
+transform: translate(-50%, -50%) rotate(45deg);
 }
 .checkbox input:checked ~ .label .box {
 width: 21px;

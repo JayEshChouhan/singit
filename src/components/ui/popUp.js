@@ -23,11 +23,11 @@ const PopUp = (props) => {
             </Modal.Body>
             {props.footer && <Modal.Footer>
                 <Div>
-                    {props.footer.map((ele,index)=>{
-                        if(ele==='Clear'){
-                            return  <BtnSecondary key={index}>{ele}</BtnSecondary>
-                        }else{
-                            return <BtnPrimary key={index}>{ele}</BtnPrimary>
+                    {props.footer.map((ele, index) => {
+                        if (ele === 'Clear' || ele === "Cancel") {
+                            return <BtnSecondary key={index}>{ele}</BtnSecondary>
+                        } else {
+                            return <BtnPrimary onClick={props.handleClick} key={index}>{ele}</BtnPrimary>
                         }
                     })}
                 </Div>
@@ -43,11 +43,12 @@ line-height: 28px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 `;
+
 const Div = styled.div`
 margin: 0;
 display: flex;
 column-gap: 16px;
 max-width: 344px;
 width: 100%;
-`
+`;
 export default PopUp;
