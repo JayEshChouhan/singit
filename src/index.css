@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+:root {
+  --highlight: #735fff;
+  --light-highlight: rgb(216, 232, 255);
+  --text: black;
+  --subtext: #464853;
+  --medium-text: rgba(0,0,0,0.6);
+  --light-text: #c0c0c0;
+  --border: 1px solid #f2edff;
+  --dark-border: 1px solid #dacfe8;
+  --shadow: 0 2px 10px 1px rgba(0,0,0,0.1);
+  --background: #fafbff;
+}
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', 'Rubik';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+}
+a, a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.full-width {
+  width: 100%;
+  margin: 0 ;
+  padding: 0;
+}
+
+.grecaptcha-badge { visibility: hidden; }
+
+
+
+
+.modal-dialog{
+  max-width: 580px;
+  margin: 0 auto;
+  margin-top: 56px;
+}
+.modal-header{
+  border-bottom: 0;
+  padding: 20px 24px;
+}
+.modal-body{
+  padding: 12px 24px 20px;
+}
+.modal-content{
+  border: none;
+  border-radius: 12px;
+}
+
+@media (max-width: 580px) {
+  .modal{
+    background-color: white;
+  }
+  .modal-dialog{
+    margin-top: 0;
+  }
+  .modal-content{
+    border-radius: 0;
+  }
+}
