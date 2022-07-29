@@ -19,7 +19,7 @@ const Lesson = () => {
 
   const methods = useForm();
   const { handleSubmit } = methods;
-  
+
   return (
     <div>
       <NavBar />

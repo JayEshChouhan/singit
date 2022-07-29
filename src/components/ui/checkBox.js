@@ -72,6 +72,7 @@ height: 19.5px;
 border:  1px solid #A3A1B3;
 border-radius:15%;
 }
+
 .checkbox .label .box::after {
 left: 53%;
 top: 45%;
@@ -88,6 +89,7 @@ position: absolute;
 border:none;
 background-color: #41C977;
 }
+
 .label .box:after {
 content: "";
 position: absolute;

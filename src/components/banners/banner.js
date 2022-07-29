@@ -7,7 +7,6 @@ import arrow from "../../assets/images/arrow.png"
 
 
 const Banner = (props) => {
-
   const mobileVersion = useMediaQuery
     ({
       query: '(max-width: 991px)'
@@ -47,7 +46,6 @@ width: 100%;
 max-width: 580px;
 margin: 0 auto;
 `;
-
 const BannerText = styled.h1`
 font-weight: 700;
 font-size: 24px;

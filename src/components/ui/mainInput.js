@@ -62,6 +62,10 @@ outline:none !important;
 }
 
 iframe {     
+<<<<<<< HEAD
+/* width: 48% !important; */
+=======
+>>>>>>> e1365e0ec5ce970f2940ca9ed7db2f9eaef0e25f
 height: 36px !important;
 border: 0px !important;
 border: var(--border) !important;
@@ -79,7 +83,11 @@ border-bottom: 1px solid #CCCBDF;
 background: #FFFFFF;
 border-radius: 0px;
 &.search{
+<<<<<<< HEAD
+  padding: 12px 32px;
+=======
 padding: 12px 32px;
+>>>>>>> e1365e0ec5ce970f2940ca9ed7db2f9eaef0e25f
 }
 }
 &:first-of-type { margin-inline-start: 0 }

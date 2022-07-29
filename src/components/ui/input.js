@@ -11,14 +11,23 @@ const Input = (props) => {
 
 const Wrapper = styled.div`
 margin: 0 0 ${props => props.marginbottom || "10px"} 0;
+<<<<<<< HEAD
+min-width: ${props => props.width};
+  
+=======
 min-width: ${props => props.width};  
+>>>>>>> e1365e0ec5ce970f2940ca9ed7db2f9eaef0e25f
 label {
 color: var(--dark-text);
 font-size: 14px;
 margin: 0 0 10px;
 display: block;
 font-weight: 600;
+<<<<<<< HEAD
+  }
+=======
 }
+>>>>>>> e1365e0ec5ce970f2940ca9ed7db2f9eaef0e25f
 
 input {
 width: 100%;
@@ -28,9 +37,16 @@ display: block;
 box-sizing: border-box;
 border: var(--dark-border);
 border-radius: 5px;
+<<<<<<< HEAD
+  }
+
+iframe {     
+/* width: 48% !important; */
+=======
 }
 
 iframe {     
+>>>>>>> e1365e0ec5ce970f2940ca9ed7db2f9eaef0e25f
 height: 36px !important;
 border: 0px !important;
 border: var(--border) !important;

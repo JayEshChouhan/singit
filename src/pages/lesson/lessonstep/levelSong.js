@@ -169,6 +169,4 @@ const Checkboxcolor = styled.div`
   background: #41c977;
 `;
 
-
-
 export default LevelAndSong;

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
 const InputRange = (props) => {
   const [bgSize, setBgSize] = useState(props.value || 0);
   const MAX = props.max;
@@ -111,3 +110,4 @@ const Inputdiv = styled.div`
 `;
 
 export default InputRange;
+

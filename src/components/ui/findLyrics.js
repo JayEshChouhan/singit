@@ -73,7 +73,6 @@ line-height: 20px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 `
-
 const FindWords = styled.div`
 font-weight: 600;
 font-size: 16px;

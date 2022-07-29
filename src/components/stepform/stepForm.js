@@ -13,9 +13,6 @@ const Stepform = (props) => {
     const stepPages = props.stepPages;
     const stapComponent = props.tabs;
     const disable = props.disable;
- 
-
-
 
     const nextFunction = () => {
          if (step < 2) {
@@ -38,8 +35,6 @@ const Stepform = (props) => {
         }
     };
 
-
- 
     return (
         <div>
             <div className='stepperMain'>

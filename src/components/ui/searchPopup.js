@@ -128,14 +128,12 @@ padding: 12px 48px;
 background: #F5F5F7;
 border-radius: 12px;
 `;
-
 const InputIcon = styled.span`
 position: absolute;
 bottom: 50%;
 left: ${props => props.left || "16px"};
 transform: translateY(50%);
 `;
-
 const FilterIcon = styled.div`
 position: absolute;
 bottom: 50%;
@@ -206,7 +204,6 @@ font-feature-settings: 'liga' off;
 color: #1F1A48;
 margin:0;
 `;
-
 const Label = styled.label`
 width: fit-content;
 background: #ECFAF1;
@@ -222,7 +219,6 @@ line-height: 12px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 `;
-
 const LoadBtn = styled.button`
 background: #EDEDF0;
 border-radius: 100px;

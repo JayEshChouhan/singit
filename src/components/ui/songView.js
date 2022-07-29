@@ -27,7 +27,6 @@ const SongView = (props) => {
         </MainDiv>
     )
 }
-
 const MainDiv = styled.div`
 display: flex;
 column-gap: 16px;
@@ -49,7 +48,6 @@ font-size: 14px;
 line-height: 20px;
 color: #1F1A48;
 `;
-
 const P = styled.p`
 font-weight: 400;
 font-size: 14px;

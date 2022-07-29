@@ -3,7 +3,6 @@ import { Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 import BtnPrimary from './btnPrimary';
 import BtnSecondary from './btnSecondary';
-
 const PopUp = (props) => {
 
     const handleClose = () => {
@@ -43,7 +42,6 @@ line-height: 28px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 `;
-
 const Div = styled.div`
 margin: 0;
 display: flex;
