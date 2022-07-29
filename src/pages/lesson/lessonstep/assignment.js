@@ -14,12 +14,16 @@ import Stepform from '../../../components/stepform/stepForm';
 import SelectBase from './grammerteststep/selectBase';
 import SelectQuestions from './grammerteststep/selectQuestions';
 import ReviewWork from './grammerteststep/reviewWork';
+import Basetext from './unseen/basetext';
+import Createown from './unseen/createown';
+import Review from './unseen/review';
 import FillTextQuestion from './fillblanks/fillTextQuestion';
 import NewWork from './fillblanks/newWork';
 
 import BaseTextQuestions from './wordpause/baseTextQuestions';
 import ReviewWorks from './wordpause/reviewWorks'
 import CreateQuiz from './vocabularyquiz/createQuiz';
+
 
 const Assignments = () => {
 
@@ -66,6 +70,7 @@ const Assignments = () => {
                 </AssignmentsDiv>
                 <AssignmentsDiv onClick={() => setFillblanks(true)} >
                     <Div>
+
                         <AssignmentsImg src={fillblanksImg} />
                         <AssignmentsText>Fill Blanks</AssignmentsText>
                     </Div>
@@ -124,7 +129,9 @@ const Assignments = () => {
                 setShow={setUnseen}
                 footer={false}
             >
-                sdsdf
+               <Stepform tabs={[<Basetext /> , <Createown />, <Review /> ]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
+               
+
             </PopUp>
             <PopUp
                 heading={

@@ -17,6 +17,7 @@ const LevelAndSong = (props) => {
   const [checkBox, setCheckBox] = useState(false);
   const [selectDuration, setSelectDuration] = useState("Select Duration");
 
+
   useEffect(() => {
     if (
       lessonList.length === 0 ||
@@ -40,11 +41,15 @@ const LevelAndSong = (props) => {
   const addWord = (e) => {
     if (e.key === "Enter") {
       if (e.target.value !== "") {
+
         setLessonlist([...lessonList, e.target.value]);
         e.target.value = "";
       }
     }
-  };
+
+  }
+
+
 
   return (
     <div>
@@ -152,7 +157,10 @@ const LevelAndSong = (props) => {
       </Maininput>
     </div>
   );
-};
+
+        }
+
+
 
 const InputIcon = styled.span`
   position: absolute;
