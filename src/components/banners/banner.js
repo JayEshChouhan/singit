@@ -46,6 +46,7 @@ width: 100%;
 max-width: 580px;
 margin: 0 auto;
 `;
+
 const BannerText = styled.h1`
 font-weight: 700;
 font-size: 24px;
@@ -80,5 +81,6 @@ display: flex;
 align-items: center;
 column-gap: 17px;
 `;
+
 
 export default Banner;

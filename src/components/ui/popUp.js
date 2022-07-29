@@ -7,6 +7,7 @@ const PopUp = (props) => {
 
     const handleClose = () => {
         props.setShow(false);
+
         if (props.onHide) {
             props.onHide(true);
         }
@@ -42,6 +43,7 @@ line-height: 28px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 `;
+
 const Div = styled.div`
 margin: 0;
 display: flex;

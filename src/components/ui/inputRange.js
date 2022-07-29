@@ -110,4 +110,3 @@ const Inputdiv = styled.div`
 `;
 
 export default InputRange;
-

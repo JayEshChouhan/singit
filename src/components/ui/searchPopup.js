@@ -61,6 +61,7 @@ const SearchPopup = (props) => {
       <InputBtn marginbottom={props.marginbottom} onClick={() => setSearchPopup(true)}>
         <InputIcon>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
             <path d="M10.5553 17.7143C14.2372 17.7143 17.222 14.6442 17.222 10.8571C17.222 7.07005 14.2372 4 10.5553 4C6.87344 4 3.88867 7.07005 3.88867 10.8571C3.88867 14.6442 6.87344 17.7143 10.5553 17.7143Z" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M19.4446 20L15.5557 16" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -68,7 +69,9 @@ const SearchPopup = (props) => {
         Song. lyric, artist
         <FilterIcon>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
             <path d="M20.6083 4.64573C21.1579 3.99575 20.6959 3 19.8447 3H4.1553C3.30408 3 2.84207 3.99575 3.39173 4.64573L9.76357 12.1804C9.91623 12.3609 10 12.5897 10 12.8261V18.382C10 18.7607 10.214 19.107 10.5528 19.2764L12.5528 20.2764C13.2177 20.6088 14 20.1253 14 19.382V12.8261C14 12.5897 14.0838 12.3609 14.2364 12.1804L20.6083 4.64573Z" stroke="#A3A1B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
           </svg>
         </FilterIcon>
       </InputBtn>
@@ -77,6 +80,7 @@ const SearchPopup = (props) => {
           <PositionRelative>
             <InputIcon left="0px">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
                 <path d="M10.5553 17.7143C14.2372 17.7143 17.222 14.6442 17.222 10.8571C17.222 7.07005 14.2372 4 10.5553 4C6.87344 4 3.88867 7.07005 3.88867 10.8571C3.88867 14.6442 6.87344 17.7143 10.5553 17.7143Z" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M19.4446 20L15.5557 16" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -128,6 +132,7 @@ padding: 12px 48px;
 background: #F5F5F7;
 border-radius: 12px;
 `;
+
 const InputIcon = styled.span`
 position: absolute;
 bottom: 50%;
@@ -180,10 +185,12 @@ const SongList = (props) => {
         Load More
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 6L8 10L12 6" stroke="#735FFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
         </svg>
       </LoadBtn>}
     </MainListDiv>
   )
+
 }
 
 const MainListDiv = styled.div`
@@ -194,6 +201,7 @@ const HeadingDiv = styled.div`
 display: flex;
 align-items: center;
 column-gap: 8px;
+
 `;
 
 const H3 = styled.h3`
@@ -203,6 +211,7 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 margin:0;
+
 `;
 const Label = styled.label`
 width: fit-content;
@@ -219,6 +228,7 @@ line-height: 12px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 `;
+
 const LoadBtn = styled.button`
 background: #EDEDF0;
 border-radius: 100px;

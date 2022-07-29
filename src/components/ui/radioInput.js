@@ -119,6 +119,4 @@ const MainLabel = styled.label`
   margin-bottom: 8px;
   display: inline-block;
 `;
-
-
 export default RadioInput;

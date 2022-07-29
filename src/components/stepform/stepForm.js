@@ -4,9 +4,7 @@ import BtnPrimary from '../ui/btnPrimary';
 import BtnSecondary from '../ui/btnSecondary';
 
 
-
 const Stepform = (props) => {
-
     const [step, setStep] = useState(0);
     const [btnText, setBtnText] = useState('Next');
 
@@ -15,20 +13,19 @@ const Stepform = (props) => {
     const disable = props.disable;
 
     const nextFunction = () => {
-         if (step < 2) {
+         if (step < stepPages.length - 1) {
             setStep(step + 1)
         }
 
     };
 
     useEffect(() => {
-        if (step == 2) {
+        if (step == stepPages.length - 1) {
             setBtnText('Save')
         } else {
             setBtnText('Next')
         }
     }, [step]);
-
     const preFunction = (e) => {
         if(e.detail !== 0){
             setStep(step - 1)

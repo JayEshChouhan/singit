@@ -27,6 +27,7 @@ const SongView = (props) => {
         </MainDiv>
     )
 }
+
 const MainDiv = styled.div`
 display: flex;
 column-gap: 16px;
@@ -68,6 +69,7 @@ i {
 & ~ span{
     margin-right: 4px;
 }
+
 `;
 
-export default SongView;
+export default SongView

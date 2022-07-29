@@ -63,7 +63,7 @@ width: 0;
 padding-left: 28px;
 position: relative;
 }
-.checkbox .label .box { 
+.checkbox .label .box {
 position: absolute;
 left: 0;
 top: 0;
@@ -72,7 +72,6 @@ height: 19.5px;
 border:  1px solid #A3A1B3;
 border-radius:15%;
 }
-
 .checkbox .label .box::after {
 left: 53%;
 top: 45%;
