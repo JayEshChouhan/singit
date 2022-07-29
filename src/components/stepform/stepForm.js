@@ -29,8 +29,10 @@ const Stepform = (props) => {
         }
     }, [step]);
 
-    const preFunction = () => {
-        setStep(step - 1)
+    const preFunction = (e) => {
+        if(e.detail !== 0){
+            setStep(step - 1)
+        }
     };
 
     return (
