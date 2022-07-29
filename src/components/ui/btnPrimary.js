@@ -8,8 +8,7 @@ const BtnPrimary = (props) => {
     if (!props.loading && e.key === "Enter") props.onClick();
 
   };
-
-  return <ConfirmButton {...props} loading={props.loading ? 1 : 0} onClick={props.loading ? null : props.onClick} onKeyDown={onPress} disabled={props.disabled}>
+  return <ConfirmButton type={props.type} {...props} loading={props.loading ? 1 : 0} onClick={props.loading ? null : props.onClick} onKeyDown={onPress} disabled={props.disabled}>
     {!props.loading && props.children}
     {props.loading && <PuffLoader color="white" size={10} css='margin: 0 auto; width: 20px; height: 20px' />}
   </ConfirmButton>

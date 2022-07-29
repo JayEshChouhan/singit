@@ -9,11 +9,9 @@ const ReviewWork = () => {
       {listofQuestion.map((ele,index)=>{
           return <FormBoxes data={ele}/>
         })}      
-
     </div>
   )
 }
-
 const Text = styled.p`
 font-style: normal;
 font-weight: 400;
@@ -190,4 +188,3 @@ const listofQuestion = [
     selectedOption: ["Man"]
   }
 ]
-

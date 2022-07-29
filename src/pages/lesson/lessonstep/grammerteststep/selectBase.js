@@ -41,7 +41,6 @@ const SelectBase = () => {
         {sentenceBox.map((ele,index)=>{
           return <ContainerBox heading={ele} index={index} onClick={deleteHandler} />
         })}
-
     </div>
   )
 }
@@ -171,6 +170,5 @@ const ContainerBox = (props) => {
   );
 
 }
-
 
 export default SelectBase;

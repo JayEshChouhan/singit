@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Tags = (props) => {
-
-
     const { tagsList, setTaglist, removeBtn } = props;
 
     const deleteTag = (i) => {
