@@ -1,12 +1,14 @@
 import React, { Children, useState } from 'react'
 import { Modal } from 'react-bootstrap';
 import styled from 'styled-components';
-
+import BtnPrimary from './btnPrimary';
+import BtnSecondary from './btnSecondary';
 const PopUp = (props) => {
 
     const handleClose = () => {
         props.setShow(false);
-        if(props.onHide){
+
+        if (props.onHide) {
             props.onHide(true);
         }
     }
@@ -20,7 +22,15 @@ const PopUp = (props) => {
                 {props.children}
             </Modal.Body>
             {props.footer && <Modal.Footer>
-                <button onClick={() => handleClose()} >close modal</button>
+                <Div>
+                    {props.footer.map((ele, index) => {
+                        if (ele === 'Clear' || ele === "Cancel") {
+                            return <BtnSecondary key={index}>{ele}</BtnSecondary>
+                        } else {
+                            return <BtnPrimary onClick={props.handleClick} key={index}>{ele}</BtnPrimary>
+                        }
+                    })}
+                </Div>
             </Modal.Footer>}
         </Modal>
     )
@@ -34,4 +44,11 @@ font-feature-settings: 'liga' off;
 color: #1F1A48;
 `;
 
+const Div = styled.div`
+margin: 0;
+display: flex;
+column-gap: 16px;
+max-width: 344px;
+width: 100%;
+`;
 export default PopUp;

@@ -27,7 +27,7 @@ const NavBar = () => {
                 <div><img src={Image} /></div>
                 <div>
                   <UserHeading>Jenny Ruby</UserHeading>
-                  <UserAnchor href='javascript:;'>Logout <div><img src={arrow} /></div></UserAnchor>
+                  <UserAnchor href='#'>Logout <div><img src={arrow} /></div></UserAnchor>
                 </div>
               </UserDetail>
             </UserMain>

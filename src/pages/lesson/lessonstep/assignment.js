@@ -17,6 +17,13 @@ import ReviewWork from './grammerteststep/reviewWork';
 import Basetext from './unseen/basetext';
 import Createown from './unseen/createown';
 import Review from './unseen/review';
+import FillTextQuestion from './fillblanks/fillTextQuestion';
+import NewWork from './fillblanks/newWork';
+
+import BaseTextQuestions from './wordpause/baseTextQuestions';
+import ReviewWorks from './wordpause/reviewWorks'
+import CreateQuiz from './vocabularyquiz/createQuiz';
+
 
 const Assignments = () => {
 
@@ -137,8 +144,10 @@ const Assignments = () => {
                 setShow={setFillblanks}
                 footer={false}
             >
-                sdsdf
-            </PopUp>
+              <Stepform lastBtn="Create" tabs={[<FillTextQuestion /> , <NewWork />]} stepPages={['Select the base text for question','Review your work']} />
+                 </PopUp>
+
+
             <PopUp
                 heading={
                     <Div>
@@ -150,7 +159,7 @@ const Assignments = () => {
                 setShow={setWordpause}
                 footer={false}
             >
-                sdsdf
+                <Stepform lastBtn="Create" tabs={[<BaseTextQuestions /> , <ReviewWorks/>]} stepPages={['Select the base text for question','Review your work']} />
             </PopUp>
             <PopUp
                 heading={
@@ -163,7 +172,8 @@ const Assignments = () => {
                 setShow={setVocabularyquiz}
                 footer={false}
             >
-                sdsdf
+                <CreateQuiz/>   
+              
             </PopUp>
             <PopUp
                 heading={

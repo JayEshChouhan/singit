@@ -92,7 +92,6 @@ const Createown = () => {
                 </ListLi>
               );
             })}
-            
            </ListUl>
         </Div1>
         }
