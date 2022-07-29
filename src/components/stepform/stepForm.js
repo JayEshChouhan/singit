@@ -25,15 +25,15 @@ const Stepform = (props) => {
     const stapComponent = props.tabs;
 
     const nextFunction = () => {
-         if (step < 2) {
+         if (step < stepPages.length - 1) {
             setStep(step + 1)
         }
 
     };
 
     useEffect(() => {
-        if (step == 2) {
-            setBtnText('Save')
+        if (step == stepPages.length - 1) {
+            setBtnText(props.lastBtn || 'Save')
         } else {
             setBtnText('Next')
         }

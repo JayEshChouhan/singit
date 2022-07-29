@@ -49,10 +49,12 @@ const LevelAndSong = (props) => {
             </select>
           </PositionRelative>
         </Maininput>
+
         <Maininput marginbottom="20px" label="Main Topic">
           <input placeholder='Add words to the lesson' className='only-bottom-border' type="text" onKeyDown={(e) => addWord(e)} />
           <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />
         </Maininput>
+        
         <FindLyrics btnText=" Finding words from the song lyrics" tagsList={lessonList} setTaglist={setLessonlist}/>
         <CheckBox label="Make Public" name="agree" id={"makePublic"} />
         <Maininput marginbottom="20px">

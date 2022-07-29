@@ -14,6 +14,15 @@ import Stepform from '../../../components/stepform/stepForm';
 import SelectBase from './grammerteststep/selectBase';
 import SelectQuestions from './grammerteststep/selectQuestions';
 import ReviewWork from './grammerteststep/reviewWork';
+import FillTextQuestion from './fillblanks/fillTextQuestion';
+import NewWork from './fillblanks/newWork';
+
+import BaseTextQuestions from './wordpause/baseTextQuestions';
+import ReviewWorks from './wordpause/reviewWorks'
+import CreateQuiz from './vocabularyquiz/createQuiz';
+
+
+
 
 const Assignments = () => {
 
@@ -94,6 +103,13 @@ const Assignments = () => {
                     <AssignmentsCount><img src={vectors} /></AssignmentsCount>
                 </AssignmentsDiv>
             </PopUp>
+            
+            
+            
+            
+            
+            
+            
             <PopUp
                 heading={
                     <Div>
@@ -107,6 +123,8 @@ const Assignments = () => {
             >
                 <Stepform tabs={[<SelectBase /> , <SelectQuestions />, <ReviewWork /> ]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
             </PopUp>
+            
+            
             <PopUp
                 heading={
                     <Div>
@@ -120,6 +138,13 @@ const Assignments = () => {
             >
                 sdsdf
             </PopUp>
+
+
+
+
+
+
+            
             <PopUp
                 heading={
                     <Div>
@@ -131,8 +156,9 @@ const Assignments = () => {
                 setShow={setFillblanks}
                 footer={false}
             >
-                sdsdf
-            </PopUp>
+              <Stepform lastBtn="Create" tabs={[<FillTextQuestion /> , <NewWork />]} stepPages={['Select the base text for question','Review your work']} />
+                 </PopUp>
+
             <PopUp
                 heading={
                     <Div>
@@ -144,7 +170,8 @@ const Assignments = () => {
                 setShow={setWordpause}
                 footer={false}
             >
-                sdsdf
+                <Stepform lastBtn="Create" tabs={[<BaseTextQuestions /> , <ReviewWorks/>]} stepPages={['Select the base text for question','Review your work']} />
+             
             </PopUp>
             <PopUp
                 heading={
@@ -157,7 +184,9 @@ const Assignments = () => {
                 setShow={setVocabularyquiz}
                 footer={false}
             >
-                sdsdf
+                <CreateQuiz/>   
+              
+             
             </PopUp>
             <PopUp
                 heading={
@@ -251,5 +280,7 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #CCCBDF;
 `;
+
+
 
 export default Assignments;
