@@ -62,7 +62,6 @@ outline:none !important;
 }
 
 iframe {     
-/* width: 48% !important; */
 height: 36px !important;
 border: 0px !important;
 border: var(--border) !important;
@@ -80,7 +79,9 @@ border-bottom: 1px solid #CCCBDF;
 background: #FFFFFF;
 border-radius: 0px;
 &.search{
-  padding: 12px 32px;
+
+
+padding: 12px 32px;
 }
 }
 &:first-of-type { margin-inline-start: 0 }

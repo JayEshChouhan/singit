@@ -21,9 +21,6 @@ import BaseTextQuestions from './wordpause/baseTextQuestions';
 import ReviewWorks from './wordpause/reviewWorks'
 import CreateQuiz from './vocabularyquiz/createQuiz';
 
-
-
-
 const Assignments = () => {
 
     const [grammerTest, setGrammerTest] = useState(false)
@@ -103,13 +100,6 @@ const Assignments = () => {
                     <AssignmentsCount><img src={vectors} /></AssignmentsCount>
                 </AssignmentsDiv>
             </PopUp>
-            
-            
-            
-            
-            
-            
-            
             <PopUp
                 heading={
                     <Div>
@@ -123,8 +113,6 @@ const Assignments = () => {
             >
                 <Stepform tabs={[<SelectBase /> , <SelectQuestions />, <ReviewWork /> ]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
             </PopUp>
-            
-            
             <PopUp
                 heading={
                     <Div>
@@ -138,13 +126,6 @@ const Assignments = () => {
             >
                 sdsdf
             </PopUp>
-
-
-
-
-
-
-            
             <PopUp
                 heading={
                     <Div>
@@ -159,6 +140,7 @@ const Assignments = () => {
               <Stepform lastBtn="Create" tabs={[<FillTextQuestion /> , <NewWork />]} stepPages={['Select the base text for question','Review your work']} />
                  </PopUp>
 
+
             <PopUp
                 heading={
                     <Div>
@@ -171,7 +153,6 @@ const Assignments = () => {
                 footer={false}
             >
                 <Stepform lastBtn="Create" tabs={[<BaseTextQuestions /> , <ReviewWorks/>]} stepPages={['Select the base text for question','Review your work']} />
-             
             </PopUp>
             <PopUp
                 heading={
@@ -186,7 +167,6 @@ const Assignments = () => {
             >
                 <CreateQuiz/>   
               
-             
             </PopUp>
             <PopUp
                 heading={
@@ -280,7 +260,5 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #CCCBDF;
 `;
-
-
 
 export default Assignments;

@@ -1,28 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import BtnPrimary from '../ui/btnPrimary';
 import BtnSecondary from '../ui/btnSecondary';
-// import { MultiStepContext } from '../../pages/lesson/lessonstep/generalInfo';
 
 
 const Stepform = (props) => {
-
-    // const {LessonTitle,MainTopic} = useContext (MultiStepContext);
-
-    const stepPages = props.stepPages;
     const [step, setStep] = useState(0);
     const [btnText, setBtnText] = useState('Next');
-    const [disable, setDisable] = useState(true);
 
-    const setBtnDisabled = () => {
-        setDisable(true);
-    }
-
-    const setBtnEnabled = () => {
-        setDisable(false);
-    }
-
+    const stepPages = props.stepPages;
     const stapComponent = props.tabs;
+    const disable = props.disable;
 
     const nextFunction = () => {
          if (step < stepPages.length - 1) {
@@ -33,14 +21,15 @@ const Stepform = (props) => {
 
     useEffect(() => {
         if (step == stepPages.length - 1) {
-            setBtnText(props.lastBtn || 'Save')
+            setBtnText('Save')
         } else {
             setBtnText('Next')
         }
     }, [step]);
-
-    const preFunction = () => {
-        setStep(step - 1)
+    const preFunction = (e) => {
+        if(e.detail !== 0){
+            setStep(step - 1)
+        }
     };
 
     return (
@@ -64,7 +53,7 @@ const Stepform = (props) => {
                         {step === 0 ? '' : <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>}
                     </Div>
                     <Div>
-                        <BtnPrimary onClick={nextFunction} disabled={false} >{btnText}</BtnPrimary>
+                        <BtnPrimary type="submit" disabled={disable} onClick={nextFunction} >{btnText}</BtnPrimary>
                     </Div>
                 </BtnMain>
 
