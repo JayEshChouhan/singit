@@ -60,7 +60,6 @@ const SearchPopup = (props) => {
       setSongList(searchedList)
     }
   }, [generes, emotions, hidecontent])
-
   return (
     <>
       <InputBtn marginbottom={props.marginbottom} onClick={() => setSearchPopup(true)} selectSong={setSelectSong}>
@@ -166,7 +165,7 @@ const SongList = (props) => {
 
   const handleSongChange=(id)=>{
     const currentSong = songlist.filter((song)=>song.id===id);
-     return currentSong;
+    console.log(currentSong)
   }
 
   

@@ -44,13 +44,6 @@ const CheckBox = (props) => {
                         checked={props.isChecked}
                     />
                 }
-                {/* <input 
-                    type={"checkbox"} 
-                    name={props.name && props.name} 
-                    onChange={(e) => props.handleClick(e)} 
-                    id={props.id && props.id} 
-                    checked={props.isChecked}/> */}
-                {/* {props.children} */}
                 <label htmlFor={props.id} className="label">
                     <div className='box'></div>
                     {props.label ? props.label : props.label}

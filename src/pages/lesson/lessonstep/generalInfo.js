@@ -17,7 +17,6 @@ const Generalinfo = (props) => {
   };
 
   useEffect(()=>{
-    console.log(LessonTitle)
     if( LessonTitle === "" || errors?.LessonTitle?.message || lessonDescription === "" || errors?.lessonDescription?.message || MainTopic === "" || errors?.MainTopic?.message ){
       props.setDisable(true)
     }else{
@@ -91,7 +90,4 @@ const CharLeft = styled.div`
   order: 1;
   flex-grow: 0;
 `;
-
-
-
 export default Generalinfo;

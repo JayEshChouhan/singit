@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
 const InputRange = (props) => {
   const [bgSize, setBgSize] = useState(props.value || 0);
   const MAX = props.max;
@@ -33,15 +32,15 @@ const InputRange = (props) => {
           steps={props.steps}
           {...register(props.name, {
             onChange: (e) => props.setValue(e.target.value),
-            required: {
-              value: true,
-              message: "range must be required",
-            },
+            // required: {
+            //   value: true,
+            //   message: "range must be required",
+            // },
           })}
         />
         <Inputdiv>
-          {[...Array(MAX)].map(() => {
-            return <span></span>;
+          {[...Array(MAX)].map((ele, index) => {
+            return <span key={index}></span>;
           })}
         </Inputdiv>
       </MainDiv>

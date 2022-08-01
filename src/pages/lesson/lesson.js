@@ -18,8 +18,8 @@ const Lesson = () => {
   });
 
   const methods = useForm();
-  const { handleSubmit, } = methods;
-  
+  const { handleSubmit } = methods;
+
   return (
     <div>
       <NavBar />

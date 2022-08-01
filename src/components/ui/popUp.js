@@ -3,7 +3,6 @@ import { Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 import BtnPrimary from './btnPrimary';
 import BtnSecondary from './btnSecondary';
-
 const PopUp = (props) => {
 
     const handleClose = () => {

@@ -22,8 +22,6 @@ const LevelAndSong = (props) => {
       lessonList.length === 0 ||
       value === "0" ||
       radio === "" ||
-      // description === "" ||
-      // checkBox === false ||
       selectDuration === "Select Duration"
     ) {
       props.setDisable(true);
