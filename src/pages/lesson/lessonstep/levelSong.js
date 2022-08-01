@@ -10,10 +10,10 @@ import SearchPopup from "../../../components/ui/searchPopup";
 
 
 const LevelAndSong = (props) => {
-  const [lessonList, setLessonlist] = useState([]);
+  const [lessonList, setLessonlist] = useState(['adi']);
   const [value, setValue] = useState(props.data.age_grade || '0');
   const [radio, setRadio] = useState("");
-  const [description, setDescription] = useState("");
+  // const [description, setDescription] = useState("");
   const [checkBox, setCheckBox] = useState(false);
   const [selectDuration, setSelectDuration] = useState("Select Duration");
 
@@ -22,15 +22,15 @@ const LevelAndSong = (props) => {
       lessonList.length === 0 ||
       value === "0" ||
       radio === "" ||
-      description === "" ||
-      checkBox === false ||
+      // description === "" ||
+      // checkBox === false ||
       selectDuration === "Select Duration"
     ) {
       props.setDisable(true);
     } else {
       props.setDisable(false);
     }
-  }, [lessonList, value, radio, checkBox, description, selectDuration]);
+  }, [lessonList, value, radio,  selectDuration]);
 
   const {
     register,
@@ -86,7 +86,7 @@ const LevelAndSong = (props) => {
                 stroke="#7C7896"
                 stroke-width="2"
                 stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinejoin="round"
               />
             </svg>
           </InputIcon>
@@ -131,7 +131,7 @@ const LevelAndSong = (props) => {
         setCheckBox={setCheckBox}
       />
 
-      <Maininput marginbottom="20px">
+      {/* <Maininput marginbottom="20px">
         <input
           placeholder="Public short description here"
           className="only-bottom-border border-0"
@@ -149,7 +149,7 @@ const LevelAndSong = (props) => {
             },
           })}
         />
-      </Maininput>
+      </Maininput> */}
     </div>
   );
 };

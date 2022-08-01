@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function RadioInput(props) {
   // const { register } = props.methods;
-  // console.log(props.methods)
+  console.log(props)
   return (
     <>
       <div>
@@ -21,6 +21,7 @@ function RadioInput(props) {
                       id={radio}
                       name={props.name}
                       value={radio}
+                      checked={props.checked?props.checked.includes(radio):false}
                       {...props.methods.register(props.name, {
                         onChange: (e) => {
                           if(props.setRadio){
@@ -41,6 +42,7 @@ function RadioInput(props) {
                       id={radio}
                       name={props.name}
                       value={radio}
+                      checked={props.checked.includes(radio)}
                       onChange={(e) => {
                         if(props.setRadio){
                           props.setRadio(e.target.value);
@@ -50,10 +52,7 @@ function RadioInput(props) {
                         }
                       }}
                     />
-
                   }
-
-
                   <label className={"radioBtn " + props.className} htmlFor={radio}>
                     {" "}
                     {radio}
