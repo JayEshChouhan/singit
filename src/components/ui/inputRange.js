@@ -5,11 +5,6 @@ const InputRange = (props) => {
   const [bgSize, setBgSize] = useState(props.value || 0);
   const MAX = props.max;
 
-  const {
-    register,
-  } = props.methods;
-
-
   useEffect(() => {
     setBgSize(props.value);
   }, [props.value]);
@@ -31,11 +26,10 @@ const InputRange = (props) => {
           style={{ backgroundSize: `${(bgSize * 100) / MAX}% 100%` }}
           value={props.value}
           steps={props.steps}
-          {...register(props.name, {
+          {...props.register(props.name, {
             onChange: (e) => props.setValue(e.target.value),
             required: {
               value: true,
-              message: "range must be required",
             },
           })}
         />

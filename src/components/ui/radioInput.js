@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 function RadioInput(props) {
-  // const { register } = props.methods;
-  // console.log(props.methods)
+
   return (
     <>
       <div>
@@ -15,18 +14,19 @@ function RadioInput(props) {
             props.radios.map((radio, index) => {
               return (
                 <div key={props.name + index}>
-                  {props.methods ?
+                  {props.register ? (
                     <input
                       type="radio"
                       id={radio}
                       name={props.name}
                       value={radio}
-                      {...props.methods.register(props.name, {
+                      checked={props.value === radio ? true : false}
+                      {...props.register(props.name, {
                         onChange: (e) => {
-                          if(props.setRadio){
+                          if (props.setRadio) {
                             props.setRadio(e.target.value);
                           }
-                          if(props.setValue){
+                          if (props.setValue) {
                             props.setValue([e.target.value]);
                           }
                         },
@@ -35,27 +35,27 @@ function RadioInput(props) {
                           message: "checked value is reqired",
                         },
                       })}
-                    /> :
+                    />
+                  ) : (
                     <input
                       type="radio"
                       id={radio}
                       name={props.name}
                       value={radio}
                       onChange={(e) => {
-                        if(props.setRadio){
+                        if (props.setRadio) {
                           props.setRadio(e.target.value);
                         }
-                        if(props.setValue){
+                        if (props.setValue) {
                           props.setValue([e.target.value]);
                         }
                       }}
                     />
+                  )}
 
-                  }
-
-
-                  <label className={"radioBtn " + props.className} htmlFor={radio}>
-                    {" "}
+                  <label
+                    className={"radioBtn " + props.className}
+                    htmlFor={radio}>
                     {radio}
                   </label>
                 </div>
@@ -103,14 +103,14 @@ const MainDiv = styled.div`
     background-color: #ccc;
     opacity: 0.2;
   }
-  .radioBtn.round{
+  .radioBtn.round {
     border-radius: 27px;
     padding: 6px 12px;
   }
   input[type="radio"]:checked + .radioBtn.round {
-    background: #ECFAF1;
-    border-color: #41C977;
-    color: #1F1A48;
+    background: #ecfaf1;
+    border-color: #41c977;
+    color: #1f1a48;
   }
 `;
 
@@ -122,161 +122,4 @@ const MainLabel = styled.label`
   display: inline-block;
 `;
 
-
 export default RadioInput;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useEffect, useState } from "react";
-// import styled from "styled-components";
-
-// function RadioInput(props) {
-
-//     const [radioSelect, setRadioSeleact] = useState([]);
-//     useEffect(() => {
-//         if (props.setValue) {
-//             props.setValue([radioSelect])
-//         }
-//     }, [radioSelect])
-//     return (
-//         <>
-//             <div>
-//                 {props.heading && <H3>{props.heading}</H3>}
-//                 {props.label && <MainLabel>{props.label}</MainLabel>}
-//                 <MainDiv marginbottom={props.marginbottom}>
-//                     {props.radios &&
-//                         props.radios.map((radio, index) => {
-//                             return (
-//                                 <div key={props.name + index}>
-//                                     <input type="radio" id={radio} name={props.name} onChange={(e) => setRadioSeleact(e.target.id)} />
-//                                     <label className={"radioBtn " + props.className} htmlFor={radio}> {radio}</label>
-//                                 </div>
-//                             )
-//                         })}
-//                 </MainDiv>
-//             </div>
-//         </>
-//     );
-// }
-
-// const MainDiv = styled.div`
-// display: flex;
-// align-items: center;
-// column-gap: 8px;
-// flex-wrap: wrap;
-// row-gap: 8px;
-// margin-bottom: ${props => props.marginbottom};
-
-// input{
-// position: absolute;
-// left: -100%;
-// opacity: 0;
-// visibility: hidden;
-// }
-// .radioBtn{
-// min-width: 50px;
-// font-weight: 400;
-// font-size: 14px;
-// line-height: 24px;
-// padding: 12px;
-// letter-spacing: 0.01em;
-// margin-bottom: 0;
-// display: inline-block;
-// text-align: center;
-// border: 1px solid #EDEDF0;
-// border-radius: 12px;
-// }
-// input[type="radio"]:checked + .radioBtn {
-// background: #41C977;
-// border-color: #41C977;
-// color: #FFFFFF;
-// }
-// input[type="radio"]:disabled + .radioBtn {
-// background-color: #ccc;
-// opacity: .2;
-// }
-// .radioBtn.round{
-// border-radius: 27px;
-// padding: 6px 12px;
-// }
-// input[type="radio"]:checked + .radioBtn.round {
-// background: #ECFAF1;
-// border-color: #41C977;
-// color: #1F1A48;
-// }
-// `;
-
-// const H3 = styled.h3`
-// font-weight: bold;
-// font-size: 16px;
-// line-height: 24px;
-// font-feature-settings: 'liga' off;
-// color: #1F1A48;
-// margin:0 0 12px 0;
-// `;
-
-// const MainLabel = styled.label`
-// font-size: 14px;
-// line-height: 24px;
-// color: #7C7896;
-// margin-bottom: 8px;
-// display:inline-block;
-// `;
-
-// export default RadioInput;
