@@ -54,7 +54,6 @@ const SearchPopup = (props) => {
   }
 
   useEffect(() => {
-    console.log(generes, emotions, hidecontent)
     if (!(generes.length === 0 || emotions.length === 0 || hidecontent.length === 0)) {
       const searchedList = songlist.filter(ele => ele.title.includes(emotions[0][0]))
       setSongList(searchedList)

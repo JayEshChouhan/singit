@@ -26,7 +26,6 @@ const Createown = () => {
   }
   const handleChangeSelect = (event) => {
     setSelectedClinet(event.value)
-    console.log(event.value)
   }
 
   return (

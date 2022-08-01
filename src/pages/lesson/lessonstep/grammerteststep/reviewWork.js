@@ -138,7 +138,6 @@ color: #1F1A48;
 const FormBoxes = (props) => {
   return (
     <Form>
-      {console.log(props.data)}
     <FormBtn><Btn>{props.data.type}</Btn></FormBtn>
     <CorrectForm>
     <Header>{props.data.describe}</Header>

@@ -23,36 +23,75 @@ import NewWork from './fillblanks/newWork';
 import BaseTextQuestions from './wordpause/baseTextQuestions';
 import ReviewWorks from './wordpause/reviewWorks'
 import CreateQuiz from './vocabularyquiz/createQuiz';
+import BtnPrimary from '../../../components/ui/btnPrimary';
+import BtnSecondary from '../../../components/ui/btnSecondary';
 
 
-const Assignments = () => {
+const Assignments = (props) => {
+  const [grammerTest, setGrammerTest] = useState(false);
+  const [unseen, setUnseen] = useState(false);
+  const [fillblanks, setFillblanks] = useState(false);
+  const [wordpause, setWordpause] = useState(false);
+  const [vocabularyquiz, setVocabularyquiz] = useState(false);
+  const [speakingquiz, setSpeakingquiz] = useState(false);
+  const [contexttext, setContexttext] = useState(false);
+  const [show, setShow] = useState(true);
 
-    const [grammerTest, setGrammerTest] = useState(false)
-    const [unseen, setUnseen] = useState(false)
-    const [fillblanks, setFillblanks] = useState(false)
-    const [wordpause, setWordpause] = useState(false)
-    const [vocabularyquiz, setVocabularyquiz] = useState(false)
-    const [speakingquiz, setSpeakingquiz] = useState(false)
-    const [contexttext, setContexttext] = useState(false)
-    const [show, setShow] = useState(true)
-
-    useEffect(() => {
-        if (show) {
-            setShow(false)
-        } else {
-            setShow(true)
-        }
-    }, [grammerTest, unseen, fillblanks, wordpause, vocabularyquiz, speakingquiz, contexttext])
-    const handleShow = () => {
-        setShow(true)
+  useEffect(() => {
+    if (show) {
+      setShow(false);
+    } else {
+      setShow(true);
     }
+  }, [
+    grammerTest,
+    unseen,
+    fillblanks,
+    wordpause,
+    vocabularyquiz,
+    speakingquiz,
+    contexttext,
+  ]);
 
+const handleShow = () => {
+  setShow(true);
+};
+    const preFunction = (e) => {
+      if (e.detail !== 0) props.setStep(props.step - 1);
+    };
+
+    const nextFunction = () => {
+      if (props.step < 2) {
+        props.setStep(props.step + 1);
+      }
+    };
     return (
         <>
             <BtnAssignment onClick={handleShow}>
                 + Add assignment
                 <BtnAssignmentsImg src={vector} />
             </BtnAssignment>
+            <BtnMain>
+        <BtnDiv>
+          {props.step === 0 ? (
+            ""
+          ) : (
+            <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>
+          )}
+        </BtnDiv>
+
+
+        <BtnDiv>
+          <BtnPrimary
+          type="submit"
+            disabled={props.disable}
+            onClick={nextFunction}
+          >
+            Save
+          </BtnPrimary>
+        </BtnDiv>
+     
+      </BtnMain>
             <PopUp heading="Select assignment type" show={show} setShow={setShow} footer={false}>
                 <AssignmentsDiv onClick={() => setGrammerTest(true)} >
                     <Div>
@@ -206,66 +245,73 @@ const Assignments = () => {
 }
 
 const BtnAssignment = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-padding: 12px 20px;
-gap: 12px;
-background: #F5F5F7;
-border-radius: 12px;
-margin-bottom: 16px;
-color:#735FFF;
-height:40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 12px;
+  background: #f5f5f7;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  color: #735fff;
+  height: 40px;
 `;
 
 const BtnAssignmentsImg = styled.img`
-width: 9px;
-float:right;
+  width: 9px;
+  float: right;
 `;
 
 const Div = styled.div`
-display: flex;
-gap: 12px;
-flex-direction: row;
-align-items: center;
+  display: flex;
+  gap: 12px;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const AssignmentsDiv = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-padding: 12px 20px;
-gap: 12px;
-background: #FFFFFF;
-box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.04);
-border-radius: 12px;
-margin-bottom: 16px;
-&:last-child{
-margin-bottom: 0;
-}
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 12px;
+  background: #ffffff;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  margin-bottom: 16px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const AssignmentsImg = styled.img`
-width: 32px;
+  width: 32px;
 `;
 
 const AssignmentsText = styled.h6`
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-font-feature-settings: 'liga' off;
-color: #1F1A48;
-margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-feature-settings: "liga" off;
+  color: #1f1a48;
+  margin: 0;
 `;
 
 const AssignmentsCount = styled.div`
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-font-feature-settings: 'liga' off;
-color: #CCCBDF;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  font-feature-settings: "liga" off;
+  color: #cccbdf;
 `;
-
+const BtnMain = styled.div`
+  display: flex;
+  border-top: 1px solid #cccbdf;
+  column-gap: 18px;
+`;
+const BtnDiv = styled.div`
+width: 100%;
+`
 export default Assignments;

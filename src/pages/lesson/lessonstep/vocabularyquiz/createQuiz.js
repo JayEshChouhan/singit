@@ -16,7 +16,6 @@ const CreateQuiz = () => {
 
     const handleChangeSelect = (event) => {
       setSelectedClinet(event.value)
-      console.log(event.value)
     }
   return <div>
     <H1>Create Quiz</H1>

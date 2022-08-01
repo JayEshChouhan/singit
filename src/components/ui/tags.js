@@ -5,11 +5,11 @@ const Tags = (props) => {
     const { tagsList, setTaglist, removeBtn } = props;
 
     const deleteTag = (i) => {
-        setTaglist(tagsList.filter((tag, index) => index !== i))
+        setTaglist(tagsList?.filter((tag, index) => index !== i))
     }
     return (
         <ListUl marginbottom={props.marginbottom}>
-            {tagsList.map((tag, index) => {
+            {tagsList && tagsList.map((tag, index) => {
                 return <ListLi className={tag} key={index}>{tag} {removeBtn && <span onClick={() => deleteTag(index)}>x</span>}</ListLi>
             })}
         </ListUl>
