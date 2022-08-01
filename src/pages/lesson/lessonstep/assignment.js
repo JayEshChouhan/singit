@@ -116,7 +116,7 @@ const Assignments = () => {
                 setShow={setGrammerTest}
                 footer={false}
             >
-                <Stepform tabs={[<SelectBase /> , <SelectQuestions />, <ReviewWork /> ]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
+                <Stepform tabs={[<SelectBase />, <SelectQuestions />, <ReviewWork />]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
             </PopUp>
             <PopUp
                 heading={
@@ -243,7 +243,7 @@ box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.04);
 border-radius: 12px;
 margin-bottom: 16px;
 &:last-child{
-    margin-bottom: 0;
+margin-bottom: 0;
 }
 `;
 

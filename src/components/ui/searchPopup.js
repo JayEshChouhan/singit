@@ -24,6 +24,8 @@ const SearchPopup = (props) => {
 
   const [searchPopup, setSearchPopup] = useState(false);
   const [filterPopUp, setFilterPopUp] = useState(false);
+  const [clear, setClear] = useState(false)
+  const [selectSong,setSelectSong] = useState();
   const [songTag, setSongTag] = useState(["Emotions: 😍", "⚠️ Coarse Language", "📝 Politic"])
 
   useEffect(() => {
@@ -42,15 +44,17 @@ const SearchPopup = (props) => {
   }, [searchText])
 
   const handleFilterApply = () => {
-    if (generes.length !== 0 && emotions.length !== 0 && hidecontent.length !== 0) {
-      setFilterPopUp(false)
-      setSearchPopup(true)
-    }else{
-      alert("add filters")
-    }
+    setFilterPopUp(false)
+    setSearchPopup(true)
+  }
+
+  const handleFilterClear = () => {
+    setClear(true)
+    setEmotions([])
   }
 
   useEffect(() => {
+    console.log(generes, emotions, hidecontent)
     if (!(generes.length === 0 || emotions.length === 0 || hidecontent.length === 0)) {
       const searchedList = songlist.filter(ele => ele.title.includes(emotions[0][0]))
       setSongList(searchedList)
@@ -58,10 +62,9 @@ const SearchPopup = (props) => {
   }, [generes, emotions, hidecontent])
   return (
     <>
-      <InputBtn marginbottom={props.marginbottom} onClick={() => setSearchPopup(true)}>
+      <InputBtn marginbottom={props.marginbottom} onClick={() => setSearchPopup(true)} selectSong={setSelectSong}>
         <InputIcon>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-
             <path d="M10.5553 17.7143C14.2372 17.7143 17.222 14.6442 17.222 10.8571C17.222 7.07005 14.2372 4 10.5553 4C6.87344 4 3.88867 7.07005 3.88867 10.8571C3.88867 14.6442 6.87344 17.7143 10.5553 17.7143Z" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M19.4446 20L15.5557 16" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -69,9 +72,7 @@ const SearchPopup = (props) => {
         Song. lyric, artist
         <FilterIcon>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-
             <path d="M20.6083 4.64573C21.1579 3.99575 20.6959 3 19.8447 3H4.1553C3.30408 3 2.84207 3.99575 3.39173 4.64573L9.76357 12.1804C9.91623 12.3609 10 12.5897 10 12.8261V18.382C10 18.7607 10.214 19.107 10.5528 19.2764L12.5528 20.2764C13.2177 20.6088 14 20.1253 14 19.382V12.8261C14 12.5897 14.0838 12.3609 14.2364 12.1804L20.6083 4.64573Z" stroke="#A3A1B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-
           </svg>
         </FilterIcon>
       </InputBtn>
@@ -80,7 +81,6 @@ const SearchPopup = (props) => {
           <PositionRelative>
             <InputIcon left="0px">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-
                 <path d="M10.5553 17.7143C14.2372 17.7143 17.222 14.6442 17.222 10.8571C17.222 7.07005 14.2372 4 10.5553 4C6.87344 4 3.88867 7.07005 3.88867 10.8571C3.88867 14.6442 6.87344 17.7143 10.5553 17.7143Z" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M19.4446 20L15.5557 16" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -97,8 +97,8 @@ const SearchPopup = (props) => {
         </Maininput>
         {songList === true ?
           <>
-            <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={4} />
-            <SongList heading="All Song" songlist={songlist} listNumber={4} />
+            {/* <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={4} /> */}
+            <SongList heading="All Song" songlist={songlist} listNumber={10} />
           </> :
           songList.length === 0 ?
             <>
@@ -108,10 +108,10 @@ const SearchPopup = (props) => {
             : <SongList heading={"Found " + songList.length + " songs"} songlist={songList} />
         }
       </PopUp>
-      <PopUp heading={"Filter"} show={filterPopUp} onHide={setSearchPopup} setShow={setFilterPopUp} footer={['Clear', 'Apply']} handleClick={handleFilterApply} >
-        <Checkboxlist setValue={setGeneres} marginbottom="22px" heading="Genres" CheckboxList={genres} forAll={genresForall} />
-        <RadioInput setValue={setEmotions} marginbottom="20px" className="round" name="emotions" heading="Emotions (1)" radios={['😄 Joy', '😭 Sadness', '😡 Anger', '🤢 Disgust', '😱 Fear']} />
-        <Checkboxlist setValue={setHidecontent} heading="Hide Contents" CheckboxList={contents} forAll={contentsForall} />
+      <PopUp heading={"Filter"} show={filterPopUp} onHide={setSearchPopup} setShow={setFilterPopUp} footer={['Clear', 'Apply']} handleClick={handleFilterApply} handleSearch={handleFilterClear} >
+        <Checkboxlist setValue={setGeneres} marginbottom="22px" heading="Genres" CheckboxList={genres} forAll={genresForall} clear={[clear,setClear]}/>
+        <RadioInput setValue={setEmotions} marginbottom="20px" className="round" name="emotions" heading="Emotions (1)" checked={emotions} radios={['😄 Joy', '😭 Sadness', '😡 Anger', '🤢 Disgust', '😱 Fear']} />
+        <Checkboxlist setValue={setHidecontent} heading="Hide Contents" CheckboxList={contents} forAll={contentsForall} clear={[clear,setClear]}/>
       </PopUp>
     </>
   )
@@ -139,6 +139,7 @@ bottom: 50%;
 left: ${props => props.left || "16px"};
 transform: translateY(50%);
 `;
+
 const FilterIcon = styled.div`
 position: absolute;
 bottom: 50%;
@@ -162,9 +163,16 @@ const SongList = (props) => {
     setNext(next + 2);
   };
 
+  const handleSongChange=(id)=>{
+    const currentSong = songlist.filter((song)=>song.id===id);
+    console.log(currentSong)
+  }
+
+  
   useEffect(() => {
     setNext(props.listNumber || props.songlist?.length)
   }, [props.songlist])
+
   return (
     <MainListDiv marginbottom={props.marginbottom}>
       <HeadingDiv>
@@ -178,19 +186,17 @@ const SongList = (props) => {
       </HeadingDiv>
       <Row>
         {props.songlist?.slice(0, next)?.map((song, index) => {
-          return <Col sm={6} key={index}><SongView song={song} key={index} /></Col>
+          return <Col sm={6} key={index}><SongView song={song} key={index} onClick={()=>handleSongChange(song.id)} /></Col>
         })}
       </Row>
       {props.load && next < props.songlist?.length && <LoadBtn onClick={() => loadMore()}>
         Load More
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 6L8 10L12 6" stroke="#735FFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-
         </svg>
       </LoadBtn>}
     </MainListDiv>
   )
-
 }
 
 const MainListDiv = styled.div`
@@ -201,7 +207,6 @@ const HeadingDiv = styled.div`
 display: flex;
 align-items: center;
 column-gap: 8px;
-
 `;
 
 const H3 = styled.h3`
@@ -211,8 +216,8 @@ line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 margin:0;
-
 `;
+
 const Label = styled.label`
 width: fit-content;
 background: #ECFAF1;
@@ -263,7 +268,12 @@ const Checkboxlist = (props) => {
       setIsCheck(isCheck.filter(item => item !== id));
     }
   }
-
+  useEffect(()=>{
+    if(props.clear[0]){
+      setIsCheck([]);
+      props.clear[1](false)
+    }
+  },[props.clear[0]])
   useEffect(() => {
     if (isCheck.length === props.CheckboxList.length) {
       setAllChecked(true);
@@ -422,6 +432,7 @@ const contents = [
 
 const songlist = [
   {
+    id: 1,
     songName: 'Free Spirit',
     title: 'Emotions: 😄',
     description: 'Khalid',
@@ -429,6 +440,7 @@ const songlist = [
     image: songImg
   },
   {
+    id: 2,
     songName: 'Free Spirit',
     title: 'Emotions: 😄',
     description: 'Khalid',
@@ -436,6 +448,7 @@ const songlist = [
     image: songImg
   },
   {
+    id: 3,
     songName: 'One Call Away',
     title: 'Emotions: 😄',
     description: 'Charlie Puth',
@@ -443,6 +456,7 @@ const songlist = [
     image: onecallaway
   },
   {
+    id: 4,
     songName: 'One Call Away',
     title: 'Emotions: 😄',
     description: 'Charlie Puth',
@@ -450,6 +464,7 @@ const songlist = [
     image: onecallaway
   },
   {
+    id: 5,
     songName: 'Heat Waves',
     title: 'Emotions: 😄',
     description: 'Diplo and Glass Animals',
@@ -457,6 +472,7 @@ const songlist = [
     image: laterbitches
   },
   {
+    id: 6,
     songName: 'One Call Away',
     title: 'Emotions: 😄',
     description: 'Charlie Puth',
@@ -464,6 +480,7 @@ const songlist = [
     image: onecallaway
   },
   {
+    id: 7,
     songName: 'Free Spirit',
     title: 'Emotions: 😄',
     description: 'Khalid',
@@ -471,6 +488,7 @@ const songlist = [
     image: songImg
   },
   {
+    id: 8,
     songName: 'Wave Of You',
     title: 'Emotions: 😄',
     description: 'Surfaces',
@@ -478,6 +496,7 @@ const songlist = [
     image: laterbitches
   },
   {
+    id: 9,
     songName: 'Easy on Me',
     title: 'Emotions: 😄',
     description: 'Adele',
@@ -485,6 +504,7 @@ const songlist = [
     image: easyonme
   },
   {
+    id: 10,
     songName: 'Later Bitches',
     title: 'Emotions: 😄',
     description: 'The Prince Karma',

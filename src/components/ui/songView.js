@@ -5,7 +5,7 @@ import songImg from '../../assets/images/songImg.png'
 const SongView = (props) => {
     const { song } = props;
     return (
-        <MainDiv>
+        <MainDiv onClick={props.onClick}>
             <div>
                 <img src={song.image} />
             </div>
@@ -69,7 +69,6 @@ i {
 & ~ span{
     margin-right: 4px;
 }
-
 `;
 
-export default SongView
+export default SongView;

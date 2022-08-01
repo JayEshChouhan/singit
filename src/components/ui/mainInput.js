@@ -79,8 +79,6 @@ border-bottom: 1px solid #CCCBDF;
 background: #FFFFFF;
 border-radius: 0px;
 &.search{
-
-
 padding: 12px 32px;
 }
 }

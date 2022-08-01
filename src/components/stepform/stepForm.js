@@ -32,6 +32,8 @@ const Stepform = (props) => {
         }
     };
 
+
+ 
     return (
         <div>
             <div className='stepperMain'>

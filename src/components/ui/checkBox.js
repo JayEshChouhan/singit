@@ -63,7 +63,7 @@ width: 0;
 padding-left: 28px;
 position: relative;
 }
-.checkbox .label .box {
+.checkbox .label .box { 
 position: absolute;
 left: 0;
 top: 0;
@@ -88,7 +88,6 @@ position: absolute;
 border:none;
 background-color: #41C977;
 }
-
 .label .box:after {
 content: "";
 position: absolute;

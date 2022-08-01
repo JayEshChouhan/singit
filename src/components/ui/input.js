@@ -18,8 +18,6 @@ font-size: 14px;
 margin: 0 0 10px;
 display: block;
 font-weight: 600;
-
-
 }
 
 input {
@@ -30,11 +28,6 @@ display: block;
 box-sizing: border-box;
 border: var(--dark-border);
 border-radius: 5px;
-  }
-
-iframe {     
-/* width: 48% !important; */
-
 }
 
 iframe {     

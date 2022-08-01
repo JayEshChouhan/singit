@@ -7,7 +7,6 @@ const PopUp = (props) => {
 
     const handleClose = () => {
         props.setShow(false);
-
         if (props.onHide) {
             props.onHide(true);
         }
@@ -25,7 +24,7 @@ const PopUp = (props) => {
                 <Div>
                     {props.footer.map((ele, index) => {
                         if (ele === 'Clear' || ele === "Cancel") {
-                            return <BtnSecondary key={index}>{ele}</BtnSecondary>
+                            return <BtnSecondary onClick={props.handleSearch} key={index}>{ele}</BtnSecondary>
                         } else {
                             return <BtnPrimary onClick={props.handleClick} key={index}>{ele}</BtnPrimary>
                         }

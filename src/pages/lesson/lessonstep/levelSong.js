@@ -10,28 +10,25 @@ import SearchPopup from "../../../components/ui/searchPopup";
 
 
 const LevelAndSong = (props) => {
-  const [lessonList, setLessonlist] = useState(['ja']);
+  const [lessonList, setLessonlist] = useState(['adi']);
   const [value, setValue] = useState(props.data.age_grade || '0');
   const [radio, setRadio] = useState("");
-  const [description, setDescription] = useState("");
+  // const [description, setDescription] = useState("");
   const [checkBox, setCheckBox] = useState(false);
   const [selectDuration, setSelectDuration] = useState("Select Duration");
-
 
   useEffect(() => {
     if (
       lessonList.length === 0 ||
       value === "0" ||
       radio === "" ||
-      description === "" ||
-      checkBox === false ||
       selectDuration === "Select Duration"
     ) {
       props.setDisable(true);
     } else {
       props.setDisable(false);
     }
-  }, [lessonList, value, radio, checkBox, description, selectDuration]);
+  }, [lessonList, value, radio,  selectDuration]);
 
   const {
     register,
@@ -41,15 +38,11 @@ const LevelAndSong = (props) => {
   const addWord = (e) => {
     if (e.key === "Enter") {
       if (e.target.value !== "") {
-
         setLessonlist([...lessonList, e.target.value]);
         e.target.value = "";
       }
     }
-
-  }
-
-
+  };
 
   return (
     <div>
@@ -89,8 +82,8 @@ const LevelAndSong = (props) => {
               <path
                 d="M1 1L7 7L13 1"
                 stroke="#7C7896"
-                strokeWidth="2"
-                strokeLinecap="round"
+                stroke-width="2"
+                stroke-linecap="round"
                 strokeLinejoin="round"
               />
             </svg>
@@ -119,7 +112,7 @@ const LevelAndSong = (props) => {
           type="text"
           onKeyDown={(e) => addWord(e)}
         />
-        {lessonList.length !== 0 && <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />}
+        <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />
       </Maininput>
 
       <FindLyrics
@@ -136,7 +129,7 @@ const LevelAndSong = (props) => {
         setCheckBox={setCheckBox}
       />
 
-      <Maininput marginbottom="20px">
+      {/* <Maininput marginbottom="20px">
         <input
           placeholder="Public short description here"
           className="only-bottom-border border-0"
@@ -154,13 +147,10 @@ const LevelAndSong = (props) => {
             },
           })}
         />
-      </Maininput>
+      </Maininput> */}
     </div>
   );
-
-        }
-
-
+};
 
 const InputIcon = styled.span`
   position: absolute;
@@ -176,5 +166,7 @@ const PositionRelative = styled.div`
 const Checkboxcolor = styled.div`
   background: #41c977;
 `;
+
+
 
 export default LevelAndSong;
