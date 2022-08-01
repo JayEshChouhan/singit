@@ -34,17 +34,17 @@ const FindLyrics = (props) => {
                     </Iconslyrics>
                     <Lyrics>
                         <P1 onClick={() => setClick(false)} >
-                            {click ? lyricss.split(' ').map((ele) => {
+                            {click ? lyricss.split(' ').map((ele,index) => {
                                 if (lessonList.includes(ele)) {
-                                    return <font color="#735FFF"> {ele} </font>
+                                    return <font color="#735FFF" key={index}> {ele} </font>
                                 } else {
-                                    return <span> {ele} </span>
+                                    return <span key={index}> {ele} </span>
                                 }
-                            }) : lyricss.split(' ').map((ele) => {
+                            }) : lyricss.split(' ').map((ele,index) => {
                                 if (lessonList.includes(ele)) {
-                                    return <SelectBox onClick={(e) => setLessonlist(lessonList.filter(item => item !== ele))} Selected>{ele}</SelectBox>
+                                    return <SelectBox key={index} onClick={(e) => setLessonlist(lessonList.filter(item => item !== ele))} Selected>{ele}</SelectBox>
                                 } else {
-                                    return <SelectBox onClick={(e) => setLessonlist([...lessonList, ele])}> {ele} </SelectBox>
+                                    return <SelectBox key={index} onClick={(e) => setLessonlist([...lessonList, ele])}> {ele} </SelectBox>
                                 }
                             })}
                         </P1>
@@ -73,7 +73,6 @@ line-height: 20px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
 `
-
 const FindWords = styled.div`
 font-weight: 600;
 font-size: 16px;

@@ -2,15 +2,14 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Tags = (props) => {
-
     const { tagsList, setTaglist, removeBtn } = props;
 
     const deleteTag = (i) => {
         setTaglist(tagsList?.filter((tag, index) => index !== i))
     }
     return (
-        <ListUl>
-            {tagsList && tagsList?.map((tag, index) => {
+        <ListUl marginbottom={props.marginbottom}>
+            {tagsList && tagsList.map((tag, index) => {
                 return <ListLi className={tag} key={index}>{tag} {removeBtn && <span onClick={() => deleteTag(index)}>x</span>}</ListLi>
             })}
         </ListUl>
@@ -18,6 +17,7 @@ const Tags = (props) => {
 }
 
 const ListUl = styled.ul`
+margin-bottom: ${props => props.marginbottom || "0px"};
 display: flex;
 flex-wrap: wrap;
 align-items: center;

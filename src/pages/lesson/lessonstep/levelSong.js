@@ -12,10 +12,10 @@ import BtnSecondary from "../../../components/ui/btnSecondary";
 import BtnPrimary from "../../../components/ui/btnPrimary";
 
 const LevelAndSong = (props) => {
-  const [lessonList, setLessonlist] = useState(["manvi"]);
+  const [lessonList, setLessonlist] = useState([]);
   const [value, setValue] = useState(props.data.age_grade || "0");
   const [radio, setRadio] = useState(props.data.Difficulty || "");
-  const [checkBox, setCheckBox] = useState(props.data.make_public || false);
+  const [checkBox, setCheckBox] = useState(props.data.make_public||false );
   const [selectDuration, setSelectDuration] = useState(props.data.SelectDuration || "Select Duration");
 
   const disable = props.disable;
@@ -47,17 +47,19 @@ const LevelAndSong = (props) => {
     if (e.detail !== 0) props.setStep(props.step - 1);
   };
 
-  const nextFunction = () => {
-    if (props.step < 2) {
+  const nextFunction = (e) => {
+    if (e.detail!== 0) {
       props.setStep(props.step + 1);
     }
   };
+
+ 
 
   return (
     <form
       onSubmit={handleSubmit((data) => {
         props.setData(data);
-        nextFunction();
+        // nextFunction(e);
       })}
     >
       <InputRange
@@ -154,7 +156,7 @@ const LevelAndSong = (props) => {
           )}
         </Div>
         <Div>
-          <BtnPrimary type="submit" disabled={disable}>
+          <BtnPrimary type="submit" onClick={(e)=>nextFunction(e)} disabled={disable}>
             Next
           </BtnPrimary>
         </Div>

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 function RadioInput(props) {
-
   return (
     <>
       <div>
@@ -30,10 +29,10 @@ function RadioInput(props) {
                             props.setValue([e.target.value]);
                           }
                         },
-                        required: {
-                          value: true,
-                          message: "checked value is reqired",
-                        },
+                        // required: {
+                        //   value: true,
+                        //   message: "checked value is reqired",
+                        // },
                       })}
                     />
                   ) : (
@@ -42,6 +41,7 @@ function RadioInput(props) {
                       id={radio}
                       name={props.name}
                       value={radio}
+                      checked={props.checked.includes(radio)}
                       onChange={(e) => {
                         if (props.setRadio) {
                           props.setRadio(e.target.value);

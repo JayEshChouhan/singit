@@ -10,14 +10,16 @@ const Stepform = (props) => {
   const stapComponent = props.tabs;
   const disable = props.disable;
 
-  const nextFunction = () => {
-    if (step < 2) {
-      setStep(step + 1);
+  const nextFunction = (e) => {
+    if (e?.detail!== 0) {
+      if (step < stepPages.length -1 ) {
+        setStep(step + 1);
+      }
     }
   };
 
   useEffect(() => {
-    if (props.step || step == 2) {
+    if (props.step || step == stepPages.length -1) {
       if (props.btnText) {
         props.setBtnText("Save");
       } else {
@@ -44,10 +46,18 @@ const Stepform = (props) => {
         </H1>
         <Staps>
           {stepPages.map((item, index) => {
-            if (index > props.step || step) {
-              return <Stap key={index}></Stap>;
-            } else {
-              return <ActiveStap key={index}></ActiveStap>;
+            if(props.step){
+              if (index > props.step) {
+                return <Stap key={index}></Stap>;
+              } else {
+                return <ActiveStap key={index}></ActiveStap>;
+              }
+            }else{
+              if (index > step) {
+                return <Stap key={index}></Stap>;
+              } else {
+                return <ActiveStap key={index}></ActiveStap>;
+              }
             }
           })}
         </Staps>
@@ -58,7 +68,7 @@ const Stepform = (props) => {
               {props.step || step === 0 ? (
                 ""
               ) : (
-                <BtnSecondary preFunction={props.preFunction || preFunction}>
+                <BtnSecondary onClick={props.preFunction || preFunction}>
                   Previous
                 </BtnSecondary>
               )}
@@ -67,8 +77,8 @@ const Stepform = (props) => {
               <BtnPrimary
                 type="submit"
                 disabled={disable}
-                nextFunction={props.nextFunction || nextFunction}>
-                btnText={props.btnText || btnText}
+                onClick={nextFunction}>
+                {props.btnText || btnText}
               </BtnPrimary>
             </Div>
           </BtnMain>

@@ -1,21 +1,31 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import grammerImg from "./../../../assets/images/GrammerTest.png";
-import unseenImg from "./../../../assets/images/Unseen.png";
-import fillblanksImg from "./../../../assets/images/FillBlanks.png";
-import wordpauseImg from "./../../../assets/images/WordPause.png";
-import vocabularyquizImg from "./../../../assets/images/VocabularyQuiz.png";
-import speakingquizImg from "./../../../assets/images/SpeakingQuiz.png";
-import contexttextImg from "./../../../assets/images/ContextText.png";
-import vector from "./../../../assets/images/Vector.png";
-import vectors from "./../../../assets/images/Vectors.png";
-import PopUp from "../../../components/ui/popUp";
-import Stepform from "../../../components/stepform/stepForm";
-import SelectBase from "./grammerteststep/selectBase";
-import SelectQuestions from "./grammerteststep/selectQuestions";
-import ReviewWork from "./grammerteststep/reviewWork";
-import BtnPrimary from "../../../components/ui/btnPrimary";
-import BtnSecondary from "../../../components/ui/btnSecondary";
+import React, { useEffect, useState } from 'react'
+import styled from 'styled-components';
+import grammerImg from './../../../assets/images/GrammerTest.png';
+import unseenImg from './../../../assets/images/Unseen.png';
+import fillblanksImg from './../../../assets/images/FillBlanks.png';
+import wordpauseImg from './../../../assets/images/WordPause.png';
+import vocabularyquizImg from './../../../assets/images/VocabularyQuiz.png';
+import speakingquizImg from './../../../assets/images/SpeakingQuiz.png';
+import contexttextImg from './../../../assets/images/ContextText.png';
+import vector from './../../../assets/images/Vector.png';
+import vectors from './../../../assets/images/Vectors.png';
+import PopUp from '../../../components/ui/popUp';
+import Stepform from '../../../components/stepform/stepForm';
+import SelectBase from './grammerteststep/selectBase';
+import SelectQuestions from './grammerteststep/selectQuestions';
+import ReviewWork from './grammerteststep/reviewWork';
+import Basetext from './unseen/basetext';
+import Createown from './unseen/createown';
+import Review from './unseen/review';
+import FillTextQuestion from './fillblanks/fillTextQuestion';
+import NewWork from './fillblanks/newWork';
+
+import BaseTextQuestions from './wordpause/baseTextQuestions';
+import ReviewWorks from './wordpause/reviewWorks'
+import CreateQuiz from './vocabularyquiz/createQuiz';
+import BtnPrimary from '../../../components/ui/btnPrimary';
+import BtnSecondary from '../../../components/ui/btnSecondary';
+
 
 const Assignments = (props) => {
   const [grammerTest, setGrammerTest] = useState(false);
@@ -43,27 +53,25 @@ const Assignments = (props) => {
     contexttext,
   ]);
 
-  const handleShow = () => {
-    setShow(true);
-  };
+const handleShow = () => {
+  setShow(true);
+};
+    const preFunction = (e) => {
+      if (e.detail !== 0) props.setStep(props.step - 1);
+    };
 
-  const preFunction = (e) => {
-    if (e.detail !== 0) props.setStep(props.step - 1);
-  };
-
-  const nextFunction = () => {
-    if (props.step < 2) {
-      props.setStep(props.step + 1);
-    }
-  };
-
-  return (
-    <>
-      <BtnAssignment onClick={handleShow}>
-        + Add assignment
-        <BtnAssignmentsImg src={vector} />
-      </BtnAssignment>
-      <BtnMain>
+    const nextFunction = () => {
+      if (props.step < 2) {
+        props.setStep(props.step + 1);
+      }
+    };
+    return (
+        <>
+            <BtnAssignment onClick={handleShow}>
+                + Add assignment
+                <BtnAssignmentsImg src={vector} />
+            </BtnAssignment>
+            <BtnMain>
         <BtnDiv>
           {props.step === 0 ? (
             ""
@@ -84,177 +92,157 @@ const Assignments = (props) => {
         </BtnDiv>
      
       </BtnMain>
-      <PopUp
-        heading="Select assignment type"
-        show={show}
-        setShow={setShow}
-        footer={false}
-      >
-        <AssignmentsDiv onClick={() => setGrammerTest(true)}>
-          <Div>
-            <AssignmentsImg src={grammerImg} />
-            <AssignmentsText>Grammer test</AssignmentsText>
-          </Div>
-          <AssignmentsCount>
-            <img src={vectors} />
-          </AssignmentsCount>
-        </AssignmentsDiv>
-        <AssignmentsDiv onClick={() => setUnseen(true)}>
-          <Div>
-            <AssignmentsImg src={unseenImg} />
-            <AssignmentsText>Unseen</AssignmentsText>
-          </Div>
-          <AssignmentsCount>
-            <img src={vectors} />
-          </AssignmentsCount>
-        </AssignmentsDiv>
-        <AssignmentsDiv onClick={() => setFillblanks(true)}>
-          <Div>
-            <AssignmentsImg src={fillblanksImg} />
-            <AssignmentsText>Fill Blanks</AssignmentsText>
-          </Div>
-          <AssignmentsCount>
-            <img src={vectors} />
-          </AssignmentsCount>
-        </AssignmentsDiv>
-        <AssignmentsDiv onClick={() => setWordpause(true)}>
-          <Div>
-            <AssignmentsImg src={wordpauseImg} />
-            <AssignmentsText>Word-Pause</AssignmentsText>
-          </Div>
-          <AssignmentsCount>
-            <img src={vectors} />
-          </AssignmentsCount>
-        </AssignmentsDiv>
-        <AssignmentsDiv onClick={() => setVocabularyquiz(true)}>
-          <Div>
-            <AssignmentsImg src={vocabularyquizImg} />
-            <AssignmentsText>Vocabulary Quiz</AssignmentsText>
-          </Div>
-          <AssignmentsCount>
-            <img src={vectors} />
-          </AssignmentsCount>
-        </AssignmentsDiv>
-        <AssignmentsDiv onClick={() => setSpeakingquiz(true)}>
-          <Div>
-            <AssignmentsImg src={speakingquizImg} />
-            <AssignmentsText>Speaking Quiz</AssignmentsText>
-          </Div>
-          <AssignmentsCount>
-            <img src={vectors} />
-          </AssignmentsCount>
-        </AssignmentsDiv>
-        <AssignmentsDiv onClick={() => setContexttext(true)}>
-          <Div>
-            <AssignmentsImg src={contexttextImg} />
-            <AssignmentsText>Context Text</AssignmentsText>
-          </Div>
-          <AssignmentsCount>
-            <img src={vectors} />
-          </AssignmentsCount>
-        </AssignmentsDiv>
-      </PopUp>
-      <PopUp
-        heading={
-          <Div>
-            <AssignmentsImg src={grammerImg} />
-            <AssignmentsText>Grammer test</AssignmentsText>
-          </Div>
-        }
-        show={grammerTest}
-        setShow={setGrammerTest}
-        footer={false}
-      >
-        <Stepform
-          tabs={[<SelectBase />, <SelectQuestions />, <ReviewWork />]}
-          stepPages={[
-            "Select the base text for question",
-            "Select the questions you want to use or create your own",
-            "Review your work",
-          ]}
-        />
-      </PopUp>
-      <PopUp
-        heading={
-          <Div>
-            <AssignmentsImg src={unseenImg} />
-            <AssignmentsText>Unseen</AssignmentsText>
-          </Div>
-        }
-        show={unseen}
-        setShow={setUnseen}
-        footer={false}
-      >
-        sdsdf
-      </PopUp>
-      <PopUp
-        heading={
-          <Div>
-            <AssignmentsImg src={fillblanksImg} />
-            <AssignmentsText>Fill Blanks</AssignmentsText>
-          </Div>
-        }
-        show={fillblanks}
-        setShow={setFillblanks}
-        footer={false}
-      >
-        sdsdf
-      </PopUp>
-      <PopUp
-        heading={
-          <Div>
-            <AssignmentsImg src={wordpauseImg} />
-            <AssignmentsText>Word-Pause</AssignmentsText>
-          </Div>
-        }
-        show={wordpause}
-        setShow={setWordpause}
-        footer={false}
-      >
-        sdsdf
-      </PopUp>
-      <PopUp
-        heading={
-          <Div>
-            <AssignmentsImg src={vocabularyquizImg} />
-            <AssignmentsText>Vocabulary Quiz</AssignmentsText>
-          </Div>
-        }
-        show={vocabularyquiz}
-        setShow={setVocabularyquiz}
-        footer={false}
-      >
-        sdsdf
-      </PopUp>
-      <PopUp
-        heading={
-          <Div>
-            <AssignmentsImg src={speakingquizImg} />
-            <AssignmentsText>Speaking Quiz</AssignmentsText>
-          </Div>
-        }
-        show={speakingquiz}
-        setShow={setSpeakingquiz}
-        footer={false}
-      >
-        sdsdf
-      </PopUp>
-      <PopUp
-        heading={
-          <Div>
-            <AssignmentsImg src={contexttextImg} />
-            <AssignmentsText>Context Text</AssignmentsText>
-          </Div>
-        }
-        show={contexttext}
-        setShow={setContexttext}
-        footer={false}
-      >
-        sdsdf
-      </PopUp>
-    </>
-  );
-};
+            <PopUp heading="Select assignment type" show={show} setShow={setShow} footer={false}>
+                <AssignmentsDiv onClick={() => setGrammerTest(true)} >
+                    <Div>
+                        <AssignmentsImg src={grammerImg} />
+                        <AssignmentsText>Grammer test</AssignmentsText>
+                    </Div>
+                    <AssignmentsCount><img src={vectors} /></AssignmentsCount>
+                </AssignmentsDiv>
+                <AssignmentsDiv onClick={() => setUnseen(true)} >
+                    <Div>
+                        <AssignmentsImg src={unseenImg} />
+                        <AssignmentsText>Unseen</AssignmentsText>
+                    </Div>
+                    <AssignmentsCount><img src={vectors} /></AssignmentsCount>
+                </AssignmentsDiv>
+                <AssignmentsDiv onClick={() => setFillblanks(true)} >
+                    <Div>
+
+                        <AssignmentsImg src={fillblanksImg} />
+                        <AssignmentsText>Fill Blanks</AssignmentsText>
+                    </Div>
+                    <AssignmentsCount><img src={vectors} /></AssignmentsCount>
+                </AssignmentsDiv>
+                <AssignmentsDiv onClick={() => setWordpause(true)} >
+                    <Div>
+                        <AssignmentsImg src={wordpauseImg} />
+                        <AssignmentsText>Word-Pause</AssignmentsText>
+                    </Div>
+                    <AssignmentsCount><img src={vectors} /></AssignmentsCount>
+                </AssignmentsDiv>
+                <AssignmentsDiv onClick={() => setVocabularyquiz(true)} >
+                    <Div>
+                        <AssignmentsImg src={vocabularyquizImg} />
+                        <AssignmentsText>Vocabulary Quiz</AssignmentsText>
+                    </Div>
+                    <AssignmentsCount><img src={vectors} /></AssignmentsCount>
+                </AssignmentsDiv>
+                <AssignmentsDiv onClick={() => setSpeakingquiz(true)} >
+                    <Div>
+                        <AssignmentsImg src={speakingquizImg} />
+                        <AssignmentsText>Speaking Quiz</AssignmentsText>
+                    </Div>
+                    <AssignmentsCount><img src={vectors} /></AssignmentsCount>
+                </AssignmentsDiv>
+                <AssignmentsDiv onClick={() => setContexttext(true)} >
+                    <Div>
+                        <AssignmentsImg src={contexttextImg} />
+                        <AssignmentsText>Context Text</AssignmentsText>
+                    </Div>
+                    <AssignmentsCount><img src={vectors} /></AssignmentsCount>
+                </AssignmentsDiv>
+            </PopUp>
+            <PopUp
+                heading={
+                    <Div>
+                        <AssignmentsImg src={grammerImg} />
+                        <AssignmentsText>Grammer test</AssignmentsText>
+                    </Div>
+                }
+                show={grammerTest}
+                setShow={setGrammerTest}
+                footer={false}
+            >
+                <Stepform tabs={[<SelectBase />, <SelectQuestions />, <ReviewWork />]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
+            </PopUp>
+            <PopUp
+                heading={
+                    <Div>
+                        <AssignmentsImg src={unseenImg} />
+                        <AssignmentsText>Unseen</AssignmentsText>
+                    </Div>
+                }
+                show={unseen}
+                setShow={setUnseen}
+                footer={false}
+            >
+               <Stepform tabs={[<Basetext /> , <Createown />, <Review /> ]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
+               
+
+            </PopUp>
+            <PopUp
+                heading={
+                    <Div>
+                        <AssignmentsImg src={fillblanksImg} />
+                        <AssignmentsText>Fill Blanks</AssignmentsText>
+                    </Div>
+                }
+                show={fillblanks}
+                setShow={setFillblanks}
+                footer={false}
+            >
+              <Stepform lastBtn="Create" tabs={[<FillTextQuestion /> , <NewWork />]} stepPages={['Select the base text for question','Review your work']} />
+                 </PopUp>
+
+
+            <PopUp
+                heading={
+                    <Div>
+                        <AssignmentsImg src={wordpauseImg} />
+                        <AssignmentsText>Word-Pause</AssignmentsText>
+                    </Div>
+                }
+                show={wordpause}
+                setShow={setWordpause}
+                footer={false}
+            >
+                <Stepform lastBtn="Create" tabs={[<BaseTextQuestions /> , <ReviewWorks/>]} stepPages={['Select the base text for question','Review your work']} />
+            </PopUp>
+            <PopUp
+                heading={
+                    <Div>
+                        <AssignmentsImg src={vocabularyquizImg} />
+                        <AssignmentsText>Vocabulary Quiz</AssignmentsText>
+                    </Div>
+                }
+                show={vocabularyquiz}
+                setShow={setVocabularyquiz}
+                footer={false}
+            >
+                <CreateQuiz/>   
+              
+            </PopUp>
+            <PopUp
+                heading={
+                    <Div>
+                        <AssignmentsImg src={speakingquizImg} />
+                        <AssignmentsText>Speaking Quiz</AssignmentsText>
+                    </Div>
+                }
+                show={speakingquiz}
+                setShow={setSpeakingquiz}
+                footer={false}
+            >
+                sdsdf
+            </PopUp>
+            <PopUp
+                heading={
+                    <Div>
+                        <AssignmentsImg src={contexttextImg} />
+                        <AssignmentsText>Context Text</AssignmentsText>
+                    </Div>
+                }
+                show={contexttext}
+                setShow={setContexttext}
+                footer={false}
+            >
+                sdsdf
+            </PopUp>
+        </>
+    )
+}
 
 const BtnAssignment = styled.div`
   display: flex;

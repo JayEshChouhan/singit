@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
 const InputRange = (props) => {
   const [bgSize, setBgSize] = useState(props.value || 0);
   const MAX = props.max;
@@ -34,8 +33,8 @@ const InputRange = (props) => {
           })}
         />
         <Inputdiv>
-          {[...Array(MAX)].map(() => {
-            return <span></span>;
+          {[...Array(MAX)].map((ele, index) => {
+            return <span key={index}></span>;
           })}
         </Inputdiv>
       </MainDiv>
@@ -90,7 +89,7 @@ const Wrapper = styled.div`
 
 const MainDiv = styled.div`
   position: relative;
-  height: 24px;
+  height: 32px;
   z-index: 1;
 `;
 

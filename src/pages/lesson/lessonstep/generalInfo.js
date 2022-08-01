@@ -31,10 +31,11 @@ const Generalinfo = (props) => {
     if (e.detail !== 0) props.setStep(props.step - 1);
   };
 
-  const nextFunction = () => {
+  const nextFunction = (e) => {
     if (props.step < 2) {
       props.setStep(props.step + 1);
     }
+  
   };
 
   return (
@@ -95,7 +96,7 @@ const Generalinfo = (props) => {
           )}
         </Div>
         <Div>
-          <BtnPrimary type="submit" disabled={disable}>
+          <BtnPrimary onClick={()=>{}} type="submit" disabled={disable}>
             Next
           </BtnPrimary>
         </Div>

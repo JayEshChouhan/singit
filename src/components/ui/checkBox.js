@@ -12,7 +12,7 @@ const CheckBox = (props) => {
             value={props.checkBox}
             name={props.name && props.name}
             id={props.id && props.id}
-            required
+            // required
             {...props.register(props.name, {
               onChange: (e) => {
                 if (props.setCheckBox) {
@@ -21,11 +21,7 @@ const CheckBox = (props) => {
                 if (props.handleClick) {
                   props.handleClick(e);
                 }
-              },
-              required: {
-                value: true,
-                message: "checked value is reqired",
-              },
+              }
             })}
             checked={props.isChecked}
           />
@@ -35,7 +31,7 @@ const CheckBox = (props) => {
             name={props.name && props.name}
             value={props.checkBox}
             id={props.id && props.id}
-            required
+            // required
             onChange={(e) => {
               if (props.setCheckBox) {
                 props.setCheckBox(e.target.checked);
