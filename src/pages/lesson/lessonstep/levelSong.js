@@ -15,6 +15,8 @@ const LevelAndSong = (props) => {
   const [lessonList, setLessonlist] = useState([]);
   const [value, setValue] = useState(props.data.age_grade || "0");
   const [radio, setRadio] = useState(props.data.Difficulty || "");
+  // const [btndisable,setBtnDisable] = useState(true);
+  const [mainTopicDisabled,setMainTopicDisabled] = useState(true);
   const [checkBox, setCheckBox] = useState(props.data.make_public||false );
   const [selectDuration, setSelectDuration] = useState(props.data.SelectDuration || "Select Duration");
 
@@ -23,7 +25,7 @@ const LevelAndSong = (props) => {
 
   useEffect(() => {
     if (
-      lessonList.length === 0 ||
+      lessonList.length === 0 || 
       value === "0" ||
       radio === "" ||
       selectDuration === "Select Duration"
@@ -73,8 +75,7 @@ const LevelAndSong = (props) => {
         setValue={setValue}
         register={register}
       />
-      <SearchPopup marginbottom="20px" />
-
+      <SearchPopup setDisabledAnotherField={()=>{setMainTopicDisabled(false)}} marginbottom="20px"/>
       <RadioInput
         marginbottom="20px"
         name="Difficulty"
@@ -129,6 +130,7 @@ const LevelAndSong = (props) => {
           className="only-bottom-border"
           type="text"
           onKeyDown={(e) => addWord(e)}
+          disabled={mainTopicDisabled}
         />
         <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />
       </Maininput>
