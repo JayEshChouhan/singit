@@ -5,7 +5,7 @@ import songImg from '../../assets/images/songImg.png'
 const SongView = (props) => {
     const { song } = props;
     return (
-        <MainDiv>
+        <MainDiv onClick={props.onClick}>
             <div>
                 <img src={song.image} />
             </div>
@@ -49,7 +49,6 @@ font-size: 14px;
 line-height: 20px;
 color: #1F1A48;
 `;
-
 const P = styled.p`
 font-weight: 400;
 font-size: 14px;

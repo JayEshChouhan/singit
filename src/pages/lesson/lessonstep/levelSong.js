@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import CheckBox from "../../../components/ui/checkBox";
 import InputRange from "../../../components/ui/inputRange";
@@ -7,35 +8,33 @@ import Tags from "../../../components/ui/tags";
 import RadioInput from "../../../components/ui/radioInput";
 import FindLyrics from "../../../components/ui/findLyrics";
 import SearchPopup from "../../../components/ui/searchPopup";
-
+import BtnSecondary from "../../../components/ui/btnSecondary";
+import BtnPrimary from "../../../components/ui/btnPrimary";
 
 const LevelAndSong = (props) => {
   const [lessonList, setLessonlist] = useState([]);
-  const [value, setValue] = useState(props.data.age_grade || '0');
-  const [radio, setRadio] = useState("");
-  const [description, setDescription] = useState("");
-  const [checkBox, setCheckBox] = useState(false);
-  const [selectDuration, setSelectDuration] = useState("Select Duration");
+  const [value, setValue] = useState(props.data.age_grade || "0");
+  const [radio, setRadio] = useState(props.data.Difficulty || "");
+  // const [btndisable,setBtnDisable] = useState(true);
+  const [mainTopicDisabled,setMainTopicDisabled] = useState(true);
+  const [checkBox, setCheckBox] = useState(props.data.make_public||false );
+  const [selectDuration, setSelectDuration] = useState(props.data.SelectDuration || "Select Duration");
+
+  const disable = props.disable;
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     if (
-      lessonList.length === 0 ||
+      lessonList.length === 0 || 
       value === "0" ||
       radio === "" ||
-      description === "" ||
-      checkBox === false ||
       selectDuration === "Select Duration"
     ) {
       props.setDisable(true);
     } else {
       props.setDisable(false);
     }
-  }, [lessonList, value, radio, checkBox, description, selectDuration]);
-
-  const {
-    register,
-    formState: { errors },
-  } = props.methods;
+  }, [lessonList, value, radio, selectDuration]);
 
   const addWord = (e) => {
     if (e.key === "Enter") {
@@ -46,8 +45,25 @@ const LevelAndSong = (props) => {
     }
   };
 
+  const preFunction = (e) => {
+    if (e.detail !== 0) props.setStep(props.step - 1);
+  };
+
+  const nextFunction = (e) => {
+    if (e.detail!== 0) {
+      props.setStep(props.step + 1);
+    }
+  };
+
+ 
+
   return (
-    <div>
+    <form
+      onSubmit={handleSubmit((data) => {
+        props.setData(data);
+        // nextFunction(e);
+      })}
+    >
       <InputRange
         min={0}
         max={9}
@@ -56,19 +72,18 @@ const LevelAndSong = (props) => {
         label="Age Grade"
         name="age_grade"
         marginbottom="20px"
-        methods={props.methods}
         setValue={setValue}
+        register={register}
       />
-      <SearchPopup marginbottom="20px" />
-
+      <SearchPopup setDisabledAnotherField={()=>{setMainTopicDisabled(false)}} marginbottom="20px"/>
       <RadioInput
         marginbottom="20px"
         name="Difficulty"
         label="Difficulty"
-        radio={radio}
+        value={radio}
         radios={["Easy", "Regular", "Hard", "Expert"]}
-        methods={props.methods}
         setRadio={setRadio}
+        register={register}
       />
 
       <Maininput marginbottom="20px" label="Duration">
@@ -84,19 +99,20 @@ const LevelAndSong = (props) => {
               <path
                 d="M1 1L7 7L13 1"
                 stroke="#7C7896"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </InputIcon>
 
           <select
-            {...register("Select Duration", {
+            name="SelectDuration"
+            value={selectDuration}
+            {...register("SelectDuration", {
               onChange: (e) => setSelectDuration(e.target.value),
               required: {
                 value: true,
-                message: "one must selected",
               },
             })}
           >
@@ -109,10 +125,12 @@ const LevelAndSong = (props) => {
       </Maininput>
       <Maininput marginbottom="20px" label="Main Topic">
         <input
+          name="lessonList"
           placeholder="Add words to the lesson"
           className="only-bottom-border"
           type="text"
           onKeyDown={(e) => addWord(e)}
+          disabled={mainTopicDisabled}
         />
         <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />
       </Maininput>
@@ -126,31 +144,26 @@ const LevelAndSong = (props) => {
         label="Make Public"
         name="make_public"
         id={"makePublic"}
-        checkBox={checkBox}
-        methods={props.methods}
+        isChecked={checkBox}
         setCheckBox={setCheckBox}
+        register={register}
       />
 
-      <Maininput marginbottom="20px">
-        <input
-          placeholder="Public short description here"
-          className="only-bottom-border border-0"
-          style={{ borderBottom: "0px !important" }}
-          type="text"
-          {...register("description", {
-            onChange: (e) => setDescription(e.target.value),
-            required: {
-              value: true,
-              message: "field must be filled",
-            },
-            maxLength: {
-              value: 20,
-              message: "must be 20 char",
-            },
-          })}
-        />
-      </Maininput>
-    </div>
+      <BtnMain>
+        <Div>
+          {props.step === 0 ? (
+            ""
+          ) : (
+            <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>
+          )}
+        </Div>
+        <Div>
+          <BtnPrimary type="submit" onClick={(e)=>nextFunction(e)} disabled={disable}>
+            Next
+          </BtnPrimary>
+        </Div>
+      </BtnMain>
+    </form>
   );
 };
 
@@ -169,6 +182,13 @@ const Checkboxcolor = styled.div`
   background: #41c977;
 `;
 
-
+const BtnMain = styled.div`
+  display: flex;
+  border-top: 1px solid #cccbdf;
+  column-gap: 18px;
+`;
+const Div = styled.div`
+  width: 100%;
+`;
 
 export default LevelAndSong;

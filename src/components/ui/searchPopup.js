@@ -20,17 +20,21 @@ const SearchPopup = (props) => {
   const [generes, setGeneres] = useState([]);
   const [emotions, setEmotions] = useState([]);
   const [hidecontent, setHidecontent] = useState([]);
-
-
   const [searchPopup, setSearchPopup] = useState(false);
   const [filterPopUp, setFilterPopUp] = useState(false);
-  const [songTag, setSongTag] = useState(["Emotions: 😍", "⚠️ Coarse Language", "📝 Politic"])
+  const [clear, setClear] = useState(false)
+  const [selectSong, setSelectSong] = useState({})
+  const [songTag, setSongTag] = useState([])
 
   useEffect(() => {
     if (searchPopup === filterPopUp) {
       setSearchPopup(false)
     }
   }, [filterPopUp])
+
+  useEffect(()=>{
+    props.setDisabledAnotherField()
+  },[selectSong])
 
   useEffect(() => {
     if (searchText !== '') {
@@ -42,38 +46,46 @@ const SearchPopup = (props) => {
   }, [searchText])
 
   const handleFilterApply = () => {
-    if (generes.length !== 0 && emotions.length !== 0 && hidecontent.length !== 0) {
-      setFilterPopUp(false)
-      setSearchPopup(true)
-    }else{
-      alert("add filters")
-    }
+    setFilterPopUp(false)
+    setSearchPopup(true)
   }
 
+  const handleFilterClear = () => {
+    setClear(true)
+    setEmotions([])
+  }
+
+  useEffect(()=>{
+    setSongTag([selectSong.title])
+  },[selectSong])
+
   useEffect(() => {
-    console.log(generes, emotions, hidecontent)
     if (!(generes.length === 0 || emotions.length === 0 || hidecontent.length === 0)) {
       const searchedList = songlist.filter(ele => ele.title.includes(emotions[0][0]))
-      console.log(searchedList)
       setSongList(searchedList)
     }
   }, [generes, emotions, hidecontent])
+
   return (
     <>
-      <InputBtn marginbottom={props.marginbottom} onClick={() => setSearchPopup(true)}>
-        <InputIcon>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.5553 17.7143C14.2372 17.7143 17.222 14.6442 17.222 10.8571C17.222 7.07005 14.2372 4 10.5553 4C6.87344 4 3.88867 7.07005 3.88867 10.8571C3.88867 14.6442 6.87344 17.7143 10.5553 17.7143Z" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M19.4446 20L15.5557 16" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </InputIcon>
-        Song. lyric, artist
-        <FilterIcon>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.6083 4.64573C21.1579 3.99575 20.6959 3 19.8447 3H4.1553C3.30408 3 2.84207 3.99575 3.39173 4.64573L9.76357 12.1804C9.91623 12.3609 10 12.5897 10 12.8261V18.382C10 18.7607 10.214 19.107 10.5528 19.2764L12.5528 20.2764C13.2177 20.6088 14 20.1253 14 19.382V12.8261C14 12.5897 14.0838 12.3609 14.2364 12.1804L20.6083 4.64573Z" stroke="#A3A1B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </FilterIcon>
-      </InputBtn>
+      <PositionRelative marginbottom={props.marginbottom}>
+        <InputBtn marginbottom={0} onClick={() => setSearchPopup(true)}>
+          <InputIcon>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5553 17.7143C14.2372 17.7143 17.222 14.6442 17.222 10.8571C17.222 7.07005 14.2372 4 10.5553 4C6.87344 4 3.88867 7.07005 3.88867 10.8571C3.88867 14.6442 6.87344 17.7143 10.5553 17.7143Z" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M19.4446 20L15.5557 16" stroke="#7C7896" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </InputIcon>
+          {selectSong.songName ? selectSong.songName : "Song. lyric, artist"}
+          <FilterIcon>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20.6083 4.64573C21.1579 3.99575 20.6959 3 19.8447 3H4.1553C3.30408 3 2.84207 3.99575 3.39173 4.64573L9.76357 12.1804C9.91623 12.3609 10 12.5897 10 12.8261V18.382C10 18.7607 10.214 19.107 10.5528 19.2764L12.5528 20.2764C13.2177 20.6088 14 20.1253 14 19.382V12.8261C14 12.5897 14.0838 12.3609 14.2364 12.1804L20.6083 4.64573Z" stroke="#A3A1B3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </FilterIcon>
+        </InputBtn>
+        {selectSong.title && <Tags tagsList={songTag} setTagList={setEmotions} />}
+      </PositionRelative>
+
       <PopUp heading={"Search"} show={searchPopup} setShow={setSearchPopup}>
         <Maininput marginbottom="22px">
           <PositionRelative>
@@ -90,32 +102,31 @@ const SearchPopup = (props) => {
               </svg>
             </FilterIcon>
           </PositionRelative>
-          {!(emotions.length === 0) && <Tags tagsList={emotions} setTagList={setEmotions} removeBtn />}
-
         </Maininput>
         {songList === true ?
           <>
-            <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={4} />
-            <SongList heading="All Song" songlist={songlist} listNumber={4} />
+            {/* <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={4} /> */}
+            <SongList heading="All Song" songlist={songlist} listNumber={10} setSelectSong={setSelectSong} setSearchPopup={setSearchPopup} />
           </> :
           songList.length === 0 ?
             <>
               <NotFound>No result found</NotFound>
-              <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={2} />
+              <SongList marginbottom="22px" songlist={songlist} heading="Recommended Song for" label="2nd Grade" load={true} listNumber={2} setSelectSong={setSelectSong} />
             </>
-            : <SongList heading={"Found " + songList.length + " songs"} songlist={songList} />
+            : <SongList heading={"Found " + songList.length + " songs"} songlist={songList} setSelectSong={setSelectSong} />
         }
       </PopUp>
-      <PopUp heading={"Filter"} show={filterPopUp} onHide={setSearchPopup} setShow={setFilterPopUp} footer={['Clear', 'Apply']} handleClick={handleFilterApply} >
-        <Checkboxlist setValue={setGeneres} marginbottom="22px" heading="Genres" CheckboxList={genres} forAll={genresForall} />
-        <RadioInput setValue={setEmotions} marginbottom="20px" className="round" name="emotions" heading="Emotions (1)" radios={['😄 Joy', '😭 Sadness', '😡 Anger', '🤢 Disgust', '😱 Fear']} />
-        <Checkboxlist setValue={setHidecontent} heading="Hide Contents" CheckboxList={contents} forAll={contentsForall} />
+      <PopUp heading={"Filter"} show={filterPopUp} onHide={setSearchPopup} setShow={setFilterPopUp} footer={['Clear', 'Apply']} handleClick={handleFilterApply} handleSearch={handleFilterClear} >
+        <Checkboxlist setValue={setGeneres} marginbottom="22px" heading="Genres" CheckboxList={genres} forAll={genresForall} clear={[clear, setClear]} />
+        <RadioInput setValue={setEmotions} marginbottom="20px" className="round" name="emotions" heading="Emotions (1)" checked={emotions} radios={['😄 Joy', '😭 Sadness', '😡 Anger', '🤢 Disgust', '😱 Fear']} />
+        <Checkboxlist setValue={setHidecontent} heading="Hide Contents" CheckboxList={contents} forAll={contentsForall} clear={[clear, setClear]} />
       </PopUp>
     </>
   )
 }
 
 const PositionRelative = styled.div`
+${(props) => props.marginbottom && "margin-bottom: " + props.marginbottom + ";"}
 position: relative;
 `;
 
@@ -155,15 +166,37 @@ font-feature-settings: 'liga' off;
 color: #1F1A48;
 `;
 
+const SelectSong = styled.div`
+padding: 6px 12px;
+background: #F5F7FA;
+border-radius: 27px;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+font-feature-settings: 'liga' off;
+color: #1F1A48;
+
+`
+
+
 const SongList = (props) => {
   const [next, setNext] = useState(props.listNumber || props.songlist?.length);
   const loadMore = () => {
     setNext(next + 2);
   };
 
+
+  const handleSongChange = (id) => {
+    const currentSong = songlist.filter((song) => song.id === id);
+    props.setSelectSong(...currentSong)
+    props.setSearchPopup(false)
+  }
+
+
   useEffect(() => {
     setNext(props.listNumber || props.songlist?.length)
   }, [props.songlist])
+
   return (
     <MainListDiv marginbottom={props.marginbottom}>
       <HeadingDiv>
@@ -177,7 +210,7 @@ const SongList = (props) => {
       </HeadingDiv>
       <Row>
         {props.songlist?.slice(0, next)?.map((song, index) => {
-          return <Col sm={6} key={index}><SongView song={song} key={index} /></Col>
+          return <Col sm={6} key={index}><SongView song={song} key={index} onClick={() => handleSongChange(song.id)} /></Col>
         })}
       </Row>
       {props.load && next < props.songlist?.length && <LoadBtn onClick={() => loadMore()}>
@@ -259,7 +292,12 @@ const Checkboxlist = (props) => {
       setIsCheck(isCheck.filter(item => item !== id));
     }
   }
-
+  useEffect(() => {
+    if (props.clear[0]) {
+      setIsCheck([]);
+      props.clear[1](false)
+    }
+  }, [props.clear[0]])
   useEffect(() => {
     if (isCheck.length === props.CheckboxList.length) {
       setAllChecked(true);
@@ -418,6 +456,7 @@ const contents = [
 
 const songlist = [
   {
+    id: 1,
     songName: 'Free Spirit',
     title: 'Emotions: 😄',
     description: 'Khalid',
@@ -425,6 +464,7 @@ const songlist = [
     image: songImg
   },
   {
+    id: 2,
     songName: 'Free Spirit',
     title: 'Emotions: 😄',
     description: 'Khalid',
@@ -432,6 +472,7 @@ const songlist = [
     image: songImg
   },
   {
+    id: 3,
     songName: 'One Call Away',
     title: 'Emotions: 😄',
     description: 'Charlie Puth',
@@ -439,6 +480,7 @@ const songlist = [
     image: onecallaway
   },
   {
+    id: 4,
     songName: 'One Call Away',
     title: 'Emotions: 😄',
     description: 'Charlie Puth',
@@ -446,6 +488,7 @@ const songlist = [
     image: onecallaway
   },
   {
+    id: 5,
     songName: 'Heat Waves',
     title: 'Emotions: 😄',
     description: 'Diplo and Glass Animals',
@@ -453,6 +496,7 @@ const songlist = [
     image: laterbitches
   },
   {
+    id: 6,
     songName: 'One Call Away',
     title: 'Emotions: 😄',
     description: 'Charlie Puth',
@@ -460,6 +504,7 @@ const songlist = [
     image: onecallaway
   },
   {
+    id: 7,
     songName: 'Free Spirit',
     title: 'Emotions: 😄',
     description: 'Khalid',
@@ -467,6 +512,7 @@ const songlist = [
     image: songImg
   },
   {
+    id: 8,
     songName: 'Wave Of You',
     title: 'Emotions: 😄',
     description: 'Surfaces',
@@ -474,6 +520,7 @@ const songlist = [
     image: laterbitches
   },
   {
+    id: 9,
     songName: 'Easy on Me',
     title: 'Emotions: 😄',
     description: 'Adele',
@@ -481,6 +528,7 @@ const songlist = [
     image: easyonme
   },
   {
+    id: 10,
     songName: 'Later Bitches',
     title: 'Emotions: 😄',
     description: 'The Prince Karma',
