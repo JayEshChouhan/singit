@@ -32,7 +32,7 @@ const SelectBase = () => {
       <Text> Our grammar test is generated from the sentences in this list, go over the sentences - make any adjustments you want and press next.</Text>
       <BoldText>These sentences are based on the words:</BoldText>
       <Tags tagsList={lessonList} setTaglist={setLessonlist} marginbottom="14px" removeBtn />
-      <FindLyrics btnText=" Finding words from the song lyrics" tagsList={lessonList} setTaglist={setLessonlist} />
+      <FindLyrics btnText="Finding words from the song lyrics" lessonList={lessonList} setLessonList={setLessonlist} />
       <BorderTop />
       <Maininput marginbottom="20px" >
         <input type="text" placeholder='+ Add sentence' onKeyDown={(e) => addSentence(e)} />
