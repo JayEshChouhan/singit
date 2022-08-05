@@ -8,7 +8,7 @@ const FindLyrics = (props) => {
 
     const [click, setClick] = useState(true)
 
-    const [lessonList, setLessonlist] = useState(['There', 'hope', 'chance', 'Around'])
+    // const [lessonList, setLessonlist] = useState(['There', 'hope', 'chance', 'Around'])
     const [lyricss, setLyricss] = useState("There ain't no gold in this river That I've been washin' my hands in forever I know there is hope in these waters But I can't bring myself to swim When I am drowning in this silence Baby, let me in Go easy on me, baby I was still a child Didn't get the chance to Feel the world around me I had no time to choose What I chose to do So go easy on me There ain't no room for things to change When we are both so deeply stuck in our ways You can't deny how hard I have tried I changed who I was to put you both first But now I give up Go easy on me, baby I was still a child Didn't get the chance to Feel the world around me Had no time to choose What I chose to do So go easy on me I had good intentions And the highest hopes But I know right now That probably doesn't even show Go easy on me, baby I was still a child I didn't get the chance to Feel the world around me I had no time to choose What I chose to do So go easy on me")
     const [lyricsList, setLyricsList] = useState([]);
     const [lyricsListNotUnique, setLyricsListNotUnique] = useState([]);
@@ -28,15 +28,15 @@ const FindLyrics = (props) => {
 
     return (
         <>
-            <FindWords onClick={() => { setLyricsPopup(true); setClick(true) }}>+ {props.btnText}</FindWords>
-            <PopUp heading={"Select word for the lesson"} show={lyricsPopup} setShow={setLyricsPopup} footer={["Cancel", 'Save']} handleClick={() => console.log("data")}>
+            <FindWords onClick={() => { setLyricsPopup(true); setClick(true) }}>+ {props.btnText} </FindWords>
+            <PopUp heading={"Select word for the lesson"}  show={lyricsPopup} setShow={setLyricsPopup} footer={["Cancel", 'Save']} handleClick={() => console.log("data")} closePopup>
                 <p>The words in purple are words that are part of the educational plan for the age grade you chose - we recommend using those words.</p>
                 <span>We recommend 4-7 words per lesson.</span>
 
                 return <div>
                     <P>The words in purple are words that are part of the educational plan for the age grade you chose - we recommend using those words.</P>
-                    {lessonList.length !== 0 && <><H4>Selected lyrics</H4>
-                        <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn /></>}
+                    {props.lessonList.length !== 0 && <><H4>Selected lyrics</H4>
+                        <Tags tagsList={props.lessonList} setTaglist={props.setLessonList} removeBtn /></>}
                     <Iconslyrics>
                         <Imgdiv>
                             <img src={lyricicon} />
@@ -50,17 +50,17 @@ const FindLyrics = (props) => {
                         <P1 onClick={() => setClick(false)} >
                             {click ?
                                 lyricsListNotUnique.map((ele, index) => {
-                                    if (lessonList.includes(ele)) {
+                                    if (props.lessonList.includes(ele)) {
                                         return <font color="#735FFF" key={index}> {ele} </font>
                                     } else {
                                         return <span key={index}> {ele} </span>
                                     }
 
                                 }) : lyricsList.map((ele, index) => {
-                                    if (lessonList.includes(ele)) {
-                                        return <SelectBox key={index} onClick={(e) => setLessonlist(lessonList.filter(item => item !== ele))} Selected>{ele}</SelectBox>
+                                    if (props.lessonList.includes(ele)) {
+                                        return <SelectBox key={index} onClick={(e) => props.setLessonList(props.lessonList.filter(item => item !== ele))} Selected>{ele}</SelectBox>
                                     } else {
-                                        return <SelectBox key={index} onClick={(e) => setLessonlist([...lessonList, ele])}> {ele} </SelectBox>
+                                        return <SelectBox key={index} onClick={(e) => props.setLessonList([...props.lessonList, ele])}> {ele} </SelectBox>
                                     }
                                 })}
                         </P1>

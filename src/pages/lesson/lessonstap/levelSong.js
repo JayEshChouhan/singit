@@ -15,9 +15,9 @@ import InputIconthreesvg from "../../../assets/svgImage/inputIconthreesvg";
 const LevelAndSong = (props) => {
 
   const [lessonList, setLessonlist] = useState([]);
+  const [mainInputDisabled, setMainInputDisabled] = useState(true)
   const [value, setValue] = useState(props.data.age_grade || "0");
   const [radio, setRadio] = useState(props.data.Difficulty || "");
-  const [mainTopicDisabled, setMainTopicDisabled] = useState(true);
   const [checkBox, setCheckBox] = useState(props.data.make_public || false);
   const [selectDuration, setSelectDuration] = useState(props.data.SelectDuration || "Select Duration");
 
@@ -75,7 +75,7 @@ const LevelAndSong = (props) => {
         setValue={setValue}
         register={register}
       />
-      <SearchPopup setDisabledAnotherField={() => { setMainTopicDisabled(false) }} marginbottom="20px" />
+      <SearchPopup marginbottom="20px" setMainInputDisabled={setMainInputDisabled} />
       <RadioInput
         marginbottom="20px"
         name="difficulty"
@@ -86,10 +86,10 @@ const LevelAndSong = (props) => {
         register={register}
       />
 
-      <Maininput marginbottom="20px" label="Duration">
+      <Maininput marginbottom="20px" label="Duration" >
         <PositionRelative>
           <InputIcon>
-           <InputIconthreesvg/>
+            <InputIconthreesvg />
           </InputIcon>
 
           <Select
@@ -109,23 +109,26 @@ const LevelAndSong = (props) => {
           </Select>
         </PositionRelative>
       </Maininput>
-      <Maininput marginbottom="20px" label="Main Topic">
-        <input
-          name="lessonList"
-          placeholder="Add words to the lesson"
-          className="only-bottom-border"
-          type="text"
-          onKeyDown={(e) => addWord(e)}
-          disabled={mainTopicDisabled}
-        />
-        <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />
-      </Maininput>
+      <PositionRelative>
+        <Maininput marginbottom="20px" label="Main Topic">
+          <input
+            name="lessonList"
+            placeholder="Add words to the lesson"
+            className="only-bottom-border"
+            type="text"
+            // disabled={mainInputDisabled}
+            onKeyDown={(e) => addWord(e)}
+          />
+          {lessonList.length !== 0 && <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />}
+        </Maininput>
 
-      <FindLyrics
-        btnText=" Finding words from the song lyrics"
-        tagsList={lessonList}
-        setTaglist={setLessonlist}
-      />
+        <FindLyrics
+          btnText=" Finding words from the song lyrics"
+          lessonList={lessonList}
+          setLessonList={setLessonlist}
+        />
+        {mainInputDisabled && <Disabled/>}
+      </PositionRelative>
       <CheckBox
         label="Make Public"
         name="public"
@@ -180,5 +183,17 @@ const Div = styled.div`
 const Select = styled.select`
 cursor:pointer;
 `;
+
+const Disabled = styled.div`
+position: absolute;
+width:100%;
+height: 100%;
+top:0;
+left: 0;
+opacity: 40%;
+z-index:3;
+background: #ffffff;
+cursor: not-allowed;
+`
 
 export default LevelAndSong;

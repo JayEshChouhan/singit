@@ -3,7 +3,6 @@ import { Col, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react'
 
-
 const Checkboxlist = (props) => {
 
   const [allChecked, setAllChecked] = useState(false)

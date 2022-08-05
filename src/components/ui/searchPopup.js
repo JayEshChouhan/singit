@@ -42,13 +42,21 @@ const SearchPopup = (props) => {
   }, [searchText]);
 
   useEffect(() => {
-    props.setDisabledAnotherField()
+    console.log(selectSong)
+    if(Object.keys(selectSong).length!==0){
+      props.setMainInputDisabled(false)
+      console.log('run')
+    }
   }, [selectSong])
 
   const handleFilterApply = () => {
     setFilterPopUp(false)
     setSearchPopup(true)
   }
+
+  // if(setSelectSong.length<0){
+  //   props.setMainInputDisabled(false)
+  // }
 
   const handleFilterClear = () => {
     setClear(true)
@@ -81,7 +89,7 @@ const SearchPopup = (props) => {
         {selectSong.emotions && selectSong.emotions.length !== 0 && <Tags tagsList={songTag} setTagList={setEmotions} />}
       </PositionRelative>
 
-      <PopUp heading={"Search"} show={searchPopup} setShow={setSearchPopup}>
+      <PopUp heading={"Search"} show={searchPopup} setShow={setSearchPopup} >
         <Maininput marginbottom="22px">
           <PositionRelative>
             <InputIcon left="0px">
