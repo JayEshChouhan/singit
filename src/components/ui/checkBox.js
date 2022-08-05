@@ -12,7 +12,6 @@ const CheckBox = (props) => {
             value={props.checkBox}
             name={props.name && props.name}
             id={props.id && props.id}
-            // required
             {...props.register(props.name, {
               onChange: (e) => {
                 if (props.setCheckBox) {
@@ -31,7 +30,6 @@ const CheckBox = (props) => {
             name={props.name && props.name}
             value={props.checkBox}
             id={props.id && props.id}
-            // required
             onChange={(e) => {
               if (props.setCheckBox) {
                 props.setCheckBox(e.target.checked);
@@ -71,6 +69,7 @@ const Container = styled.div`
     height: 19.5px;
     border: 1px solid #a3a1b3;
     border-radius: 15%;
+    cursor:pointer;
   }
   .checkbox .label .box::after {
     left: 53%;

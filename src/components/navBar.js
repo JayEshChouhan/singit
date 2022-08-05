@@ -9,6 +9,7 @@ import helpIcon from '../assets/images/helpicon.png';
 import arrow from '../assets/images/arrow.png';
 
 const NavBar = () => {
+
   const mobileVersion = useMediaQuery({
     query: '(max-width: 991px)'
   })
@@ -43,25 +44,30 @@ background: #FFFFFF;
 height: 64px;
 padding: 12px 8px;
 `;
+
 const MainNav = styled.div`
 display: flex;
 justify-content: space-between;
 align-items: center;
-`
+`;
+
 const UserMain = styled.div`
 display: flex;
 align-items: center;
 column-gap: 20px;
-`
+`;
+
 const UserHelp = styled.div`
 padding: 3px 22px;
 border-right: 1px solid #cccccc;
-`
+`;
+
 const UserDetail = styled.div`
 display: flex;
 align-items: center;
 column-gap: 12px;
-`
+`;
+
 const UserHeading = styled.h6`
 margin: 0;
 font-weight: 400;
@@ -69,7 +75,8 @@ font-size: 14px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
-`
+`;
+
 const UserAnchor = styled.a`
 display: flex;
 align-items: center;
@@ -79,7 +86,7 @@ font-size: 12px;
 line-height: 16px;
 font-feature-settings: 'liga' off;
 color: #A3A1B3;
-`
+`;
 
 export default NavBar;
 

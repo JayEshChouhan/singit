@@ -10,7 +10,7 @@ import contexttextImg from './../../../assets/images/ContextText.png';
 import vector from './../../../assets/images/Vector.png';
 import vectors from './../../../assets/images/Vectors.png';
 import PopUp from '../../../components/ui/popUp';
-import Stepform from '../../../components/stepform/stepForm';
+import stapform from '../../../components/stapform/stapForm';
 import SelectBase from './grammerteststep/selectBase';
 import SelectQuestions from './grammerteststep/selectQuestions';
 import ReviewWork from './grammerteststep/reviewWork';
@@ -25,6 +25,7 @@ import ReviewWorks from './wordpause/reviewWorks'
 import CreateQuiz from './vocabularyquiz/createQuiz';
 import BtnPrimary from '../../../components/ui/btnPrimary';
 import BtnSecondary from '../../../components/ui/btnSecondary';
+import Stapform from '../../../components/stapform/stapForm';
 
 
 const Assignments = (props) => {
@@ -57,12 +58,12 @@ const handleShow = () => {
   setShow(true);
 };
     const preFunction = (e) => {
-      if (e.detail !== 0) props.setStep(props.step - 1);
+      if (e.detail !== 0) props.setStap(props.stap - 1);
     };
 
     const nextFunction = () => {
-      if (props.step < 2) {
-        props.setStep(props.step + 1);
+      if (props.stap < 2) {
+        props.setStap(props.stap + 1);
       }
     };
     return (
@@ -73,7 +74,7 @@ const handleShow = () => {
             </BtnAssignment>
             <BtnMain>
         <BtnDiv>
-          {props.step === 0 ? (
+          {props.stap === 0 ? (
             ""
           ) : (
             <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>
@@ -155,7 +156,7 @@ const handleShow = () => {
                 setShow={setGrammerTest}
                 footer={false}
             >
-                <Stepform tabs={[<SelectBase />, <SelectQuestions />, <ReviewWork />]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
+                <Stapform tabs={[<SelectBase />, <SelectQuestions />, <ReviewWork />]} stapPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
             </PopUp>
             <PopUp
                 heading={
@@ -168,7 +169,7 @@ const handleShow = () => {
                 setShow={setUnseen}
                 footer={false}
             >
-               <Stepform tabs={[<Basetext /> , <Createown />, <Review /> ]} stepPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
+               <Stapform tabs={[<Basetext /> , <Createown />, <Review /> ]} stapPages={['Select the base text for question', 'Select the questions you want to use or create your own', 'Review your work']} />
                
 
             </PopUp>
@@ -183,7 +184,7 @@ const handleShow = () => {
                 setShow={setFillblanks}
                 footer={false}
             >
-              <Stepform lastBtn="Create" tabs={[<FillTextQuestion /> , <NewWork />]} stepPages={['Select the base text for question','Review your work']} />
+              <Stapform lastBtn="Create" tabs={[<FillTextQuestion /> , <NewWork />]} stapPages={['Select the base text for question','Review your work']} />
                  </PopUp>
 
 
@@ -198,7 +199,7 @@ const handleShow = () => {
                 setShow={setWordpause}
                 footer={false}
             >
-                <Stepform lastBtn="Create" tabs={[<BaseTextQuestions /> , <ReviewWorks/>]} stepPages={['Select the base text for question','Review your work']} />
+                <Stapform lastBtn="Create" tabs={[<BaseTextQuestions /> , <ReviewWorks/>]} stapPages={['Select the base text for question','Review your work']} />
             </PopUp>
             <PopUp
                 heading={
@@ -256,6 +257,7 @@ const BtnAssignment = styled.div`
   margin-bottom: 16px;
   color: #735fff;
   height: 40px;
+  cursor:pointer;
 `;
 
 const BtnAssignmentsImg = styled.img`
@@ -281,6 +283,7 @@ const AssignmentsDiv = styled.div`
   box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.04);
   border-radius: 12px;
   margin-bottom: 16px;
+  cursor:pointer;
   &:last-child {
     margin-bottom: 0;
   }

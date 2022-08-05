@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+
 const InputRange = (props) => {
+
   const [bgSize, setBgSize] = useState(props.value || 0);
   const MAX = props.max;
 
@@ -24,17 +26,18 @@ const InputRange = (props) => {
           max={MAX}
           style={{ backgroundSize: `${(bgSize * 100) / MAX}% 100%` }}
           value={props.value}
-          steps={props.steps}
+          staps={props.staps}
           {...props.register(props.name, {
             onChange: (e) => props.setValue(e.target.value),
             required: {
               value: true,
+              message: "range must be required",
             },
           })}
         />
         <Inputdiv>
-          {[...Array(MAX)].map((ele, index) => {
-            return <span key={index}></span>;
+          {[...Array(MAX)].map(() => {
+            return <span></span>;
           })}
         </Inputdiv>
       </MainDiv>
@@ -64,9 +67,9 @@ const Wrapper = styled.div`
     background-image: linear-gradient(#41c977, #41c977);
     background-size: 70% 100%;
     background-repeat: no-repeat;
+    cursor: pointer;
   }
 
-  /* Input Thumb */
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 26px;
@@ -89,7 +92,7 @@ const Wrapper = styled.div`
 
 const MainDiv = styled.div`
   position: relative;
-  height: 32px;
+  height: 28px;
   z-index: 1;
 `;
 

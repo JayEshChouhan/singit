@@ -10,14 +10,15 @@ import FindLyrics from "../../../components/ui/findLyrics";
 import SearchPopup from "../../../components/ui/searchPopup";
 import BtnSecondary from "../../../components/ui/btnSecondary";
 import BtnPrimary from "../../../components/ui/btnPrimary";
+import InputIconthreesvg from "../../../assets/svgImage/inputIconthreesvg";
 
 const LevelAndSong = (props) => {
+
   const [lessonList, setLessonlist] = useState([]);
   const [value, setValue] = useState(props.data.age_grade || "0");
   const [radio, setRadio] = useState(props.data.Difficulty || "");
-  // const [btndisable,setBtnDisable] = useState(true);
-  const [mainTopicDisabled,setMainTopicDisabled] = useState(true);
-  const [checkBox, setCheckBox] = useState(props.data.make_public||false );
+  const [mainTopicDisabled, setMainTopicDisabled] = useState(true);
+  const [checkBox, setCheckBox] = useState(props.data.make_public || false);
   const [selectDuration, setSelectDuration] = useState(props.data.SelectDuration || "Select Duration");
 
   const disable = props.disable;
@@ -25,7 +26,7 @@ const LevelAndSong = (props) => {
 
   useEffect(() => {
     if (
-      lessonList.length === 0 || 
+      lessonList.length === 0 ||
       value === "0" ||
       radio === "" ||
       selectDuration === "Select Duration"
@@ -36,9 +37,11 @@ const LevelAndSong = (props) => {
     }
   }, [lessonList, value, radio, selectDuration]);
 
+  const testPattarn = /^[a-zA-Z0-9]*$/gm
+
   const addWord = (e) => {
     if (e.key === "Enter") {
-      if (e.target.value !== "") {
+      if (testPattarn.test(e.target.value)) {
         setLessonlist([...lessonList, e.target.value]);
         e.target.value = "";
       }
@@ -46,39 +49,36 @@ const LevelAndSong = (props) => {
   };
 
   const preFunction = (e) => {
-    if (e.detail !== 0) props.setStep(props.step - 1);
+    if (e.detail !== 0) props.setStap(props.stap - 1);
   };
 
   const nextFunction = (e) => {
-    if (e.detail!== 0) {
-      props.setStep(props.step + 1);
+    if (e.detail !== 0) {
+      props.setStap(props.stap + 1);
     }
   };
-
- 
 
   return (
     <form
       onSubmit={handleSubmit((data) => {
         props.setData(data);
-        // nextFunction(e);
       })}
     >
       <InputRange
         min={0}
         max={9}
-        steps={1}
+        staps={1}
         value={value}
         label="Age Grade"
-        name="age_grade"
+        name="ageGrade"
         marginbottom="20px"
         setValue={setValue}
         register={register}
       />
-      <SearchPopup setDisabledAnotherField={()=>{setMainTopicDisabled(false)}} marginbottom="20px"/>
+      <SearchPopup setDisabledAnotherField={() => { setMainTopicDisabled(false) }} marginbottom="20px" />
       <RadioInput
         marginbottom="20px"
-        name="Difficulty"
+        name="difficulty"
         label="Difficulty"
         value={radio}
         radios={["Easy", "Regular", "Hard", "Expert"]}
@@ -89,25 +89,11 @@ const LevelAndSong = (props) => {
       <Maininput marginbottom="20px" label="Duration">
         <PositionRelative>
           <InputIcon>
-            <svg
-              width="14"
-              height="8"
-              viewBox="0 0 14 8"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 1L7 7L13 1"
-                stroke="#7C7896"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+           <InputIconthreesvg/>
           </InputIcon>
 
-          <select
-            name="SelectDuration"
+          <Select
+            name="duration"
             value={selectDuration}
             {...register("SelectDuration", {
               onChange: (e) => setSelectDuration(e.target.value),
@@ -120,7 +106,7 @@ const LevelAndSong = (props) => {
             <option value={"5"}>5 minutes</option>
             <option value={"10"}>10 minutes</option>
             <option value={"15"}>15 minutes</option>
-          </select>
+          </Select>
         </PositionRelative>
       </Maininput>
       <Maininput marginbottom="20px" label="Main Topic">
@@ -142,7 +128,7 @@ const LevelAndSong = (props) => {
       />
       <CheckBox
         label="Make Public"
-        name="make_public"
+        name="public"
         id={"makePublic"}
         isChecked={checkBox}
         setCheckBox={setCheckBox}
@@ -151,14 +137,14 @@ const LevelAndSong = (props) => {
 
       <BtnMain>
         <Div>
-          {props.step === 0 ? (
+          {props.stap === 0 ? (
             ""
           ) : (
             <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>
           )}
         </Div>
         <Div>
-          <BtnPrimary type="submit" onClick={(e)=>nextFunction(e)} disabled={disable}>
+          <BtnPrimary type="submit" onClick={(e) => nextFunction(e)} disabled={disable}>
             Next
           </BtnPrimary>
         </Div>
@@ -189,6 +175,10 @@ const BtnMain = styled.div`
 `;
 const Div = styled.div`
   width: 100%;
+`;
+
+const Select = styled.select`
+cursor:pointer;
 `;
 
 export default LevelAndSong;

@@ -4,16 +4,16 @@ import { useForm, FormProvider } from "react-hook-form";
 import styled from "styled-components";
 import Banner from "../../components/banners/banner";
 import NavBar from "../../components/navBar";
-import Stepform from "../../components/stepform/stepForm";
-import Assignments from "./lessonstep/assignment";
-import Generalinfo from "./lessonstep/generalInfo";
-import LevelAndSong from "./lessonstep/levelSong";
+import Stapform from "../../components/stapform/stapForm";
+import Assignments from "./lessonstap/assignment";
+import Generalinfo from "./lessonstap/generalInfo";
+import LevelAndSong from "./lessonstap/levelSong";
 
 const Lesson = () => {
   const [generalData, setGeneralData] = useState({});
   const [levalAndSongData, setLevalAndSongDataData] = useState({});
   const [assignmentsData, setAssignmentsData] = useState({});
-  const [step, setStep] = useState(0);
+  const [stap, setStap] = useState(0);
   const [disable, setDisable] = useState(true);
   const mobileVersion = useMediaQuery({
     query: "(max-width: 991px)",
@@ -27,14 +27,14 @@ const Lesson = () => {
       <Banner heading="Create a lesson" />
       <MainDiv mobile={mobileVersion}>
         <FormProvider {...methods}>
-            <Stepform
-              step={step}
+            <Stapform
+              stap={stap}
               tabs={[
-                <Generalinfo setDisable={setDisable} step={step} setStep={setStep} disable={disable} data={generalData} setData={setGeneralData}/>,
-                <LevelAndSong setDisable={setDisable} disable={disable}  step={step} setStep={setStep} data={levalAndSongData} setData={setLevalAndSongDataData}/>,
-                <Assignments step={step} setStep={setStep} data={assignmentsData} setData={setAssignmentsData}/>,
+                <Generalinfo setDisable={setDisable} stap={stap} setStap={setStap} disable={disable} data={generalData} setData={setGeneralData}/>,
+                <LevelAndSong setDisable={setDisable} disable={disable}  stap={stap} setStap={setStap} data={levalAndSongData} setData={setLevalAndSongDataData}/>,
+                <Assignments stap={stap} setStap={setStap} data={assignmentsData} setData={setAssignmentsData}/>,
               ]}
-              stepPages={[
+              stapPages={[
                 "General Information",
                 "level and Song",
                 "Assignments",

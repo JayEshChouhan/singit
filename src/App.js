@@ -2,10 +2,12 @@ import Router from "./components/router";
 import axios from "axios";
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import useAuth from "./components/hooks/useAuth";
 
 function App() {
 
-  axios.defaults.baseURL = 'https://api.singit.io';
+  const {userInfo} = useAuth();
+  axios.defaults.baseURL = 'https://api.singit.io/';
 
   return (
     <GoogleReCaptchaProvider reCaptchaKey="6LeVO_UaAAAAAF59gCGGmFJtqKvDIqSGRlak0O_l" >

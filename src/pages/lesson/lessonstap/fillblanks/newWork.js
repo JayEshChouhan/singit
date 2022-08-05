@@ -21,10 +21,10 @@ const NewWork = () => {
         </Iconslyrics>
         <Lyrics>
             <p>
-                {lyricss.split(' ').map((ele)=>{
-                    if(lessonList.includes(ele)){
+                {lyricss.split(' ').map((ele) => {
+                    if (lessonList.includes(ele)) {
                         return <Design> <span>...</span> </Design>
-                    }else{
+                    } else {
                         return <span> {ele} </span>
                     }
                 })}
@@ -34,27 +34,24 @@ const NewWork = () => {
 
 }
 
-export default NewWork
-
-
 const P = styled.p`
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
 font-feature-settings: 'liga' off;
 color: #777580;
-`
+`;
 
 const Iconslyrics = styled.div`
+`;
 
-`
 const SongName = styled.p`
 font-weight: 500;
 font-size: 14px;
 line-height: 20px;
 color: #1F1A48;
 margin-bottom:2px
-`
+`;
 
 const Singer = styled.p`
 font-weight: 400;
@@ -62,9 +59,7 @@ font-size: 14px;
 line-height: 20px;
 font-feature-settings: 'liga' off;
 color: #777580;
-`
-
-
+`;
 
 const Lyrics = styled.div`
 font-weight: 400;
@@ -75,7 +70,6 @@ height:348px;
 overflow:scroll;
 overflow-x:hidden;
 color : #A3A1B3;
-
 &::-webkit-scrollbar{
     width:4px;
     border-radius:8px;
@@ -87,18 +81,17 @@ color : #A3A1B3;
     background:#EDEDF0;
     border-radius:8px
 }
+`;
 
-`
 const Imgdiv = styled.div`
 float:left;
 padding-right:12px;
-`
+`;
 
 const Mdiv = styled.div`
+`;
 
-`
-
-const Design= styled.span`
+const Design = styled.span`
 display: inline-flex;
 align-items: center;
 justify-content: center;
@@ -114,4 +107,7 @@ span{
     position: relative;
     bottom: 3px;
 }
-`
+`;
+
+export default NewWork
+

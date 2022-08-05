@@ -6,6 +6,7 @@ import BtnSecondary from "../../../components/ui/btnSecondary";
 import Maininput from "../../../components/ui/mainInput";
 
 const Generalinfo = (props) => {
+
   const [LessonTitle, setLessonTitle] = useState(props.data.LessonTitle || "");
   const [lessonDescription, setLessonDescription] = useState(props.data.lessonDescription || "");
   const [textAreaCount, setTextAreaCount] = useState(300);
@@ -28,12 +29,12 @@ const Generalinfo = (props) => {
   }, [lessonDescription, LessonTitle, MainTopic]);
 
   const preFunction = (e) => {
-    if (e.detail !== 0) props.setStep(props.step - 1);
+    if (e.detail !== 0) props.setStap(props.stap - 1);
   };
 
   const nextFunction = (e) => {
-    if (props.step < 2) {
-      props.setStep(props.step + 1);
+    if (props.stap < 2) {
+      props.setStap(props.stap + 1);
     }
   
   };
@@ -49,7 +50,7 @@ const Generalinfo = (props) => {
         <input
           type="text"
           value={LessonTitle}
-          name={"lesson-title"}
+          name={"title"}
           {...register("LessonTitle", {
             onChange: (e) => setLessonTitle(e.target.value),
             required: {
@@ -89,7 +90,7 @@ const Generalinfo = (props) => {
       </Maininput>
       <BtnMain>
         <Div>
-          {props.step === 0 ? (
+          {props.stap === 0 ? (
             ""
           ) : (
             <BtnSecondary onClick={preFunction}>Previous</BtnSecondary>
@@ -104,6 +105,7 @@ const Generalinfo = (props) => {
     </form>
   );
 };
+
 const CharLeft = styled.div`
   position: absolute;
   top: 0;

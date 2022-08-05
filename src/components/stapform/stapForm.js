@@ -3,23 +3,23 @@ import styled from "styled-components";
 import BtnPrimary from "../ui/btnPrimary";
 import BtnSecondary from "../ui/btnSecondary";
 
-const Stepform = (props) => {
-  const [step, setStep] = useState(0);
+const Stapform = (props) => {
+  const [stap, setStap] = useState(0);
   const [btnText, setBtnText] = useState("Next");
-  const stepPages = props.stepPages;
+  const stapPages = props.stapPages;
   const stapComponent = props.tabs;
   const disable = props.disable;
 
   const nextFunction = (e) => {
     if (e?.detail!== 0) {
-      if (step < stepPages.length -1 ) {
-        setStep(step + 1);
+      if (stap < stapPages.length -1 ) {
+        setStap(stap + 1);
       }
     }
   };
 
   useEffect(() => {
-    if (props.step || step == stepPages.length -1) {
+    if (props.stap || stap == stapPages.length -1) {
       if (props.btnText) {
         props.setBtnText("Save");
       } else {
@@ -32,28 +32,28 @@ const Stepform = (props) => {
         setBtnText("Next");
       }
     }
-  }, [props.step || step]);
+  }, [props.stap || stap]);
 
   const preFunction = (e) => {
-    if (e.detail !== 0) setStep(step - 1);
+    if (e.detail !== 0) setStap(stap - 1);
   };
 
   return (
     <div>
-      <div className="stepperMain">
+      <div className="stapperMain">
         <H1>
-          {(props.step || step + 1) + ". " + stepPages[props.step || step]}
+          {(props.stap || stap + 1) + ". " + stapPages[props.stap || stap]}
         </H1>
         <Staps>
-          {stepPages.map((item, index) => {
-            if(props.step){
-              if (index > props.step) {
+          {stapPages.map((item, index) => {
+            if(props.stap){
+              if (index > props.stap) {
                 return <Stap key={index}></Stap>;
               } else {
                 return <ActiveStap key={index}></ActiveStap>;
               }
             }else{
-              if (index > step) {
+              if (index > stap) {
                 return <Stap key={index}></Stap>;
               } else {
                 return <ActiveStap key={index}></ActiveStap>;
@@ -61,11 +61,11 @@ const Stepform = (props) => {
             }
           })}
         </Staps>
-        {stapComponent[props.step || step]}
-        {stepPages[0] !== "General Information" && (
+        {stapComponent[props.stap || stap]}
+        {stapPages[0] !== "General Information" && (
           <BtnMain>
             <Div>
-              {props.step || step === 0 ? (
+              {props.stap || stap === 0 ? (
                 ""
               ) : (
                 <BtnSecondary onClick={props.preFunction || preFunction}>
@@ -131,4 +131,4 @@ const Div = styled.div`
   width: 100%;
 `;
 
-export default Stepform;
+export default Stapform;

@@ -1,4 +1,4 @@
-import React, { Children, useState } from 'react'
+import React from 'react'
 import { Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 import BtnPrimary from './btnPrimary';
@@ -6,6 +6,7 @@ import BtnSecondary from './btnSecondary';
 const PopUp = (props) => {
 
     const handleClose = () => {
+
         props.setShow(false);
         if (props.onHide) {
             props.onHide(true);
@@ -50,4 +51,5 @@ column-gap: 16px;
 max-width: 344px;
 width: 100%;
 `;
+
 export default PopUp;

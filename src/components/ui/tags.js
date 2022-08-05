@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Tags = (props) => {
-    const { tagsList, setTaglist, removeBtn } = props;
 
+    const { tagsList, setTaglist, removeBtn } = props;
     const deleteTag = (i) => {
         setTaglist(tagsList?.filter((tag, index) => index !== i))
     }
+
     return (
         <ListUl marginbottom={props.marginbottom}>
             {tagsList && tagsList.map((tag, index) => {
@@ -41,7 +42,8 @@ font-weight: 400;
 font-size: 12px;
 line-height: 16px;
 font-feature-settings: 'liga' off;
-color: #1F1A48;    
+color: #1F1A48;  
+cursor: pointer;
 `;
 
 export default Tags;

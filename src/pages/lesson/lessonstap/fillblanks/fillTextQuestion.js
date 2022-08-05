@@ -12,14 +12,8 @@ const FillTextQuestion = () => {
     return <div>
 
         <P>The words in purple are words that are part of the educational plan for the age grade you chose - we recommend using those words.</P>
-
         <H4>Selected lyrics</H4>
-
-
         <Tags tagsList={lessonList} setTaglist={setLessonlist} removeBtn />
-
-
-
         <Iconslyrics>
             <Imgdiv>
                 <img src={lyricicon} />
@@ -45,19 +39,13 @@ const FillTextQuestion = () => {
     </div>
 }
 
-export default FillTextQuestion;
-
-
-
 const P = styled.p` 
 font-weight: 400;
 font-size: 14px;
 line-height: 20px;
 font-feature-settings: 'liga' off;
 color: #777580;
-`
-
-
+`;
 
 const H4 = styled.h4`
 font-weight: bold;
@@ -65,13 +53,12 @@ font-size: 16px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
-`
+`;
 
 const Lyrics = styled.div`
 height:348px;
 overflow:scroll;
 overflow-x:hidden;
-
 &::-webkit-scrollbar{
     width:4px;
     border-radius:8px;
@@ -90,13 +77,11 @@ p{
     font-feature-settings: 'liga' off;
     color : #A3A1B3;
 }
-`
+`;
 
 const Iconslyrics = styled.div`
 margin-top:15px
-`
-
-
+`;
 
 const Song = styled.h4`
 font-weight: 500;
@@ -104,20 +89,22 @@ font-size: 14px;
 line-height: 20px;
 color: #1F1A48;
 margin-bottom:2px
-`
+`;
+
 const Singer = styled.p`
 font-weight: 400;
 font-size: 14px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #777580;
-`
+`;
+
 const Maindiv = styled.div`
-
-
 `
 
 const Imgdiv = styled.div`
 float:left;
 padding-right:12px;
-`
+`;
+
+export default FillTextQuestion;
