@@ -8,7 +8,7 @@ const useAuth = () => {
 
 	const logout = () => {
 		localStorage.removeItem('token');
-		window.location = '/auth/login';
+		// window.location = '/auth/login';
 		setUserInfo(null);
 	};
 
