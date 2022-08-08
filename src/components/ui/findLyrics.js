@@ -28,7 +28,7 @@ const FindLyrics = (props) => {
 
     return (
         <>
-            <FindWords onClick={() => { setLyricsPopup(true); setClick(true) }}>+ {props.btnText} </FindWords>
+            <FindWords style={props.style} onClick={() => { setLyricsPopup(true); setClick(true) }}>+ {props.btnText} </FindWords>
             <PopUp heading={"Select word for the lesson"} show={lyricsPopup} setShow={setLyricsPopup} footer={["Cancel", 'Save']} handleClick={() => console.log("data")} closePopup>
                 <p>The words in purple are words that are part of the educational plan for the age grade you chose - we recommend using those words.</p>
                 <span>We recommend 4-7 words per lesson.</span>

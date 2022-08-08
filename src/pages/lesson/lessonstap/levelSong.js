@@ -97,7 +97,7 @@ const LevelAndSong = (props) => {
           <InputIcon>
             <InputIconthreesvg />
           </InputIcon>
-          <Select options={options} placeholder="Select Duration" />
+          <Select name="duration" options={options} placeholder="Select Duration" onChange={(e)=>setSelectDuration(e.value)}/>
 
 
           {/* <Select
@@ -118,7 +118,7 @@ const LevelAndSong = (props) => {
         </PositionRelative>
       </Maininput>
       <PositionRelative>
-        <Maininput marginbottom="20px" label="Main Topic">
+        <Maininput marginbottom="20px" label="Main Topic" style={mainInputDisabled&&{pointerEvents: 'none'}}>
           <input
             name="lessonList"
             placeholder="Add words to the lesson"
@@ -134,6 +134,7 @@ const LevelAndSong = (props) => {
           btnText=" Finding words from the song lyrics"
           lessonList={lessonList}
           setLessonList={setLessonlist}
+          style={mainInputDisabled&&{pointerEvents: 'none'}}
         />
         {mainInputDisabled && <Disabled/>}
       </PositionRelative>
@@ -200,7 +201,7 @@ height: 100%;
 top:0;
 left: 0;
 opacity: 40%;
-z-index:3;
+// z-index:3;
 background: #ffffff;
 cursor: not-allowed;
 `
