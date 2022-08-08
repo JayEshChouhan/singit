@@ -5,6 +5,7 @@ import Select from 'react-select';
 import Checkbox from "../../../../assets/icon/Checkbox.png"
 import ListSvg from '../../../../assets/svgImage/listSvg';
 import ListTwosvg from '../../../../assets/svgImage/listTwosvg';
+import dots from '../../../../assets/images/dots.png';
 
 const options = [
   { value: 'Multiple choice', label: 'Multiple choice' },
@@ -71,6 +72,10 @@ const Createown = () => {
               <P1>Select if the statement is true or false</P1>
               <P2>It was recorded in Metropolis Studios, London.</P2>
             </PDiv>
+            <Maindiv>
+              <Div><ListLi>True</ListLi><Img src={dots} /></Div>
+              <Div><ListLi>False</ListLi><Img src={dots} /></Div>
+            </Maindiv>
             <ListUl>
               {addOption.map((tag) => {
                 return (
@@ -91,6 +96,20 @@ const Createown = () => {
     </>
   )
 }
+
+const Maindiv = styled.div`
+display: grid;
+grid-template-columns: 1fr 1fr;
+margin:1px;
+`
+
+const Div = styled.div`
+display: flex;
+align-items:center;
+`
+const Img = styled.img`
+margin-left:-38px;
+`
 
 const InputField = styled.input`
 align-items: center;
@@ -250,6 +269,8 @@ font-size: 16px;
 line-height: 24px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
+width: 230px;
+cursor:pointer;
 `;
 
 const ListLiInput = styled.li`
