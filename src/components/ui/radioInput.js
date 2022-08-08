@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 function RadioInput(props) {
+  
   return (
     <>
       <div>
-        <MainLabel>
-          {props.label} {props.required && <sup>*</sup>}
-        </MainLabel>
+        <H3>
+          {props.heading} {props.required && <sup>*</sup>}
+        </H3>
         <MainDiv marginbottom={props.marginbottom}>
           {props.radios &&
             props.radios.map((radio, index) => {
@@ -29,10 +30,6 @@ function RadioInput(props) {
                             props.setValue([e.target.value]);
                           }
                         },
-                        // required: {
-                        //   value: true,
-                        //   message: "checked value is reqired",
-                        // },
                       })}
                     />
                   ) : (
@@ -92,6 +89,8 @@ const MainDiv = styled.div`
     text-align: center;
     border: 1px solid #ededf0;
     border-radius: 12px;
+    cursor: pointer;
+		margin: 15px 0;
   }
   input[type="radio"]:checked + .radioBtn {
     background: #41c977;
@@ -114,12 +113,13 @@ const MainDiv = styled.div`
   }
 `;
 
-const MainLabel = styled.label`
-  font-size: 14px;
-  line-height: 24px;
-  color: #7c7896;
-  margin-bottom: 8px;
-  display: inline-block;
+const H3 = styled.h3`
+font-weight: bold;
+font-size: 16px;
+line-height: 24px;
+font-feature-settings: 'liga' off;
+color: #1F1A48;
+margin:0;
 `;
 
 export default RadioInput;

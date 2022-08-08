@@ -9,7 +9,6 @@ const Maininput = (props) => {
   </Wrapper>
 };
 
-
 const Wrapper = styled.div`
 margin: 0 0 ${props => props.marginbottom || "10px"} 0;
 min-width: ${props => props.width};
@@ -34,6 +33,7 @@ border: none;
 outline: none !important;
 border-radius: 12px;
 padding: 0 16px;
+cursor:pointer;
 }
 select{
 width: 100%;

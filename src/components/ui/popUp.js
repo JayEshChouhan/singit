@@ -1,4 +1,4 @@
-import React, { Children, useState } from 'react'
+import React from 'react'
 import { Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 import BtnPrimary from './btnPrimary';
@@ -6,6 +6,7 @@ import BtnSecondary from './btnSecondary';
 const PopUp = (props) => {
 
     const handleClose = () => {
+
         props.setShow(false);
         if (props.onHide) {
             props.onHide(true);
@@ -24,9 +25,9 @@ const PopUp = (props) => {
                 <Div>
                     {props.footer.map((ele, index) => {
                         if (ele === 'Clear' || ele === "Cancel") {
-                            return <BtnSecondary onClick={props.handleSearch} key={index}>{ele}</BtnSecondary>
+                            return <BtnSecondary onClick={props.closePopup?handleClose:props.handleSearch } key={index} >{ele} </BtnSecondary>
                         } else {
-                            return <BtnPrimary onClick={props.handleClick} key={index}>{ele}</BtnPrimary>
+                            return <BtnPrimary onClick={props.closePopup?handleClose:props.handleClick} key={index} >{ele}</BtnPrimary>
                         }
                     })}
                 </Div>
@@ -50,4 +51,5 @@ column-gap: 16px;
 max-width: 344px;
 width: 100%;
 `;
+
 export default PopUp;

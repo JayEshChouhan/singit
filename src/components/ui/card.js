@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 const Card = (props) => {
-  
+
   return <Wrapper style={props.style} className={"card " + props.className}>
     {props.cardTitle && <h3 className="cardTitle">{props.cardTitle}</h3>}
     <div className="content">{props.children}</div>
   </Wrapper>
 };
-
 
 const Wrapper = styled.div`
 background-color: white;
