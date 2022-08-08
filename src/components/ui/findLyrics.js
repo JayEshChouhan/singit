@@ -29,7 +29,7 @@ const FindLyrics = (props) => {
     return (
         <>
             <FindWords onClick={() => { setLyricsPopup(true); setClick(true) }}>+ {props.btnText} </FindWords>
-            <PopUp heading={"Select word for the lesson"}  show={lyricsPopup} setShow={setLyricsPopup} footer={["Cancel", 'Save']} handleClick={() => console.log("data")} closePopup>
+            <PopUp heading={"Select word for the lesson"} show={lyricsPopup} setShow={setLyricsPopup} footer={["Cancel", 'Save']} handleClick={() => console.log("data")} closePopup>
                 <p>The words in purple are words that are part of the educational plan for the age grade you chose - we recommend using those words.</p>
                 <span>We recommend 4-7 words per lesson.</span>
 
@@ -48,7 +48,7 @@ const FindLyrics = (props) => {
                     </Iconslyrics>
                     <Lyrics>
                         <P1 onClick={() => setClick(false)} >
-                            {click ?
+                            {/* {click ?
                                 lyricsListNotUnique.map((ele, index) => {
                                     if (props.lessonList.includes(ele)) {
                                         return <font color="#735FFF" key={index}> {ele} </font>
@@ -56,13 +56,16 @@ const FindLyrics = (props) => {
                                         return <span key={index}> {ele} </span>
                                     }
 
-                                }) : lyricsList.map((ele, index) => {
-                                    if (props.lessonList.includes(ele)) {
-                                        return <SelectBox key={index} onClick={(e) => props.setLessonList(props.lessonList.filter(item => item !== ele))} Selected>{ele}</SelectBox>
-                                    } else {
-                                        return <SelectBox key={index} onClick={(e) => props.setLessonList([...props.lessonList, ele])}> {ele} </SelectBox>
-                                    }
-                                })}
+                                }) :
+                                 */}
+
+                            {lyricsList.map((ele, index) => {
+                                if (props.lessonList.includes(ele)) {
+                                    return <SelectBox key={index} onClick={(e) => props.setLessonList(props.lessonList.filter(item => item !== ele))} Selected>{ele}</SelectBox>
+                                } else {
+                                    return <SelectBox key={index} onClick={(e) => props.setLessonList([...props.lessonList, ele])}> {ele} </SelectBox>
+                                }
+                            })}
                         </P1>
                     </Lyrics>
                 </div>

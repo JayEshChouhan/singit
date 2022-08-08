@@ -19,29 +19,47 @@ const Review = () => {
         </p>
       </Maindiv>
       <SecondDiv>
-
+        <Span><P1>True or False</P1></Span>
+        <P2>Select if the statement is true or false</P2>
+        <p>It was recorded in Metropolis Studios, London.</p>
+        {/* <Spantwo>True</Spantwo>
+        <Spantwo>True</Spantwo> */}
       </SecondDiv>
 
     </>
   )
 }
 
+const Spantwo = styled.span`
+display: flex;
+flex-direction: row;
+padding: 8px 12px;
+width: 85px;
+height: 40px;
+background: #F9F9FF;
+border: 1px solid #735FFF;
+border-radius: 12px;
+`
+
 const Div = styled.div`
 margin-bottom:20px;
 `
 
-const Espan =styled.span`
+const Espan = styled.span`
 padding: 8px 12px;
 gap: 8px;
 border-radius: 12px;
 margin:2px;
 border: 1px solid #735FFF;
+margin:5px;
 `;
 
-const Mspan =styled.span`
+const Mspan = styled.span`
 line-height: 20px;
 font-feature-settings: 'liga' off;
 color: #1F1A48;
+height:40px;
+width:103px;
 `;
 
 const P = styled.p`
@@ -80,7 +98,7 @@ flex-direction: row;
 align-items: flex-start;
 padding: 6px 12px;
 gap: 4px;
-width: 109px;
+width: 102px;
 height: 28px;
 background: #EDEDF0;
 border-radius: 27px;

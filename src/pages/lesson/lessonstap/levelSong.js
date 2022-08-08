@@ -11,6 +11,7 @@ import SearchPopup from "../../../components/ui/searchPopup";
 import BtnSecondary from "../../../components/ui/btnSecondary";
 import BtnPrimary from "../../../components/ui/btnPrimary";
 import InputIconthreesvg from "../../../assets/svgImage/inputIconthreesvg";
+import Select from 'react-select';
 
 const LevelAndSong = (props) => {
 
@@ -58,6 +59,11 @@ const LevelAndSong = (props) => {
     }
   };
 
+  const options = [
+    { value: '5 minutes', label: '5 minutes' },
+    { value: '10 minutes', label: '10 minutes' },
+  ]
+
   return (
     <form
       onSubmit={handleSubmit((data) => {
@@ -91,8 +97,10 @@ const LevelAndSong = (props) => {
           <InputIcon>
             <InputIconthreesvg />
           </InputIcon>
+          <Select options={options} placeholder="Select Duration" />
 
-          <Select
+
+          {/* <Select
             name="duration"
             value={selectDuration}
             {...register("SelectDuration", {
@@ -106,7 +114,7 @@ const LevelAndSong = (props) => {
             <option value={"5"}>5 minutes</option>
             <option value={"10"}>10 minutes</option>
             <option value={"15"}>15 minutes</option>
-          </Select>
+          </Select> */}
         </PositionRelative>
       </Maininput>
       <PositionRelative>
@@ -156,6 +164,7 @@ const LevelAndSong = (props) => {
   );
 };
 
+
 const InputIcon = styled.span`
   position: absolute;
   bottom: 50%;
@@ -180,9 +189,9 @@ const Div = styled.div`
   width: 100%;
 `;
 
-const Select = styled.select`
-cursor:pointer;
-`;
+// const Select = styled.select`
+// cursor:pointer;
+// `;
 
 const Disabled = styled.div`
 position: absolute;
